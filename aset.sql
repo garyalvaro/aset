@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Bulan Mei 2021 pada 17.35
+-- Waktu pembuatan: 27 Bulan Mei 2021 pada 17.43
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 7.1.23
 
@@ -60,7 +60,7 @@ CREATE TABLE `log_transaksi` (
   `id_user` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `action` int(11) NOT NULL,
-  `action_datetime` datetime NOT NULL
+  `action_datetime` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
