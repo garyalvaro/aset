@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<tr>
 				<td> Foto </td>
-				<td> <input type="file" name="foto" id="foto" > 
+				<td> <input type="file" name="foto" id="foto" "<?php echo set_value('foto'); ?>" accept="image/jpeg"> 
 				</td>
 			</tr>
 
