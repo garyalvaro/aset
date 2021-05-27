@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Bulan Mei 2021 pada 18.07
+-- Waktu pembuatan: 27 Bulan Mei 2021 pada 18.25
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 7.1.23
 
@@ -176,7 +176,8 @@ ALTER TABLE `barangrusak`
 ALTER TABLE `log_transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `log_transaksi_ibfk_1` (`id_barang`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `action` (`action`);
 
 --
 -- Indeks untuk tabel `pinjam_barang`
@@ -278,7 +279,8 @@ ALTER TABLE `barangrusak`
 --
 ALTER TABLE `log_transaksi`
   ADD CONSTRAINT `log_transaksi_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `log_transaksi_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `log_transaksi_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `log_transaksi_ibfk_3` FOREIGN KEY (`action`) REFERENCES `action` (`id_action`) ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `pinjam_barang`
