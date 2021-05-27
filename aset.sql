@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Bulan Mei 2021 pada 17.43
+-- Waktu pembuatan: 27 Bulan Mei 2021 pada 18.07
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 7.1.23
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `aset`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `action`
+--
+
+CREATE TABLE `action` (
+  `id_action` int(11) NOT NULL,
+  `nama_action` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `action`
+--
+
+INSERT INTO `action` (`id_action`, `nama_action`) VALUES
+(1, 'tambah'),
+(2, 'pinjam'),
+(3, 'kembalikan'),
+(4, 'rusak'),
+(5, 'hapus');
 
 -- --------------------------------------------------------
 
@@ -129,6 +151,12 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indeks untuk tabel `action`
+--
+ALTER TABLE `action`
+  ADD PRIMARY KEY (`id_action`);
+
+--
 -- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
@@ -180,6 +208,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `action`
+--
+ALTER TABLE `action`
+  MODIFY `id_action` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `barang`
