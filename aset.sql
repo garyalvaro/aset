@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Bulan Mei 2021 pada 05.49
+-- Waktu pembuatan: 27 Bulan Mei 2021 pada 18.25
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 7.1.23
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `aset`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `action`
+--
+
+CREATE TABLE `action` (
+  `id_action` int(11) NOT NULL,
+  `nama_action` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `action`
+--
+
+INSERT INTO `action` (`id_action`, `nama_action`) VALUES
+(1, 'tambah'),
+(2, 'pinjam'),
+(3, 'kembalikan'),
+(4, 'rusak'),
+(5, 'hapus');
 
 -- --------------------------------------------------------
 
@@ -60,7 +82,7 @@ CREATE TABLE `log_transaksi` (
   `id_user` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `action` int(11) NOT NULL,
-  `action_datetime` datetime NOT NULL
+  `action_datetime` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -121,13 +143,18 @@ CREATE TABLE `user` (
   `nim` varchar(10) NOT NULL,
   `active` int(1) NOT NULL,
   `level` int(1) NOT NULL,
-  `tgl_aktivasi` datetime NOT NULL,
-  `token` varchar(30) NOT NULL
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `action`
+--
+ALTER TABLE `action`
+  ADD PRIMARY KEY (`id_action`);
 
 --
 -- Indeks untuk tabel `barang`
@@ -149,7 +176,8 @@ ALTER TABLE `barangrusak`
 ALTER TABLE `log_transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `log_transaksi_ibfk_1` (`id_barang`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `action` (`action`);
 
 --
 -- Indeks untuk tabel `pinjam_barang`
@@ -181,6 +209,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `action`
+--
+ALTER TABLE `action`
+  MODIFY `id_action` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `barang`
@@ -245,7 +279,8 @@ ALTER TABLE `barangrusak`
 --
 ALTER TABLE `log_transaksi`
   ADD CONSTRAINT `log_transaksi_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `log_transaksi_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `log_transaksi_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `log_transaksi_ibfk_3` FOREIGN KEY (`action`) REFERENCES `action` (`id_action`) ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `pinjam_barang`
