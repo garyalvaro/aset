@@ -35,7 +35,7 @@ class Barang extends CI_Controller
 
 			$data = array(
 					'nama_barang' => $this->input->post('nama_barang'),
-					'foto' => "assets/uploads/barang/".$namafile,
+					'foto' => "assets/uploads/".$namafile,
 					'deskripsi' => $this->input->post('deskripsi'),
 					'id_satuan' => $this->input->post('id_satuan')
 					
@@ -50,23 +50,33 @@ class Barang extends CI_Controller
 				
 				
 		}
-		
-		
-
-
-// $data['sat'] = $this->M_data->show_satuan();
-// if($this->input->post('submit'))
-// 		{
-			
-// 			$this->M_data->save();
-// 				redirect('barang/tampil_barang');
-// 		}
-		
-// 		$this->load->view('tambah_barang',$data);
-
 
 	}
 
+
+	public function editFoto($id_barang)
+	{
+		$this->load->view('ubah',$data);
+		$config['upload_path']       = './assets/uploads';
+		$config['allowed_types']    = 'jpg|png';
+		$config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
+		$config['overwrite']			= true;
+		$config['max_size']             = 2048; // 2MB
+		$this->load->library('upload', $config);
+
+		if($this->input->post('submit'))
+		{
+		$namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
+			$data = array('foto' =>$namafile);
+			
+			if($this->M_data->edit_fotobarang_byid($id_barang, $data))
+				$this->session->set_flashdata('editFotoBarang_success', 'editFotoBarang_success');
+			else
+				$this->session->set_flashdata('editFotoBarang_failed', 'editFotoBarang_failed');
+			redirect('barang/tampil_barang');
+		}
+
+	}
 
 	public function editBarang($id_barang)
 	{
@@ -74,22 +84,12 @@ class Barang extends CI_Controller
 		$data['barang'] = $this->M_data->view_by($id_barang);
 		$this->load->view('ubah',$data);
 
-		$config['upload_path']       = 'assets/uploads';
-		$config['allowed_types']    = 'jpg|png';
-		$config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
-		$config['overwrite']			= true;
-		$config['max_size']             = 2048; // 2MB
-		$this->load->library('upload', $config);
-
-
-
 		if($this->input->post('submit'))
 		{
-			$namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
+			
 
 			$data = array(
 					'nama_barang' => $this->input->post('nama_barang'),
-					'foto' => "assets/uploads/barang/".$namafile,
 					'deskripsi' => $this->input->post('deskripsi'),
 					'id_satuan' => $this->input->post('id_satuan')
 					

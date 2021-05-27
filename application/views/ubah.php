@@ -43,7 +43,20 @@
 	<?php echo form_close(); ?></div>
 
 <div>
-	<?php echo form_open_multipart('barang/editBarang/'.$barang->id_barang); ?>
+	<?php echo form_open_multipart('barang/editFoto/'.$barang->id_barang); ?>
+	<table>
+		<tr>
+			<td>Foto barang</td>
+			<td><input type="file" name="foto" id="foto" accept="image/jpeg"> 
+				</td>
+		</tr>
+	</table>
+	<input class="ubah" type="submit" name="submit" value="Ubah">
+	<a href="<?php echo base_url();?>">
+	<input class="batal" type="button" value="Batal"></a>
+<?php echo form_close(); ?></div>
+
+	
 </body>
 </html>
 

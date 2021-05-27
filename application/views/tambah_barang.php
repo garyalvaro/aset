@@ -31,6 +31,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</tr>
 
 			<tr>
+				<td> Jumlah </td>
+				<td> <input type="text" name="qty" value="<?php echo set_value('qty');?>">
+				</td>
+
+			<tr>
 				<td>Id Satuan</td>
 				<td>
 					<select class="form-control" id="id_satuan" name="id_satuan">
@@ -51,6 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <input class="simpan" type="submit" name="submit" value="Simpan">
 	<a href="<?php echo base_url();?>">
 	<input class="batal" type="button" value="Batal"></a></div>
+	
 	<?php echo form_close(); ?>
 
 

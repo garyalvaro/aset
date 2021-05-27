@@ -43,6 +43,8 @@ private function _uploadImage()
 
 	public function save($data)
 	{
+		$this->session->set_userdata(['id_user' => 1]);
+
 		$data = array(
 			
 			"nama_barang" => $this->input->post('input_namaBrg'),
@@ -50,7 +52,19 @@ private function _uploadImage()
 			"deskripsi" => $this->input->post('input_deskripsiBrg'),
 			"id_satuan" => $this->input->post('id_satuan')
 		);
-		$this->db->insert('barang',$data);
+
+		$qty = $this->input->post('qty');
+		$tgl = date('Y-m-d');
+		$id_user = $this->session->userdata('id_user');
+		
+
+		
+		$this->db->query("BEGIN;");
+			$this->db->insert('barang',$data);
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', LAST_INSERT_ID(),'$id_user','3', '$tgl'); ");
+		$this->db->query("COMMIT;");
+
+		
 		
 
 		// $nama_barang = $data['nama_barang'];
@@ -63,7 +77,13 @@ private function _uploadImage()
 	
 	}
 
-	
+	public function edit_fotobarang_byid($id_barang, $data)
+	{
+		$foto_brg = $this->_uploadImage();
+		$this->db->query("UPDATE barang SET foto='$foto_brg' WHERE id_barang=$id_barang");
+		return TRUE;
+	}
+
 	public function edit($id_barang,$data)
 	{
 		$data = array(
