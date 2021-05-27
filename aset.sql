@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Bulan Mei 2021 pada 05.49
+-- Waktu pembuatan: 27 Bulan Mei 2021 pada 17.35
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 7.1.23
 
@@ -121,8 +121,7 @@ CREATE TABLE `user` (
   `nim` varchar(10) NOT NULL,
   `active` int(1) NOT NULL,
   `level` int(1) NOT NULL,
-  `tgl_aktivasi` datetime NOT NULL,
-  `token` varchar(30) NOT NULL
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
