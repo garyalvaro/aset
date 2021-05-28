@@ -16,6 +16,11 @@ class Barang extends CI_Controller
 		$this->load->view('tampil',$data);
 	}
 
+	public function tampil_barang_users()
+	{
+		$data['barang'] = $this->M_data->view();
+		$this->load->view('barang_user',$data);
+	}
 
 	public function tambahBrg()
 	{

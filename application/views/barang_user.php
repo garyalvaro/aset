@@ -15,11 +15,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<th>Nama </th>
 				<th>Deskripsi</th>
 				<th>Foto</th>
-				
-				<!-- bagian xixil 
-				<th>Stok</th>
-				-->
-
 				<th colspan="2">Action</th>
 			</tr>
 
@@ -32,8 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<td>".$data->nama_barang."</td>
 				<td>".$data->deskripsi."</td>
 				<td> <img src='".base_url("assets/uploads/".$data->foto)."'/></td>
-				<td><a href=".base_url("barang/editBarang/".$data->id_barang)."><button class='ubah'>Ubah</button></a></td>
-				<td><a href= ".base_url("barang/editStok/".$data->id_barang)." ><button class='hapus'>Update Stok</button></a></td>
+				<td><a href=".base_url()."><button class='ubah'>Pinjam</button></a></td>
 				</tr>";
 			}
 		}
