@@ -53,11 +53,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</table>
 	
 
-<input class="simpan" type="submit" name="submit" value="Simpan">
+	<input class="simpan" type="submit" name="submit" value="Simpan">
 	<a href="<?php echo base_url();?>">
 	<input class="batal" type="button" value="Batal"></a></div>
 	
 	<?php echo form_close(); ?>
+	
 
 
 

@@ -64,17 +64,67 @@ private function _uploadImage()
 			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', LAST_INSERT_ID(),'$id_user','3', '$tgl'); ");
 		$this->db->query("COMMIT;");
 
-		
-		
+	}
 
-		// $nama_barang = $data['nama_barang'];
-		// $foto_brg = $data['foto'];
-		// $deskripsi = $data['deskripsi'];
-		// $id_satuan = $data['id_satuan'];
-		// $this->db->query("BEGIN;");
-		// 	$this->db->query("INSERT INTO barang(nama_barang, foto, deskripsi, id_satuan) VALUES('$nama_barang', '$foto_brg', '$deskripsi', '$id_satuan');");
-		// $this->db->query("COMMIT;");
-	
+	public function barangRusak($id_barang)
+	{
+		$this->session->set_userdata(['id_user' => 1]);
+
+
+		$qty = $this->input->post('qty');
+		$tgl = date('Y-m-d');
+		$id_user = $this->session->userdata('id_user');
+		$id_transaksi = $this->input->post('id_transaksi');
+		$deskripsi = $this->input->post('deskripsi');
+
+
+		$this->db->query("BEGIN;");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','0', '$tgl');");
+			$this->db->query("INSERT INTO barangrusak(id_transaksi,deskripsi) VALUES(LAST_INSERT_ID(), '$deskripsi');");
+		$this->db->query("COMMIT;");
+		
+	}
+
+	public function pinjamStok($id_barang)
+	{
+		$this->session->set_userdata(['id_user' => 1]);
+		$qty = $this->input->post('qty');
+		$tgl = date('Y-m-d');
+		$id_user = $this->session->userdata('id_user');
+		$id_transaksi = $this->input->post('id_transaksi');
+
+		$this->db->query("BEGIN;");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','1', '$tgl');");
+		$this->db->query("COMMIT;");
+		
+	}
+
+	public function kembalikanStok($id_barang)
+	{
+		$this->session->set_userdata(['id_user' => 1]);
+		$qty = $this->input->post('qty');
+		$tgl = date('Y-m-d');
+		$id_user = $this->session->userdata('id_user');
+		$id_transaksi = $this->input->post('id_transaksi');
+
+		$this->db->query("BEGIN;");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','2', '$tgl');");
+		$this->db->query("COMMIT;");
+		
+	}
+
+	public function tambahStok($id_barang)
+	{
+		$this->session->set_userdata(['id_user' => 1]);
+		$qty = $this->input->post('qty');
+		$tgl = date('Y-m-d');
+		$id_user = $this->session->userdata('id_user');
+		$id_transaksi = $this->input->post('id_transaksi');
+
+		$this->db->query("BEGIN;");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','3', '$tgl');");
+		$this->db->query("COMMIT;");
+		
 	}
 
 	public function edit_fotobarang_byid($id_barang, $data)
@@ -104,15 +154,7 @@ private function _uploadImage()
 		return TRUE;
 	}
 
-	public function barangRusak($data)
-	{
 
-		$data = array(
-			
-			"id_transaksi" => $this->input->post('id_transaksi'),
-			"deskripsi" => $this->input->post('input_deskripsiBrg')
-		);
-		$this->db->insert('barangRusak',$data);
-	}
+
 }
 ?>

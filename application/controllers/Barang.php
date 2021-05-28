@@ -102,11 +102,49 @@ class Barang extends CI_Controller
 		
 	}
 
+	public function editStok($id_barang)
+	{
+		$data['barang'] = $this->M_data->view_by($id_barang);
+		$this->load->view('form_update',$data);
+		if($this->input->post('submit'))
+		{
+			if($this->input->post('submit'))
+			{
+			$action = $this->input->post('action');
+			if($action == 0)
+			{
+				$this->M_data->barangRusak($id_barang);
+			}
+
+			else if($action == 1)
+			{
+				$this->M_data->pinjamStok($id_barang);
+			}
+
+			else if($action == 2)
+			{
+				$this->M_data->kembalikanStok($id_barang);
+			}
+
+			else if($action == 3)
+			{
+				$this->M_data->tambahStok($id_barang);
+			}
+
+			else
+			{
+				redirect('barang/tampil_barang');
+			}
+		}
+			redirect('barang/tampil_barang');
+		}
+
+	}
+
 
 	public function hapus($id_barang)
 	{
 		if($this->M_data->hapusBarang($id_barang)){
-			$this->
 			$this->session->set_flashdata('deleteBarang_success', 'deleteBarang_success');
 			redirect('barang/tampil_barang');
 		}
