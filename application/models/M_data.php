@@ -85,21 +85,35 @@ private function _uploadImage()
 		
 	}
 
-	public function pinjamStok($id_barang)
-	{
-		$this->session->set_userdata(['id_user' => 1]);
-		$qty = $this->input->post('qty');
-		$tgl = date('Y-m-d');
-		$id_user = $this->session->userdata('id_user');
-		$id_transaksi = $this->input->post('id_transaksi');
+	// public function pinjamStok($id_barang)
+	// {
+	// 	$this->session->set_userdata(['id_user' => 1]);
+	// 	$qty = $this->input->post('qty');
+	// 	$tgl = date('Y-m-d');
+	// 	$id_user = $this->session->userdata('id_user');
+	// 	$id_transaksi = $this->input->post('id_transaksi');
 
-		$this->db->query("BEGIN;");
-			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','1', '$tgl');");
-		$this->db->query("COMMIT;");
+	// 	$this->db->query("BEGIN;");
+	// 		$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','1', '$tgl');");
+	// 	$this->db->query("COMMIT;");
 		
-	}
+	// }
 
-	public function kembalikanStok($id_barang)
+	// public function kembalikanStok($id_barang)
+	// {
+	// 	$this->session->set_userdata(['id_user' => 1]);
+	// 	$qty = $this->input->post('qty');
+	// 	$tgl = date('Y-m-d');
+	// 	$id_user = $this->session->userdata('id_user');
+	// 	$id_transaksi = $this->input->post('id_transaksi');
+
+	// 	$this->db->query("BEGIN;");
+	// 		$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','2', '$tgl');");
+	// 	$this->db->query("COMMIT;");
+		
+	// }
+
+	public function hapusStok($id_barang)
 	{
 		$this->session->set_userdata(['id_user' => 1]);
 		$qty = $this->input->post('qty');
@@ -108,7 +122,7 @@ private function _uploadImage()
 		$id_transaksi = $this->input->post('id_transaksi');
 
 		$this->db->query("BEGIN;");
-			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','2', '$tgl');");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','4', '$tgl');");
 		$this->db->query("COMMIT;");
 		
 	}
