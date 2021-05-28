@@ -13,19 +13,19 @@ class Barang extends CI_Controller
 	public function tampil_barang()
 	{
 		$data['barang'] = $this->M_data->view();
-		$this->load->view('tampil',$data);
+		$this->load->view('barang/tampil',$data);
 	}
 
 	public function tampil_barang_users()
 	{
 		$data['barang'] = $this->M_data->view();
-		$this->load->view('barang_user',$data);
+		$this->load->view('barang/barang_user',$data);
 	}
 
 	public function tambahBrg()
 	{
 		$data['sat'] = $this->M_data->show_satuan();
-		$this->load->view('tambah_barang', $data);
+		$this->load->view('barang/tambah_barang', $data);
 		//File Upload Config
 		$config['upload_path']       = 'assets/uploads';
 		$config['allowed_types']    = 'jpg|png';
@@ -61,7 +61,7 @@ class Barang extends CI_Controller
 
 	public function editFoto($id_barang)
 	{
-		$this->load->view('ubah',$data);
+		$this->load->view('barang/ubah',$data);
 		$config['upload_path']       = './assets/uploads';
 		$config['allowed_types']    = 'jpg|png';
 		$config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
@@ -87,7 +87,7 @@ class Barang extends CI_Controller
 	{
 		$data['sat'] = $this->M_data->show_satuan();
 		$data['barang'] = $this->M_data->view_by($id_barang);
-		$this->load->view('ubah',$data);
+		$this->load->view('barang/ubah',$data);
 
 		if($this->input->post('submit'))
 		{
@@ -110,7 +110,7 @@ class Barang extends CI_Controller
 	public function editStok($id_barang)
 	{
 		$data['barang'] = $this->M_data->view_by($id_barang);
-		$this->load->view('form_update',$data);
+		$this->load->view('barang/form_update',$data);
 		if($this->input->post('submit'))
 		{
 			if($this->input->post('submit'))
@@ -121,14 +121,9 @@ class Barang extends CI_Controller
 				$this->M_data->barangRusak($id_barang);
 			}
 
-			else if($action == 1)
+			else if($action == 4)
 			{
-				$this->M_data->pinjamStok($id_barang);
-			}
-
-			else if($action == 2)
-			{
-				$this->M_data->kembalikanStok($id_barang);
+				$this->M_data->hapusStok($id_barang);
 			}
 
 			else if($action == 3)

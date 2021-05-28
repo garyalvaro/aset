@@ -20,8 +20,7 @@
 			<td> <select class="form-control" id="action" name="action">
 				<option value="" disabled>Pilih Salah Satu</option>
 				<option value="rusak" name="0">Rusak</option>
-				<option value="1" name="pinjam">Pinjam</option>
-				<option value="2" name="kembalikan">Kembalikan</option>
+				<option value="4" name="pinjam">Hapus</option>
 				<option value="3" name="tambah">Tambah</option>
 			</select>
 		</td>
