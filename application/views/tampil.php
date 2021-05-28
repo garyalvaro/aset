@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<td> <img src='".base_url("assets/uploads/".$data->foto)."'/></td>
 				<td>".$data->id_satuan."</td>
 				<td><a href=".base_url("barang/editBarang/".$data->id_barang)."><button class='ubah'>Ubah</button></a></td>
-				<td><a href= ".base_url("barang/hapus/".$data->id_barang)." ><button class='hapus'>Hapus</button></a></td>
+				<td><a href= ".base_url("barang/editStok/".$data->id_barang)." ><button class='hapus'>Update Stok</button></a></td>
 				</tr>";
 			}
 		}

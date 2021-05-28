@@ -56,6 +56,12 @@
 	<input class="batal" type="button" value="Batal"></a>
 <?php echo form_close(); ?></div>
 
+<div>
+	<?php echo form_open_multipart('barang/hapus/'.$barang->id_barang); ?>
+	<?php echo 
+	"<a href=".base_url("barang/hapus/".$barang->id_barang)."><button class='hapus'>Hapus</button></a>"
+	?>
+	<?php echo form_close(); ?></div>
 	
 </body>
 </html>
