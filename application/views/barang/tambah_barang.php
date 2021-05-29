@@ -1,68 +1,128 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>form tambah barang </title>
-</head>
-<body>
-	
-	<?php echo form_open_multipart('barang/tambahBrg'); ?>
-	<div class="table">
-		<table>
-			<tr>
-				<td> Nama Barang </td>
-				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('input_namaBrg');?>">
-				</td>
-			</tr>
+<?php $this->load->view('layout/headerA'); ?>
+<!-- CSS PLUGINS START  -->
 
-			<tr>
-				<td> Foto </td>
-				<td> <input type="file" name="foto" id="foto" "<?php echo set_value('foto'); ?>" accept="image/jpeg"> 
-				</td>
-			</tr>
+	<!-- Bootstrap Touchspin css -->
+	<link href="<?=base_url();?>assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
 
-			<tr>
-				<td> Deskripsi </td>
-				<td> <input type="text" name="input_deskripsiBrg" required value="<?php echo set_value('foto_brg'); ?>" accept="image/jpeg">
-				</td>
-			</tr>
+<!-- CSS PLUGINS END  -->
+<?php $this->load->view('layout/headerB'); ?>
 
-			<tr>
-				<td> Jumlah </td>
-				<td> <input type="text" name="qty" value="<?php echo set_value('qty');?>">
-				</td>
-
-			<tr>
-				<td>Id Satuan</td>
-				<td>
-					<select class="form-control" id="id_satuan" name="id_satuan">
-   					<?php $p = set_value('satuan'); ?>
-									<option value="" disabled>Pilih Salah Satu</option>
-									<?php foreach($sat as $row):?>
-										<option value="<?= $row->id_satuan; ?>" <?php if($p==$row->satuan){ echo 'selected'; } ?> >
-											<?= ucfirst($row->satuan); ?>
-										</option>
-   					<?php endforeach; ?>
-				</td>
-			</tr>
-
-
-		</table>
-	
-
-	<input class="simpan" type="submit" name="submit" value="Simpan">
-	<a href="<?php echo base_url();?>">
-	<input class="batal" type="button" value="Batal"></a></div>
-	
-	<?php echo form_close(); ?>
-	
+<?php $this->load->view('layout/navbar'); ?>
 
 
 
-	
+<div class="wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card m-b-20">
+					<div class="card-body">
 
-</body>
-</html>
+						<h4 class="mt-0 header-title">Tambah Aset</h4>
+						<p class="text-muted m-b-30 "></p>
+
+						<?php echo form_open_multipart('barang/tambahBrg'); ?>
+
+						<div class="form-group row">
+							<label for="input_namaBrg" class="col-sm-2 col-form-label">Nama Aset</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" id="input_namaBrg" name="input_namaBrg" autocomplete="off">
+							</div>
+						</div>
+
+						<!-- <div class="form-group row">
+							<label for="foto" class="col-sm-2 col-form-label">Upload Foto Aset</label>
+							<div class="col-sm-10">
+								<div action="#" id="dZUpload" class="dropzone">
+									<div class="fallback">
+										<input name="file" type="file" id="foto" accept="image/jpeg">
+									</div>
+								</div>
+							</div>
+						</div> -->
+						
+						<div class="form-group row">
+							<label for="foto" class="col-sm-2 col-form-label">Upload Foto Aset</label>
+							<div class="col-sm-10">
+								<input name="foto" type="file" id="foto" accept="image/jpeg">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="input_deskripsiBrg" class="col-sm-2 col-form-label">Deskripsi</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" id="input_deskripsiBrg" name="input_deskripsiBrg" required>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="qty" class="col-sm-2 col-form-label">Jumlah & Satuan</label>
+							<div class="col-sm-5 col-6">
+								<input id="qty" type="text" name="qty" value="1">
+							</div>
+							<div class="col-sm-5 col-6">
+								<select class="form-control" id="id_satuan" name="id_satuan" required>
+								<option value="" disabled>Pilih Satuan</option>
+								<?php foreach($sat as $row):?>
+									<option value="<?= $row->id_satuan; ?>" >
+										<?= ucfirst($row->satuan); ?>
+									</option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-sm-12 text-right">
+								<a class="btn btn-outline-secondary" href="<?php echo base_url();?>">Batal</a>
+								&nbsp; &nbsp;
+								<input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+							</div>
+						</div>
+
+						<?php echo form_close(); ?>
+
+					</div>
+				</div>
+			</div> <!-- end col -->
+		</div> <!-- end row -->
+
+	</div> <!-- end container-fluid -->
+</div>
+<!-- end wrapper -->
+
+
+<?php $this->load->view('layout/footerA'); ?>
+<!-- JS PLUGINS START  -->
+
+<!-- Bootstrap Touchpin js -->
+<script src="<?=base_url()?>assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js"></script>
+<script type="text/javascript">
+!function($) {
+    "use strict";
+
+    var AdvancedForm = function() {};
+    
+    AdvancedForm.prototype.init = function() {
+
+		$("input[name='qty']").TouchSpin({
+			min: 1,
+			step: 1,
+			buttondown_class: 'btn btn-primary',
+			buttonup_class: 'btn btn-primary'
+		});
+	},
+    //init
+    $.AdvancedForm = new AdvancedForm, $.AdvancedForm.Constructor = AdvancedForm
+}(window.jQuery),
+
+//initializing
+function ($) {
+    "use strict";
+    $.AdvancedForm.init();
+}(window.jQuery);
+
+</script>
+
+<!-- JS PLUGINS END  -->
+<?php $this->load->view('layout/footerA'); ?>
