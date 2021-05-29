@@ -9,15 +9,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 	<h1> Tabel User </h1>
-	<div class="table">
-		<table border="1">
+	 <table class="table table-bordered">
+		
 			<tr>
 				<th>Foto</th>
 				<th>Username </th>
 				<th>Nama</th>
 				<th>Email</th>
 				<th>Aktif</th>
-				<th colspan="2">Action</th>
+				<th colspan="3">Action</th>
 			</tr>
 
 			<?php
@@ -36,8 +36,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<td>".$data->nama."</td>
 				<td> <center>".$data->email."</center></td>
 				<td>".$active."</td>
+				<td><a href=".base_url("user/profile_user/".$data->id_user)."><button class='detail'>Detail</button></a></td>
 				<td><a href=".base_url("user/edit_user/".$data->id_user)."><button class='ubah'>Ubah</button></a></td>
-				<td><a href= ".base_url("user/hapus_user/".$data->id_user)." ><button class='hapus'>Hapus</button></a></td>
+				<td><a href=".base_url("user/hapus_user/".$data->id_user)."><button class='hapus'>Hapus</button></a></td>
 				</tr>";
 			}
 		}
