@@ -28,15 +28,7 @@
             </tr>
             <tr>
                 <td>Aktif</td>
-                <td>
-                    <select class="form-control" id="active" name="active">
-                    <?php $p = set_value('active',$user->active); ?>
-                                    
-                                    <?php foreach($active as $row):?>
-                                        <option value="<?= $row->active; ?>" <?php if($p==$row->active){ echo 'selected'; } ?> >
-                                            <?= ucfirst($row->active); ?>
-                                        </option>
-                    <?php endforeach; ?>
+                 <td> <input type="text" name="active" required value="<?php echo set_value('active', $user->active); ?>" >
                 </td>
             </tr>
 
@@ -46,19 +38,20 @@
              </tr>   
         -->
 
-</table>
 
-<hr>
+
+</table> <hr>
     <input class="ubah" type="submit" name="submit" value="Ubah">
     <a href="<?php echo base_url();?>">
     <input class="batal" type="button" value="Batal"></a>
     <?php echo form_close(); ?></div>
-
-<!-- <div>
-    <?php echo form_open_multipart('barang/editFoto/'.$barang->id_barang); ?>
+</hr> 
+  
+<div>
+    <?php echo form_open_multipart('user/ubah_foto/'.$user->id_user); ?>
     <table>
         <tr>
-            <td>Foto barang</td>
+            <td>Ganti Foto</td>
             <td><input type="file" name="foto" id="foto" accept="image/jpeg"> 
                 </td>
         </tr>
@@ -68,12 +61,9 @@
     <input class="batal" type="button" value="Batal"></a>
 <?php echo form_close(); ?></div>
 
-<div>
-    <?php echo form_open_multipart('barang/hapus/'.$barang->id_barang); ?>
-    <?php echo 
-    "<a href=".base_url("barang/hapus/".$barang->id_barang)."><button class='hapus'>Hapus</button></a>"
-    ?>
-    <?php echo form_close(); ?></div> -->
+
+
+
     
 </body>
 </html>

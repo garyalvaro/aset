@@ -33,6 +33,7 @@ class User extends CI_Controller
                     'username' => $this->input->post('username'),
                     'nama' => $this->input->post('nama'),
                     'email' => $this->input->post('email')
+
                     );
 
                     $this->User_model->edit($id_user,$data);
@@ -61,11 +62,42 @@ class User extends CI_Controller
         }
     }
 
+    public function ubah_foto($id_user)
+    {
+        $this->load->view('user/user_edit',$data);
+        $config['upload_path']       = './assets/uploads';
+        $config['allowed_types']    = 'jpg|png';
+        $config['file_name']            = date("Ymd_His")."-".$this->input->post('nama');
+        $config['overwrite']            = true;
+        $config['max_size']             = 2048; // 2MB
+        $this->load->library('upload', $config);
+
+        if($this->input->post('submit'))
+        {
+        $namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
+            $data = array('foto' =>$namafile);
+            
+            if($this->User_model->edit_foto($id_user, $data))
+                $this->session->set_flashdata('editFoto_success', 'editFoto_success');
+            else
+                $this->session->set_flashdata('editFoto_failed', 'editFoto_failed');
+            redirect('user/index');
+        }
+
+    }
+
+
     public function hapus_user($id_user)
     {
-        $this->User_model->hapus($id_user);
-
-        redirect('user');
+        if($this->User_model->hapus($id_user)){
+            $this->session->set_flashdata('deleteBarang_success', 'deleteBarang_success');
+            redirect('user/index');
+        }
+        else{
+            $this->session->set_flashdata('deleteBarang_failed', 'deleteBarang_failed');
+            redirect('user/index/'.$id_user);
+        }
+            
     }
 
 }
