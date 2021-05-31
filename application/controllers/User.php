@@ -15,9 +15,9 @@ class User extends CI_Controller
     }
 
     public function index()
-    {
-        $data['user'] = $this->User_model->view();
-        $this->load->view('User/list_user',$data);
+     {
+        $list_user = $this->db->select('*')->from('user')->order_by('id_user','desc')->get()->result(); 
+        $this->load->view('user/list_user',['list_user'=>$list_user]);
     }
 
     public function edit_user($id_user)
@@ -30,6 +30,7 @@ class User extends CI_Controller
         {
             
             $data = array(
+
                     'username' => $this->input->post('username'),
                     'nama' => $this->input->post('nama'),
                     'email' => $this->input->post('email')
@@ -99,6 +100,55 @@ class User extends CI_Controller
         }
             
     }
+
+    public function update_status($id,$status)
+{
+    $this->load->model('User_model','userdata');
+
+    //send id and status to the model to update the status
+    if($this->userdata->update_status_model($id_user,$status))
+    {
+        $this->session->set_flashdata('msg','User status has been updated successfully!');
+        $this->session->set_flashdata('msg_class','alert-success'); 
+    }
+    else{
+        $this->session->set_flashdata('msg','User status has not been updated successfully!');
+        $this->session->set_flashdata('msg_class','alert-danger');  
+    }
+    return redirect('user');
+}
+
+    public function user_status_changed()
+{
+    //get hidden values in variables
+    $id = $this->input->post('id_status');
+    $status = $this->input->post('status');
+
+    //check condition
+    if($status == '1'){
+        $user_status = '0';
+    }
+    else{
+        $user_status = '1';
+    }
+
+    $data = array('status' => $user_status );
+
+    $this->db->where('id',$id);
+    $this->db->update('users', $data); //Update status here
+
+    //Create success measage
+    $this->session->set_flashdata('msg',"User status has been changed successfully.");
+    $this->session->set_flashdata('msg_class','alert-success');
+
+    return redirect('users');
+}
+
+    // public function aktif()
+    // {
+    //     $list_user = $this->db->select('*')->from('user')->order_by('id_user','desc')->get()->result(); //here i'm fetching the data form the table
+    //     $this->load->view('list_user',['list_user'=>$list_user]);//load all data in view page
+    // }
 
 }
 ?>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>form Tambah</title>  
+    <title>Edit Profile User</title>  
 </head>
 <body>
     <?php echo form_open_multipart('user/edit_user/'.$user->id_user); ?>
     <br>
-    <h1>Form Ubah Data User</h1>
+    <h1>Edit Profile User</h1>
     <br><br>
     <table>
             <tr>
@@ -26,18 +26,7 @@
                 <td> <input type="text" name="email" required value="<?php echo set_value('email', $user->email); ?>" >
                 </td>
             </tr>
-            <tr>
-                <td>Aktif</td>
-                 <td> <input type="text" name="active" required value="<?php echo set_value('active', $user->active); ?>" >
-                </td>
-            </tr>
-
-            <!--  <tr>
-                <td>Aktif</td>
-                <td><?php echo form_dropdown('active',array('1'=>'AKTIF','0'=>'TIDAK AKTIF'),"class='form-control'");?></td>
-             </tr>   
-        -->
-
+           
 
 
 </table> <hr>
