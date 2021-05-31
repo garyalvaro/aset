@@ -101,48 +101,51 @@ class User extends CI_Controller
             
     }
 
-    public function update_status($id,$status)
+    public function update_status()
 {
-    $this->load->model('User_model','userdata');
-
-    //send id and status to the model to update the status
-    if($this->userdata->update_status_model($id_user,$status))
+    if(isset($_REQUEST['sval']))
     {
-        $this->session->set_flashdata('msg','User status has been updated successfully!');
-        $this->session->set_flashdata('msg_class','alert-success'); 
-    }
-    else{
+        $this->load->model('User_model','view');
+        $up_status = $this->view->update_status();
+  
+        if($up_status>0)
+        {
+            $this->session->set_flashdata('msg','User status has been updated successfully!');
+            $this->session->set_flashdata('msg_class','alert-success'); 
+        }
+        else{
         $this->session->set_flashdata('msg','User status has not been updated successfully!');
         $this->session->set_flashdata('msg_class','alert-danger');  
+        }
+        return redirect('user');
     }
-    return redirect('user');
 }
 
-    public function user_status_changed()
-{
-    //get hidden values in variables
-    $id = $this->input->post('id_status');
-    $status = $this->input->post('status');
+//     public function user_status_changed()
+// {
+//     //get hidden values in variables
+//     $id = $this->input->post('id_status');
+//     $status = $this->input->post('status');
 
-    //check condition
-    if($status == '1'){
-        $user_status = '0';
-    }
-    else{
-        $user_status = '1';
-    }
+//     //check condition
+//     if($status == '1'){
+//         $user_status = '0';
+//     }
+//     else{
+//         $user_status = '1';
+//     }
 
-    $data = array('status' => $user_status );
+//     $data = array('status' => $user_status );
 
-    $this->db->where('id',$id);
-    $this->db->update('users', $data); //Update status here
+//     $this->db->where('id',$id);
+//     $this->db->update('users', $data); //Update status here
 
-    //Create success measage
-    $this->session->set_flashdata('msg',"User status has been changed successfully.");
-    $this->session->set_flashdata('msg_class','alert-success');
+//     //Create success measage
+//     $this->session->set_flashdata('msg',"User status has been changed successfully.");
+//     $this->session->set_flashdata('msg_class','alert-success');
 
-    return redirect('users');
-}
+//     return redirect('users');
+// }
 
     // public function aktif()
     // {

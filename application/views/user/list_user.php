@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<h1> Tabel User </h1>
 
-	<table class="table">
+	<table class="table" border="1">
   	<thead>
   		<tr class="btn-primary">
   			<th>No</th>
@@ -48,11 +48,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   			
   			<td>
 
-  				<?php if($user->status == 1){ ?>
+  				<?php 
+  				$active = $user->active;
+  				if($active == 1)
+  				{ ?>
 
-  			  <a href="<?php echo base_url(); ?>user/update_status/<?php echo $user->id_user; ?>/<?php echo $user->status; ?>" class="btn btn-success">Active</a>
+  			  <a href="user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-success">Aktif</a>
+  			  <?php }else{ ?>
 
-    		 <a href="<?php echo base_url(); ?>user/update_status/<?php echo $user->id_user; ?>/<?php echo $user->status; ?>" class="btn btn-danger">Inactive</a>
+    		 <a href="user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-danger">Nonaktif</a>
 
 				<?php } ?>
 

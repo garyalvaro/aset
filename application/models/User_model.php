@@ -58,22 +58,21 @@ public function view()
 }
 
 
-   public function update_status_model($id_user,$status)
+   public function update_status()
 {
-    //here we will change the value of the status that if we get the value one of the status then zero is updated in database otherwise one.
-
-    if($status == 1)
+    $id_user = $_REQUEST['sid'];
+    $saval = $_REQUEST['sval'];
+    if($saval==1)
     {
-        $sval = 0;
+        $active = 0;
     }
     else{
-        $sval = 1;
+        $active = 1;
     }
 
-    // update status value in database 
-    $data = array( 'status' => $sval );
+    $data = array( 'active' => $active );
 
-    $this->db->where('id_user',$id);
+    $this->db->where('id_user',$id_user);
 
     return $this->db->update('user',$data);
 }
