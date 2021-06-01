@@ -38,7 +38,7 @@ class Account extends CI_Controller {
 					'LoggedIN'=>TRUE
 				);  
 				$this->session->set_userdata($data_session);
-				redirect('Account/dashboard');
+				redirect('');
 			}
 			else
 				echo "Akun anda sudah dinonaktifkan";
@@ -48,11 +48,6 @@ class Account extends CI_Controller {
 			$this->session->set_flashdata('Salah','Maaf Username atau Password Anda Salah'); // artinya Maaf Username atau Password Anda Salah di simpan ke 'Salah'
 			redirect('Account/index');
 		}
-	}
-
-	public function dashboard()
-	{
-		$this->load->view('account/dashboard.php');
 	}
 
 	public function register()
@@ -109,7 +104,7 @@ class Account extends CI_Controller {
 				'active'=>1
 			);
 			$this->Account_model->register('user',$data);
-			redirect('Account/dashboard');
+			redirect('');
 		}
 	}
 
