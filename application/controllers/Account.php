@@ -36,6 +36,7 @@ class Account extends CI_Controller {
 					'email'=>$email,
 					'level'=>$level,
 					'username'=>$username,
+					'foto'=>$foto,
 					'LoggedIN'=>TRUE
 				);  
 				$this->session->set_userdata($data_session);
