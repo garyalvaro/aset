@@ -8,13 +8,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>form tambah barang </title>
 </head>
 <body>
-	
+	<h1>Form Tambah Barang</h1>
+	<br>
+	<div style="color: red;"><?php echo validation_errors(); ?></div>
 	<?php echo form_open_multipart('barang/tambahBrg'); ?>
 	<div class="table">
 		<table>
 			<tr>
 				<td> Nama Barang </td>
-				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('input_namaBrg');?>">
+				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('nama_barang');?>">
 				</td>
 			</tr>
 
@@ -26,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<tr>
 				<td> Deskripsi </td>
-				<td> <input type="text" name="input_deskripsiBrg" required value="<?php echo set_value('foto_brg'); ?>" accept="image/jpeg">
+				<td> <input type="text" name="input_deskripsiBrg" required value="<?php echo set_value('deskripsi'); ?>">
 				</td>
 			</tr>
 

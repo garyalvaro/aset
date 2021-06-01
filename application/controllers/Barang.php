@@ -5,6 +5,7 @@ class Barang extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('form_validation');
 
 		$this->load->model('M_data');
 	}
@@ -36,6 +37,8 @@ class Barang extends CI_Controller
 
 		if($this->input->post('submit'))
 		{
+			if($this->M_data->validation("save"))
+			{
 			$namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
 
 			$data = array(
@@ -52,7 +55,7 @@ class Barang extends CI_Controller
 				$this->session->set_flashdata('addBarang_success', 'addBarang_success');
 				redirect('barang/tampil_barang');
 			
-				
+				}
 				
 		}
 
@@ -71,14 +74,16 @@ class Barang extends CI_Controller
 
 		if($this->input->post('submit'))
 		{
-		$namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
-			$data = array('foto' =>$namafile);
+				
+				$namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
+				$data = array('foto' =>$namafile);
 			
-			if($this->M_data->edit_fotobarang_byid($id_barang, $data))
-				$this->session->set_flashdata('editFotoBarang_success', 'editFotoBarang_success');
-			else
-				$this->session->set_flashdata('editFotoBarang_failed', 'editFotoBarang_failed');
-			redirect('barang/tampil_barang');
+				if($this->M_data->edit_fotobarang_byid($id_barang, $data))
+					$this->session->set_flashdata('editFotoBarang_success', 'editFotoBarang_success');
+				else
+					$this->session->set_flashdata('editFotoBarang_failed', 'editFotoBarang_failed');
+				redirect('barang/tampil_barang');
+			
 		}
 
 	}
@@ -91,9 +96,10 @@ class Barang extends CI_Controller
 
 		if($this->input->post('submit'))
 		{
-			
+			if($this->M_data->validationEdit("edit"))
+			{
 
-			$data = array(
+				$data = array(
 					'nama_barang' => $this->input->post('nama_barang'),
 					'deskripsi' => $this->input->post('deskripsi'),
 					'id_satuan' => $this->input->post('id_satuan')
@@ -101,7 +107,7 @@ class Barang extends CI_Controller
 				);
 					$this->M_data->edit($id_barang,$data);
 					redirect('barang/tampil_barang');
-				
+			}	
 		}
 		
 		
@@ -110,23 +116,24 @@ class Barang extends CI_Controller
 	public function editStok($id_barang)
 	{
 		$data['barang'] = $this->M_data->view_by($id_barang);
+		$data['action'] = $this->M_data->show_action();
 		$this->load->view('barang/form_update',$data);
 		if($this->input->post('submit'))
 		{
 			if($this->input->post('submit'))
 			{
-			$action = $this->input->post('action');
-			if($action == 0)
+			$action = $this->input->post('id_action');
+			if($action == 4)
 			{
 				$this->M_data->barangRusak($id_barang);
 			}
 
-			else if($action == 4)
+			else if($action == 5)
 			{
 				$this->M_data->hapusStok($id_barang);
 			}
 
-			else if($action == 3)
+			else if($action == 1)
 			{
 				$this->M_data->tambahStok($id_barang);
 			}

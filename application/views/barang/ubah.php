@@ -4,6 +4,7 @@
 	<title>form Tambah</title>	
 </head>
 <body>
+	<div style="color: red;"><?php echo validation_errors(); ?></div>
 	<?php echo form_open_multipart('barang/editBarang/'.$barang->id_barang); ?>
 	<br>
 	<h1>Form Ubah Data Barang</h1>
@@ -11,13 +12,13 @@
 	<table>
 		<tr>
 				<td> Nama Barang </td>
-				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('input_namaBrg', $barang->nama_barang);?>">
+				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('nama_barang', $barang->nama_barang);?>">
 				</td>
 			</tr>
 
 			<tr>
 				<td> Deskripsi </td>
-				<td> <input type="text" name="input_deskripsiBrg" required value="<?php echo set_value('input_deskripsi', $barang->deskripsi); ?>" accept="image/jpeg">
+				<td> <input type="text" name="input_deskripsiBrg" required value="<?php echo set_value('deskripsi', $barang->deskripsi); ?>" accept="image/jpeg">
 				</td>
 			</tr>
 
@@ -38,7 +39,7 @@
 
 <hr>
 	<input class="ubah" type="submit" name="submit" value="Ubah">
-	<a href="<?php echo base_url();?>">
+	<a href="<?php echo base_url('barang/tampil_barang');?>">
 	<input class="batal" type="button" value="Batal"></a>
 	<?php echo form_close(); ?></div>
 
@@ -52,7 +53,7 @@
 		</tr>
 	</table>
 	<input class="ubah" type="submit" name="submit" value="Ubah">
-	<a href="<?php echo base_url();?>">
+	<a href="<?php echo base_url('barang/tampil_barang');?>">
 	<input class="batal" type="button" value="Batal"></a>
 <?php echo form_close(); ?></div>
 
