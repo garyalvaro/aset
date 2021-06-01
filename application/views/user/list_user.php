@@ -1,122 +1,77 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>List User</title>
+<?php $this->load->view('layout/headerA'); ?>
+    <!-- CSS PLUGINS START  -->
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- DataTables -->
+    <link href="<?= base_url(); ?>assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url(); ?>assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="<?= base_url(); ?>assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- CSS PLUGINS END  -->
+<?php $this->load->view('layout/headerB'); ?>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<h1> Tabel User </h1>
-
-	<table class="table" border="1">
-  	<thead>
-  		<tr class="btn-primary">
-  			<th>No</th>
-  			<th>Foto</th>
-  			<th>Username</th> 
-  			<th>Nama</th>
-  			<th>Email</th>
-  			<th>Aksi</th>
-  			<th>Status</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<?php 
-	  		$i = 1;
-	  		foreach ($list_user as $user) {
-  		?>
-  		<tr>
-  			<td><?php echo $i; ?></td>
-  			<?php echo"<td><img src='".base_url("assets/uploads/".$user->foto)." ' /></td>"?>	
-  			<td><?php echo $user->username; ?></td>
-  			<td><?php echo $user->nama; ?></td>
-  			<td><?php echo $user->email; ?></td>
-  			<?php echo"
-  				<td>
-				<a href=".base_url("user/profile_user/".$user->id_user)."><button class='detail'>Detail</button></a>
-				<a href=".base_url("user/edit_user/".$user->id_user)."><button class='ubah'>Ubah</button></a>
-				<a href=".base_url("user/hapus_user/".$user->id_user)."><button class='hapus'>Hapus</button></a>
-				</td>"?>
-  			
-  			<td>
-
-  				<?php 
-  				$active = $user->active;
-  				if($active == 1)
-  				{ ?>
-
-  			  <a href="user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-success">Aktif</a>
-  			  <?php }else{ ?>
-
-    		 <a href="user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-danger">Nonaktif</a>
-
-				<?php } ?>
-
-  				
-  			</td>
-  		</tr>
-  		<?php $i++; } ?>
-  	</tbody>
-</table>
+<?php $this->load->view('layout/navbar'); ?>
 
 
-	 <!-- <table class="table table-bordered" border="1">
+<div class="wrapper">
+    <div class="container-fluid">
+        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Username</th> 
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Aksi</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
 
-				<th>NO</th>
-				<th>Foto</th>
-				<th>Username </th>
-				<th>Nama</th>
-				<th>Email</th>
-				<th>Status</th>
-				<th colspan="3">Aksi</th>
-				<th>Aktif</th>
-			</tr>
+            <tbody>
+                <?php $i=1; foreach ($list_user as $user) : ?>
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><img src="<?=base_url("assets/images/user/".$user->foto)?>" alt="" width=100px></td>	
+                    <td><?php echo $user->username; ?></td>
+                    <td><?php echo $user->nama; ?></td>
+                    <td><?php echo $user->email; ?></td>
+                    <td>
+                        <a href="<?=base_url("user/profile_user/".$user->id_user)?>" class="btn btn-primary">Detail</a>
+                        <a href="<?=base_url("user/edit_user/".$user->id_user)?>" class="btn btn-info"><span class="mdi mdi-pencil"></span></a>
+                        <a href="<?=base_url("user/hapus_user/".$user->id_user)?>" class="btn btn-danger"><span class="mdi mdi-delete"></span></a>
+                    </td>
+                                        
+                    <td>
+                        <?php if($user->active == 1): ?>
+                            <a href="<?= base_url(); ?>user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-success">Aktif</a>
+                        <?php else:  ?>
+                            <a href="<?= base_url(); ?>user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-danger">Nonaktif</a>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php $i++; endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-			<?php 
-			$start = 0;
-			if( ! empty($user))
-		{
-			
-			foreach($user as $data)
-			{
-				 $active = $data->active==1?'AKTIF':'TIDAK AKTIF'; 
-				 
-				  ?>
-				<?php echo"<tr>
-				 
-			    <td>".++$start."</td>
-				<td><img src='".base_url("assets/uploads/".$data->foto)." ' /></td>	
-				<td>".$data->username."</td>
-				<td>".$data->nama."</td>
-				<td> <center>".$data->email."</center></td>
-				<td>".$active."</td>
-				<td>
-				<a href=".base_url("user/profile_user/".$data->id_user)."><button class='detail'>Detail</button></a>
-				<a href=".base_url("user/edit_user/".$data->id_user)."><button class='ubah'>Ubah</button></a>
-				<a href=".base_url("user/hapus_user/".$data->id_user)."><button class='hapus'>Hapus</button></a>
-				</td>
 
-				</tr>";
-			}
-		}
-			?>
-			<td> <select class="form-control" id="action" name="action">
-				<option value="" disabled>Pilih Salah Satu</option>
-				<option value="1" name="aktif">Aktif</option>
-				<option value="0" name="nonaktif">Nonaktif</option>
-				
-			</select>
-		</td>
-		</table> -->
-	</div>
+<?php $this->load->view('layout/footerA'); ?>
+<!-- JS PLUGINS START  -->
 
-</body>
-</html>
+    <!-- Required datatable js -->
+    <script src="<?= base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="<?= base_url(); ?>assets/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+    <!-- Datatable Init -->
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        } );
+    </script>
+<!-- JS PLUGINS END  -->
+<?php $this->load->view('layout/footerB'); ?>
