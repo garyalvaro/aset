@@ -105,7 +105,8 @@ class Account extends CI_Controller {
 				'nama'=>$nama,
 				'nim'=>$nim,
 				'password'=>$password,
-				'foto'=>$image
+				'foto'=>$image,
+				'active'=>1
 			);
 			$this->Account_model->register('user',$data);
 			redirect('Account/dashboard');
