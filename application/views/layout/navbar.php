@@ -19,20 +19,19 @@
                     <div class="menu-extras topbar-custom">
 
                         <ul class="float-right list-unstyled mb-0 ">
-                                                        
+                            
                             <li class="dropdown notification-list">
                                 <div class="dropdown notification-list nav-pro-img">
                                     <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="<?= base_url(); ?>assets/images/users/user-4.jpg" alt="user" class="rounded-circle">
+                                        <?php $foto = $this->session->userdata('foto'); ?>
+                                        <img src="<?= base_url(); ?>assets/images/user/<?=$foto?>" alt="user" class="rounded-circle">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                         <!-- item-->
+                                        <h6 class="dropdown-item"><?= $this->session->userdata('username'); ?></h6>
                                         <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-wallet m-r-5"></i> My Wallet</a>
-                                        <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings m-r-5"></i> Settings</a>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                        <a class="dropdown-item text-danger" href="<?= base_url(); ?>Account/logout"><i class="mdi mdi-power text-danger"></i> Logout</a>
                                     </div>                                                                    
                                 </div>
                             </li>
