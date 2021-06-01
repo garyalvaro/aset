@@ -33,6 +33,15 @@
 
                         <?php echo form_open('Account/login') ?>
 
+                            <?php if($this->session->flashdata()) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <strong><?= $this->session->flashdata('Salah');?> </strong>
+                            </div>
+                            <?php endif; ?>
+
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" required>
