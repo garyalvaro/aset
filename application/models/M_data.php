@@ -14,9 +14,70 @@ class M_data extends CI_Model
 	}
 
 
-public function show_satuan()
+	public function validation($mode)
+	{
+		// $this->load->library('form_validation');
+		if($mode == "save")
+			$this->form_validation->set_rules('input_namaBrg','nama_barang','required');
+
+			$this->form_validation->set_rules('input_deskripsiBrg','deskripsi','required');
+
+			$this->form_validation->set_rules('qty','qty','required');
+
+			$this->form_validation->set_rules('id_satuan','id_satuan','required');
+
+
+			if($this->form_validation->run() != FALSE)
+				return TRUE;
+			else
+				return FALSE;
+
+	}
+
+	public function validationEdit($mode)
+	{
+		// $this->load->library('form_validation');
+		if($mode == "edit")
+			$this->form_validation->set_rules('input_namaBrg','nama_barang','required');
+
+			$this->form_validation->set_rules('input_deskripsiBrg','deskripsi','required');
+
+			$this->form_validation->set_rules('id_satuan','id_satuan','required|numeric|max_length[11]');
+
+
+			if($this->form_validation->run() != FALSE)
+				return TRUE;
+			else
+				return FALSE;
+
+	}
+
+
+public function cek_file($str){
+        $allowed_mime_type_arr = array('application/pdf','image/gif','image/jpeg','image/pjpeg','image/png','image/x-png');
+        $mime = get_mime_by_extension($_FILES['foto']['name']);
+        if(isset($_FILES['foto']['name']) && $_FILES['foto']['name']!=""){
+            if(in_array($mime, $allowed_mime_type_arr)){
+                return true;
+            }else{
+                $this->form_validation->set_message('cek_file', 'Silahkan pilih hanya file pdf/gif/jpg/png.');
+                return false;
+            }
+        }else{
+            $this->form_validation->set_message('cek_file', 'Silakan pilih file untuk diupload.');
+            return false;
+        }
+    }
+
+	public function show_satuan()
 	{
 		$query=$this->db->get('satuan')->result();
+		return $query;
+	}
+
+	public function show_action()
+	{
+		$query=$this->db->get('action')->result();
 		return $query;
 	}
 
@@ -56,12 +117,12 @@ private function _uploadImage()
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
-		
+		// $action = $this->input->post('id_action');
 
 		
 		$this->db->query("BEGIN;");
 			$this->db->insert('barang',$data);
-			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', LAST_INSERT_ID(),'$id_user','3', '$tgl'); ");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', LAST_INSERT_ID(),'$id_user','1', '$tgl'); ");
 		$this->db->query("COMMIT;");
 
 	}
@@ -76,10 +137,10 @@ private function _uploadImage()
 		$id_user = $this->session->userdata('id_user');
 		$id_transaksi = $this->input->post('id_transaksi');
 		$deskripsi = $this->input->post('deskripsi');
-
+		// $action = $this->input->post('id_action');
 
 		$this->db->query("BEGIN;");
-			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','0', '$tgl');");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','4', '$tgl');");
 			$this->db->query("INSERT INTO barangrusak(id_transaksi,deskripsi) VALUES(LAST_INSERT_ID(), '$deskripsi');");
 		$this->db->query("COMMIT;");
 		
@@ -120,9 +181,10 @@ private function _uploadImage()
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
 		$id_transaksi = $this->input->post('id_transaksi');
+		// $action = $this->input->post('id_action');
 
 		$this->db->query("BEGIN;");
-			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','4', '$tgl');");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','5', '$tgl');");
 		$this->db->query("COMMIT;");
 		
 	}
@@ -134,9 +196,10 @@ private function _uploadImage()
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
 		$id_transaksi = $this->input->post('id_transaksi');
+		// $action = $this->input->post('id_action');
 
 		$this->db->query("BEGIN;");
-			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','3', '$tgl');");
+			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','1', '$tgl');");
 		$this->db->query("COMMIT;");
 		
 	}

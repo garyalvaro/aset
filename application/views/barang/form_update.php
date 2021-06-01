@@ -17,11 +17,14 @@
 				<input type="text" name="id_barang" value="<?php echo set_value('id_barang', $data->id_barang);?>"></td>
 		</tr> -->
 		<tr>
-			<td> <select class="form-control" id="action" name="action">
-				<option value="" disabled>Pilih Salah Satu</option>
-				<option value="rusak" name="0">Rusak</option>
-				<option value="4" name="pinjam">Hapus</option>
-				<option value="3" name="tambah">Tambah</option>
+			<td> <select class="form-control" id="id_action" name="id_action">
+   					<?php $p = set_value('nama_action'); ?>
+									<option value="" disabled>Pilih Salah Satu</option>
+									<?php foreach($action as $row):?>
+										<option value="<?= $row->id_action; ?>" <?php if($p==$row->nama_action){ echo 'selected'; } ?> >
+											<?= ucfirst($row->nama_action); ?>
+										</option>
+   					<?php endforeach; ?>
 			</select>
 		</td>
 		</tr> 

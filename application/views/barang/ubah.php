@@ -28,6 +28,7 @@
 							<div class="col-sm-10">
 								<input class="form-control" type="text" id="input_namaBrg" name="input_namaBrg" autocomplete="off" value="<?=$barang->nama_barang?>" required>
 							</div>
+                            <label class="error col-sm-12"><?php echo form_error('input_namaBrg'); ?></label>
 						</div>
 											
 						<div class="form-group row">
@@ -35,6 +36,7 @@
 							<div class="col-sm-10">
                                 <textarea class="form-control" type="text" id="input_deskripsiBrg" name="input_deskripsiBrg" required><?=$barang->deskripsi?></textarea>
 							</div>
+                            <label class="error col-sm-12"><?php echo form_error('input_deskripsiBrg'); ?></label>
 						</div>
 
 						<div class="form-group row">
@@ -49,6 +51,7 @@
 								<?php endforeach; ?>
 								</select>
 							</div>
+                            <label class="error col-sm-12"><?php echo form_error('id_satuan'); ?></label>
 						</div>
 
 						<div class="form-group row">

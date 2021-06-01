@@ -28,24 +28,19 @@
 							<div class="col-sm-10">
 								<input class="form-control" type="text" id="input_namaBrg" name="input_namaBrg" autocomplete="off">
 							</div>
+							<label class="error col-sm-12"><?php echo form_error('input_namaBrg'); ?></label>
 						</div>
 
-						<!-- <div class="form-group row">
-							<label for="foto" class="col-sm-2 col-form-label">Upload Foto Aset</label>
-							<div class="col-sm-10">
-								<div action="#" id="dZUpload" class="dropzone">
-									<div class="fallback">
-										<input name="file" type="file" id="foto" accept="image/jpeg">
-									</div>
-								</div>
-							</div>
-						</div> -->
-						
 						<div class="form-group row">
 							<label for="foto" class="col-sm-2 col-form-label">Upload Foto Aset</label>
 							<div class="col-sm-10">
 								<input name="foto" type="file" id="foto" accept="image/jpeg">
 							</div>
+							<label class="error col-sm-12">
+								<?php 
+								if($this->session->flashdata('error_upload'))
+								echo $this->session->flashdata('error_upload'); ?>
+							</label>
 						</div>
 
 						<div class="form-group row">
@@ -53,6 +48,7 @@
 							<div class="col-sm-10">
 								<input class="form-control" type="text" id="input_deskripsiBrg" name="input_deskripsiBrg" required>
 							</div>
+							<label class="error col-sm-12"><?php echo form_error('input_deskripsiBrg'); ?></label>
 						</div>
 
 						<div class="form-group row">
@@ -70,6 +66,7 @@
 								<?php endforeach; ?>
 								</select>
 							</div>
+							<label class="error col-sm-12"><?php echo form_error('id_satuan'); ?></label>
 						</div>
 
 						<div class="form-group row">
