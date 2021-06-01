@@ -1,59 +1,117 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Profile User</title>  
-</head>
-<body>
-    <?php echo form_open_multipart('user/edit_user/'.$user->id_user); ?>
-    <br>
-    <h1>Edit Profile User</h1>
-    <br><br>
-    <table>
-            <tr>
-                <td> Username </td>
-                <td> <input type="text" name="username" value="<?php echo set_value('username', $user->username);?>">
-                </td>
-            </tr>
+<?php $this->load->view('layout/headerA'); ?>
+<!-- CSS PLUGINS START  -->
 
-            <tr>
-                <td> Nama</td>
-                <td> <input type="text" name="nama" required value="<?php echo set_value('nama', $user->nama); ?>" >
-                </td>
-            </tr>
+<!-- CSS PLUGINS END  -->
+<?php $this->load->view('layout/headerB'); ?>
 
-             <tr>
-                <td> Email</td>
-                <td> <input type="text" name="email" required value="<?php echo set_value('email', $user->email); ?>" >
-                </td>
-            </tr>
-           
-
-
-</table> <hr>
-    <input class="ubah" type="submit" name="submit" value="Ubah">
-    <a href="<?php echo base_url();?>">
-    <input class="batal" type="button" value="Batal"></a>
-    <?php echo form_close(); ?></div>
-</hr> 
-  
-<div>
-    <?php echo form_open_multipart('user/ubah_foto/'.$user->id_user); ?>
-    <table>
-        <tr>
-            <td>Ganti Foto</td>
-            <td><input type="file" name="foto" id="foto" accept="image/jpeg"> 
-                </td>
-        </tr>
-    </table>
-    <input class="ubah" type="submit" name="submit" value="Ubah">
-    <a href="<?php echo base_url();?>">
-    <input class="batal" type="button" value="Batal"></a>
-<?php echo form_close(); ?></div>
+<?php $this->load->view('layout/navbar'); ?>
 
 
 
+<div class="wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card m-b-20">
+					<div class="card-body">
 
-    
-</body>
-</html>
+						<h4 class="mt-0 header-title">Edit Profil</h4>
+						<p class="text-muted m-b-30 "></p>
 
+						<?php echo form_open_multipart('user/edit_user/'.$user->id_user); ?>
+
+						<div class="form-group row">
+							<label for="username" class="col-sm-2 col-form-label">Username</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" id="username" name="username" autocomplete="off" value="<?=$user->username?>" required>
+							</div>
+                            <label class="error col-sm-12"><?php echo form_error('username'); ?></label>
+						</div>
+											
+						<div class="form-group row">
+							<label for="nama" class="col-sm-2 col-form-label">Nama</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" id="nama" name="nama" autocomplete="off" value="<?=$user->nama?>" required>
+							</div>
+                            <label class="error col-sm-12"><?php echo form_error('nama'); ?></label>
+						</div>
+
+                        <div class="form-group row">
+							<label for="email" class="col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="email" id="email" name="email" autocomplete="off" value="<?=$user->email?>" required>
+							</div>
+                            <label class="error col-sm-12"><?php echo form_error('email'); ?></label>
+						</div>
+
+
+						<div class="form-group row">
+							<div class="col-sm-12 text-right">
+								<a class="btn btn-outline-secondary" href="<?php $_SERVER['HTTP_REFERER'];?>">Batal</a>
+								&nbsp; &nbsp;
+								<input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+							</div>
+						</div>
+
+						<?php echo form_close(); ?>
+
+					</div>
+				</div>
+			</div> <!-- end col -->                                
+            
+            <div class="col-sm-6">
+                <div class="card m-b-20">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title m-b-30"> Foto Profil</h4>
+
+                        <?php echo form_open_multipart('user/ubah_foto/'.$user->id_user); ?>
+
+                        <div class="form-group row">
+							<div class="col-sm-4 m-b-10">
+                                <img src="<?php echo base_url()."assets/images/user/".$user->foto;?>" id="upfile1" style="cursor:pointer" width=100%>
+							</div>
+							<div class="col-sm-8">
+								<input name="foto" type="file" id="foto" accept="image/jpeg" required>
+							</div>
+						</div>
+
+                        <div class="form-group-row">
+                            <div class="col-sm-12 text-right">
+                                <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+                            </div>
+                        </div>
+
+                        <?php echo form_close(); ?>
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+
+		</div> <!-- end row -->
+
+	</div> <!-- end container-fluid -->
+</div>
+<!-- end wrapper -->
+
+
+<?php $this->load->view('layout/footerA'); ?>
+<!-- JS PLUGINS START  -->
+
+<!-- JS untuk preview gambar -->
+<script>
+    foto.onchange = evt => {
+        const [file] = foto.files
+        if (file) {
+            upfile1.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+
+<script>
+$("#upfile1").click(function () {
+    $("#foto").trigger('click');
+});
+</script>
+
+<!-- JS PLUGINS END  -->
+<?php $this->load->view('layout/footerB'); ?>
