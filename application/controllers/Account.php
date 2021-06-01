@@ -107,6 +107,12 @@ class Account extends CI_Controller {
 		$this->Account_model->register('user',$data);
 		redirect('Account/dashboard');
 		}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect("Account");
+	}
 }
 
 ?>
