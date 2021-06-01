@@ -8,7 +8,7 @@
 
 	<?php echo form_open_multipart('barang/editStok/'.$barang->id_barang); ?>
 	<br>
-	<h1>Form Update Stok Data Barang</h1>
+	<h1>Form Update Stok Data Barang <?=$barang->nama_barang?></h1>
 	<br><br>
 	<table>
 		<!-- <tr>
@@ -16,6 +16,9 @@
 			<td>
 				<input type="text" name="id_barang" value="<?php echo set_value('id_barang', $data->id_barang);?>"></td>
 		</tr> -->
+		<tr>
+			<td>Stok sekarang : <?= $this->M_data->cek_stok($barang->id_barang) ?></td>
+		</tr>
 		<tr>
 			<td> <select class="form-control" id="action" name="action">
 				<option value="" disabled>Pilih Salah Satu</option>

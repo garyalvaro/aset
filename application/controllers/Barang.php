@@ -39,21 +39,17 @@ class Barang extends CI_Controller
 			$namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
 
 			$data = array(
-					'nama_barang' => $this->input->post('nama_barang'),
-					'foto' => "assets/uploads/".$namafile,
-					'deskripsi' => $this->input->post('deskripsi'),
-					'id_satuan' => $this->input->post('id_satuan')
-					
-				);
+				'nama_barang' => $this->input->post('nama_barang'),
+				'foto' => "assets/uploads/".$namafile,
+				'deskripsi' => $this->input->post('deskripsi'),
+				'id_satuan' => $this->input->post('id_satuan')
+				
+			);
 
-			
-				echo $data['foto']."<br>";
-				$this->M_data->save($data);
-				$this->session->set_flashdata('addBarang_success', 'addBarang_success');
-				redirect('barang/tampil_barang');
-			
-				
-				
+			echo $data['foto']."<br>";
+			$this->M_data->save($data);
+			$this->session->set_flashdata('addBarang_success', 'addBarang_success');
+			redirect('barang/tampil_barang');
 		}
 
 	}
@@ -90,21 +86,15 @@ class Barang extends CI_Controller
 		$this->load->view('barang/ubah',$data);
 
 		if($this->input->post('submit'))
-		{
-			
-
+		{			
 			$data = array(
-					'nama_barang' => $this->input->post('nama_barang'),
-					'deskripsi' => $this->input->post('deskripsi'),
-					'id_satuan' => $this->input->post('id_satuan')
-					
-				);
-					$this->M_data->edit($id_barang,$data);
-					redirect('barang/tampil_barang');
-				
+				'nama_barang' => $this->input->post('nama_barang'),
+				'deskripsi' => $this->input->post('deskripsi'),
+				'id_satuan' => $this->input->post('id_satuan')
+			);
+			$this->M_data->edit($id_barang,$data);
+			redirect('barang/tampil_barang');
 		}
-		
-		
 	}
 
 	public function editStok($id_barang)
@@ -154,6 +144,6 @@ class Barang extends CI_Controller
 		}
 			
 	}
-
+	
 }
 ?>
