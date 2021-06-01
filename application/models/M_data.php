@@ -230,7 +230,10 @@ private function _uploadImage()
 		$this->db->query("COMMIT;");
 		return TRUE;
 	}
-
+	public function cek_stok($id_barang)
+	{
+		return $this->db->query("SELECT cek_stok_hariini($id_barang) AS stok")->row()->stok;
+	}
 
 
 }

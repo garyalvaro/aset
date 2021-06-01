@@ -38,6 +38,7 @@
                                     <img class="card-img-top img-fluid" src="<?= base_url("assets/uploads/".$data->foto); ?>" alt="">
                                     <div class="card-body">
                                         <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
+                                        <h6>Tersisa <?= $this->M_data->cek_stok($data->id_barang) ?></h6>
                                         <p class="card-text"><?= $data->deskripsi; ?></p>
                                         <a href="<?=base_url("barang/editBarang/".$data->id_barang);?>" class="btn btn-outline-secondary waves-effect waves-light m-b-10">Edit Data</a>
                                         <button type="button" class="btn btn-primary waves-effect waves-light m-b-10" data-toggle="modal" data-target=".bs-example-modal-sm<?= $data->id_barang; ?>">Update Stok</button>
