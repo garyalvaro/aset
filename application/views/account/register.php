@@ -31,7 +31,7 @@
                         <h4 class="text-muted font-18 m-b-5 text-center">Registrasi Akun</h4>
                         <p class="text-muted text-center">Sistem Informasi Aset Fasilkom-TI USU</p>
 
-                        <?php echo form_open_multipart('Account/register1'); ?>
+                        <?php echo form_open_multipart('Account/register'); ?>
 
 							<div class="user-thumb text-center m-b-30">
                                 <img src="<?= base_url(); ?>assets/images/user-icon.png" class="rounded-circle img-thumbnail" alt="thumbnail" id="blah" style="cursor:pointer">
