@@ -1,68 +1,115 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>form Tambah</title>	
-</head>
-<body>
-	<?php echo form_open_multipart('barang/editBarang/'.$barang->id_barang); ?>
-	<br>
-	<h1>Form Ubah Data Barang</h1>
-	<br><br>
-	<table>
-		<tr>
-				<td> Nama Barang </td>
-				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('input_namaBrg', $barang->nama_barang);?>">
-				</td>
-			</tr>
+<?php $this->load->view('layout/headerA'); ?>
+<!-- CSS PLUGINS START  -->
 
-			<tr>
-				<td> Deskripsi </td>
-				<td> <input type="text" name="input_deskripsiBrg" required value="<?php echo set_value('input_deskripsi', $barang->deskripsi); ?>" accept="image/jpeg">
-				</td>
-			</tr>
+	<!-- Bootstrap Touchspin css -->
+	<link href="<?=base_url();?>assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
 
-			<tr>
-				<td>Id Satuan</td>
-				<td>
-					<select class="form-control" id="id_satuan" name="id_satuan">
-   					<?php $p = set_value('satuan',$barang->satuan); ?>
-									<option value="" disabled>Pilih Salah Satu</option>
-									<?php foreach($sat as $row):?>
-										<option value="<?= $row->id_satuan; ?>" <?php if($p==$row->satuan){ echo 'selected'; } ?> >
-											<?= ucfirst($row->satuan); ?>
-										</option>
-   					<?php endforeach; ?>
-				</td>
-			</tr>
-</table>
+<!-- CSS PLUGINS END  -->
+<?php $this->load->view('layout/headerB'); ?>
 
-<hr>
-	<input class="ubah" type="submit" name="submit" value="Ubah">
-	<a href="<?php echo base_url();?>">
-	<input class="batal" type="button" value="Batal"></a>
-	<?php echo form_close(); ?></div>
+<?php $this->load->view('layout/navbar'); ?>
 
-<div>
-	<?php echo form_open_multipart('barang/editFoto/'.$barang->id_barang); ?>
-	<table>
-		<tr>
-			<td>Foto barang</td>
-			<td><input type="file" name="foto" id="foto" accept="image/jpeg"> 
-				</td>
-		</tr>
-	</table>
-	<input class="ubah" type="submit" name="submit" value="Ubah">
-	<a href="<?php echo base_url();?>">
-	<input class="batal" type="button" value="Batal"></a>
-<?php echo form_close(); ?></div>
 
-<div>
-	<?php echo form_open_multipart('barang/hapus/'.$barang->id_barang); ?>
-	<?php echo 
-	"<a href=".base_url("barang/hapus/".$barang->id_barang)."><button class='hapus'>Hapus</button></a>"
-	?>
-	<?php echo form_close(); ?></div>
-	
-</body>
-</html>
 
+<div class="wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card m-b-20">
+					<div class="card-body">
+
+						<h4 class="mt-0 header-title">Edit Data <?=$barang->nama_barang?></h4>
+						<p class="text-muted m-b-30 "></p>
+
+						<?php echo form_open_multipart('barang/editBarang/'.$barang->id_barang); ?>
+
+						<div class="form-group row">
+							<label for="input_namaBrg" class="col-sm-2 col-form-label">Nama Aset</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" id="input_namaBrg" name="input_namaBrg" autocomplete="off" value="<?=$barang->nama_barang?>" required>
+							</div>
+						</div>
+											
+						<div class="form-group row">
+							<label for="input_deskripsiBrg" class="col-sm-2 col-form-label">Deskripsi</label>
+							<div class="col-sm-10">
+                                <textarea class="form-control" type="text" id="input_deskripsiBrg" name="input_deskripsiBrg" required><?=$barang->deskripsi?></textarea>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="qty" class="col-sm-2 col-form-label">Satuan</label>
+							<div class="col-sm-10">
+								<select class="form-control" id="id_satuan" name="id_satuan" required>
+								<option value="" disabled>Pilih Satuan</option>
+								<?php foreach($sat as $row):?>
+									<option value="<?= $row->id_satuan; ?>" >
+										<?= ucfirst($row->satuan); ?>
+									</option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-sm-12 text-right">
+								<a class="btn btn-outline-secondary" href="<?php echo base_url();?>">Batal</a>
+								&nbsp; &nbsp;
+								<input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+							</div>
+						</div>
+
+						<?php echo form_close(); ?>
+
+					</div>
+				</div>
+			</div> <!-- end col -->                                
+            
+            <div class="col-sm-6">
+                <div class="card m-b-20">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title"> Foto</h4>
+                        <p class="text-muted m-b-30 ">Gani Foto <?=$barang->nama_barang?>
+                        </p>
+
+                        <?php echo form_open_multipart('barang/editFoto/'.$barang->id_barang); ?>
+
+                        <div class="form-group row">
+							<div class="col-sm-12">
+                                <img src="<?php echo base_url()."assets/uploads/".$barang->foto;?>" id="upfile1" style="cursor:pointer" />
+                                &nbsp; &nbsp;
+                                <input name="foto" type="file" id="foto" accept="image/jpeg">
+							</div>
+						</div>
+
+                        <div class="form-group-row">
+                            <div class="col-sm-12 text-right">
+                                <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+                            </div>
+                        </div>
+
+                        <?php echo form_close(); ?>
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+
+		</div> <!-- end row -->
+
+	</div> <!-- end container-fluid -->
+</div>
+<!-- end wrapper -->
+
+
+<?php $this->load->view('layout/footerA'); ?>
+<!-- JS PLUGINS START  -->
+
+<script>
+$("#upfile1").click(function () {
+    $("#foto").trigger('click');
+});
+</script>
+
+                        
+<!-- JS PLUGINS END  -->
+<?php $this->load->view('layout/footerA'); ?>
