@@ -24,7 +24,7 @@
                 <div class="card-body">
 
                     <h3 class="text-center m-0">
-                        <a href="index.html" class="logo logo-admin"><img src="<?= base_url(); ?>assets/images/logo.png" height="60" alt="logo"></a>
+                        <div class="logo logo-admin"><img src="<?= base_url(); ?>assets/images/logo.png" height="60" alt="logo"></div>
                     </h3>
 
                     <div class="p-3">
@@ -87,7 +87,7 @@
             </div>
 
             <div class="m-t-40 text-center">
-                <p>Sudah Punya Akun ? <a href="<?= base_url(); ?>Account/login" class=" text-primary"> Login </a> </p>
+                <p>Sudah Punya Akun ? <a href="<?= base_url(); ?>Account" class=" text-primary"> Login </a> </p>
                 <p>© 2021 Team A1 <span class="d-none d-sm-inline-block"> - Sistem Informasi Aset Fasilkom-TI USU</span>.</p>
             </div>
         </div>
