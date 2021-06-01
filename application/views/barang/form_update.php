@@ -20,16 +20,17 @@
 			<td>Stok sekarang : <?= $this->M_data->cek_stok($barang->id_barang) ?></td>
 		</tr>
 		<tr>
-			<td> <select class="form-control" id="id_action" name="id_action">
+			<td> 
+				<select class="form-control" id="id_action" name="id_action">
    					<?php $p = set_value('nama_action'); ?>
-									<option value="" disabled>Pilih Salah Satu</option>
-									<?php foreach($action as $row):?>
-										<option value="<?= $row->id_action; ?>" <?php if($p==$row->nama_action){ echo 'selected'; } ?> >
-											<?= ucfirst($row->nama_action); ?>
-										</option>
+					<option value="" disabled>Pilih Salah Satu</option>
+					<?php foreach($action as $row):?>
+						<option value="<?= $row->id_action; ?>" <?php if($p==$row->nama_action){ echo 'selected'; } ?> >
+							<?= ucfirst($row->nama_action); ?>
+						</option>
    					<?php endforeach; ?>
-			</select>
-		</td>
+				</select>
+			</td>
 		</tr> 
 		<tr>
 			<td>Deskripsi</td>
