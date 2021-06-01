@@ -27,6 +27,7 @@ class Account extends CI_Controller {
 				$email=$key->email;
 				$active=$key->active;
 				$level=$key->level;
+				$foto=$key->foto;
 			}
 			if($active==1)
 			{
