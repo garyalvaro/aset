@@ -38,7 +38,7 @@
                                     <img class="card-img-top img-fluid" src="<?= base_url("assets/uploads/".$data->foto); ?>" alt="">
                                     <div class="card-body">
                                         <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
-                                        <h6>Tersisa <?= $this->M_data->cek_stok($data->id_barang) ?></h6>
+                                        <p>Tersisa <b><?= $this->M_data->cek_stok($data->id_barang)?></b></p>
                                         <p class="card-text"><?= $data->deskripsi; ?></p>
                                         <a href="<?=base_url("barang/editBarang/".$data->id_barang);?>" class="btn btn-outline-secondary waves-effect waves-light m-b-10">Edit Data</a>
                                         <button type="button" class="btn btn-primary waves-effect waves-light m-b-10" data-toggle="modal" data-target=".bs-example-modal-sm<?= $data->id_barang; ?>">Update Stok</button>
@@ -67,13 +67,21 @@
                     <div class="modal-body">
                         <?php echo form_open_multipart('barang/editStok/'.$data->id_barang); ?>
                             <div class="form-group row">
+                                <div class="col-sm-12">
+                                    Stok sekarang: <?= $this->M_data->cek_stok($data->id_barang) ?> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="alasan" class="col-sm-12 col-form-label">Alasan Ubah Stok</label>
                                 <div class="col-sm-12">
-                                    <select class="form-control" id="action" name="action" required>
-                                    <option value="" disabled>Pilih Alasan</option>
-                                    <option value="0">Rusak</option>
-                                    <option value="4">Hapus</option>
-                                    <option value="3">Tambah</option>
+                                    <select class="form-control" id="id_action" name="id_action" required>
+                                        <?php $p = set_value('nama_action'); ?>
+                                        <option value="" disabled>Pilih Alasan</option>
+                                        <?php foreach($action as $row):?>
+                                            <option value="<?= $row->id_action; ?>" <?php if($p==$row->nama_action){ echo 'selected'; } ?> >
+                                                <?= ucfirst($row->nama_action); ?>
+                                            </option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
