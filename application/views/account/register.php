@@ -4,7 +4,8 @@
 	<title>Form register</title>
 </head>
 <body>
-	<?php echo form_open_multipart('Account/register1'); ?>
+	<?php echo validation_errors(); ?>
+	<?php echo form_open_multipart('Account/register'); ?>
 	<div>
 		<input type="text" name="username" placeholder="Username">
 	</div>
@@ -17,8 +18,12 @@
 	<div>
 		<input type="text" name="nim" placeholder="NIM">
 	</div>
+	<?php echo form_error('nim'); ?>
 	<div>
 		<input type="password" name="password" placeholder="Password">
+	</div>
+	<div>
+		<input type="password" name="konfirmasipassword" placeholder="Konfirmasi Password">
 	</div>
 	<div>
 		<input type="file" name="userfile">
