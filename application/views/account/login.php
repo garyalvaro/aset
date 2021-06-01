@@ -38,7 +38,14 @@
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
-                                <strong><?= $this->session->flashdata('Salah');?> </strong>
+                                <strong>
+                                    <?php
+                                        if($this->session->flashdata('Salah'))
+                                            echo $this->session->flashdata('Salah');
+                                        elseif($this->session->flashdata('Nonaktif'))
+                                            echo $this->session->flashdata('Nonaktif');
+                                    ?>
+                                </strong>
                             </div>
                             <?php endif; ?>
 

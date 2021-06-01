@@ -42,8 +42,10 @@ class Account extends CI_Controller {
 				$this->session->set_userdata($data_session);
 				redirect('');
 			}
-			else
-				echo "Akun anda sudah dinonaktifkan";
+			else{
+				$this->session->set_flashdata('Nonaktif','Akun anda sudah dinonaktifkan');
+				redirect('Account/index');
+			}
 		}
 		else {
 			// echo "Maaf username atau password Anda salah";
