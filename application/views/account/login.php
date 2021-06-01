@@ -4,6 +4,9 @@
 	<title>LOGIN</title>
 </head>
 <body>
+	<!-- memanggil 'Salah' -->
+	<?php if($this->session->flashdata()) {
+	echo $this->session->flashdata('Salah'); }?> 
 	<?php echo form_open('Account/login') ?>
 	<div>
 		<input type="text" name="username" placeholder="Username">

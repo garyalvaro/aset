@@ -44,6 +44,8 @@ class Account extends CI_Controller {
 				echo "Akun anda sudah dinonaktifkan";
 		}
 		else {
+			// echo "Maaf username atau password Anda salah";
+			$this->session->set_flashdata('Salah','Maaf Username atau Password Anda Salah'); // artinya Maaf Username atau Password Anda Salah di simpan ke 'Salah'
 			redirect('Account/index');
 		}
 	}
@@ -61,7 +63,6 @@ class Account extends CI_Controller {
 		$this->form_validation->set_rules('konfirmasipassword', 'Konfirmasi Password', 'trim|required|min_length[6]|matches[password]');
 		$this->form_validation->set_rules('nim', 'NIM', 'trim|required|min_length[9]');
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('username', 'Image');
 		if($this->form_validation->run() == FALSE)
 		{
 			$this->load->view('account/register');
@@ -69,7 +70,7 @@ class Account extends CI_Controller {
 		}
 		else
 		{
-			$config['upload_path'] = './assets/images';
+			$config['upload_path'] = './assets/images/user';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = '2048000'; // max size in KB
 			$config['max_width'] = '20000'; //max resolution width
@@ -78,15 +79,15 @@ class Account extends CI_Controller {
 			$this->load->library('upload', $config);
 			// body of if clause will be executed when image uploading is failed
 			if(!$this->upload->do_upload()){
-			$errors = array('error' => $this->upload->display_errors());
-			// This image is uploaded by deafult if the selected image in not uploaded
-			$image = 'no_image.png';
-			redirect('Account/dashboard');
+				$errors = array('error' => $this->upload->display_errors());
+				// This image is uploaded by deafult if the selected image in not uploaded
+				$image = 'user-icon.png';
+				//redirect('Account/dashboard');
 			}
 			// body of else clause will be executed when image uploading is succeeded
 			else{
-			$data = array('upload_data' => $this->upload->data());
-			$image = $_FILES['userfile']['name'];  //name must be userfile
+				$data = array('upload_data' => $this->upload->data());
+				$image = $_FILES['userfile']['name'];  //name must be userfile
 
 			}
 			$this->session->set_flashdata('success','Image stored');
