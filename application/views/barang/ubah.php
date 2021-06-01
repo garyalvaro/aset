@@ -56,7 +56,7 @@
 
 						<div class="form-group row">
 							<div class="col-sm-12 text-right">
-								<a class="btn btn-outline-secondary" href="<?php echo base_url();?>">Batal</a>
+								<a class="btn btn-outline-secondary" href="<?php echo base_url();?>barang/tampil_barang">Batal</a>
 								&nbsp; &nbsp;
 								<input class="btn btn-primary" type="submit" name="submit" value="Simpan">
 							</div>
@@ -78,10 +78,11 @@
                         <?php echo form_open_multipart('barang/editFoto/'.$barang->id_barang); ?>
 
                         <div class="form-group row">
-							<div class="col-sm-12">
-                                <img src="<?php echo base_url()."assets/uploads/".$barang->foto;?>" id="upfile1" style="cursor:pointer" />
-                                &nbsp; &nbsp;
-                                <input name="foto" type="file" id="foto" accept="image/jpeg">
+							<div class="col-sm-6 m-b-10">
+                                <img src="<?php echo base_url()."assets/uploads/".$barang->foto;?>" id="upfile1" style="cursor:pointer" width=100%>
+							</div>
+							<div class="col-sm-6">
+								<input name="foto" type="file" id="foto" accept="image/jpeg" required>
 							</div>
 						</div>
 
