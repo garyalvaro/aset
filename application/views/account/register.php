@@ -34,7 +34,7 @@
                         <?php echo form_open_multipart('Account/register'); ?>
 
 							<div class="user-thumb text-center m-b-30">
-                                <img src="<?= base_url(); ?>assets/images/user-icon.png" class="rounded-circle img-thumbnail" alt="thumbnail" id="blah" style="cursor:pointer">
+                                <img src="<?= base_url(); ?>assets/images/user/user-icon.png" class="rounded-circle img-thumbnail" alt="thumbnail" id="blah" style="cursor:pointer">
                                 <input name="userfile" type="file" id="userfile" accept="image/jpeg" hidden value="">
 								<div class=" col-sm-12">Ganti Foto</div>
 								<label class="error col-sm-12">
@@ -127,3 +127,4 @@
         <script src="<?= base_url(); ?>assets/js/app.js"></script>
 
     </body>
+</html>
