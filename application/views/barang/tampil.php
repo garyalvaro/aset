@@ -165,4 +165,4 @@ function ($) {
 
 
 <!-- JS PLUGINS END  -->
-<?php $this->load->view('layout/footerA'); ?>
+<?php $this->load->view('layout/footerB'); ?>
