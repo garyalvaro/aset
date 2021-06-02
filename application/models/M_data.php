@@ -16,27 +16,28 @@ class M_data extends CI_Model
 
 	public function validation($mode)
 	{
-		// $this->load->library('form_validation');
+		$this->load->library('form_validation');
 		if($mode == "save")
+		{
 			$this->form_validation->set_rules('input_namaBrg','nama_barang','required');
 
 			$this->form_validation->set_rules('input_deskripsiBrg','deskripsi','required');
 
-			$this->form_validation->set_rules('qty','qty','required');
+			$this->form_validation->set_rules('qty','qty','required|numeric|max_length[11]');
 
 			$this->form_validation->set_rules('id_satuan','id_satuan','required');
 
 
-			if($this->form_validation->run() != FALSE)
+			if($this->form_validation->run())
 				return TRUE;
 			else
 				return FALSE;
-
+		}
 	}
 
 	public function validationEdit($mode)
 	{
-		// $this->load->library('form_validation');
+		$this->load->library('form_validation');
 		if($mode == "edit")
 			$this->form_validation->set_rules('input_namaBrg','nama_barang','required');
 
@@ -83,7 +84,7 @@ public function cek_file($str){
 
 private function _uploadImage()
 {
-    $config['upload_path']          = '../assets/uploads/barang/';
+    $config['upload_path']          = '..assets/images/barang/';
     $config['allowed_types']        = 'jpg|png';
     $config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
     $config['overwrite']			= true;
@@ -146,33 +147,6 @@ private function _uploadImage()
 		
 	}
 
-	// public function pinjamStok($id_barang)
-	// {
-	// 	$this->session->set_userdata(['id_user' => 1]);
-	// 	$qty = $this->input->post('qty');
-	// 	$tgl = date('Y-m-d');
-	// 	$id_user = $this->session->userdata('id_user');
-	// 	$id_transaksi = $this->input->post('id_transaksi');
-
-	// 	$this->db->query("BEGIN;");
-	// 		$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','1', '$tgl');");
-	// 	$this->db->query("COMMIT;");
-		
-	// }
-
-	// public function kembalikanStok($id_barang)
-	// {
-	// 	$this->session->set_userdata(['id_user' => 1]);
-	// 	$qty = $this->input->post('qty');
-	// 	$tgl = date('Y-m-d');
-	// 	$id_user = $this->session->userdata('id_user');
-	// 	$id_transaksi = $this->input->post('id_transaksi');
-
-	// 	$this->db->query("BEGIN;");
-	// 		$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','2', '$tgl');");
-	// 	$this->db->query("COMMIT;");
-		
-	// }
 
 	public function hapusStok($id_barang)
 	{

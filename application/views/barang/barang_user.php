@@ -1,7 +1,6 @@
 <?php $this->load->view('layout/headerA'); ?>
     <!-- CSS PLUGINS START  -->
 
-    
 
     <!-- CSS PLUGINS END  -->
 <?php $this->load->view('layout/headerB'); ?>
@@ -33,7 +32,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
                                         <p class="card-text"><?= $data->deskripsi; ?></p>
-                                        <a href="<?=base_url();?>" class="btn btn-info waves-effect waves-light">Pinjam</a>
+                                        <a href="<?=base_url('pinjam_barang/pinjam_user/'.$data->id_barang);?>" class="btn btn-info waves-effect waves-light">Pinjam</a>
                                     </div>
                                 </div>
                             </div>
