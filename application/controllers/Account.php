@@ -25,6 +25,7 @@ class Account extends CI_Controller {
 			foreach ($cek as $key) {
 				$id_user=$key->id_user;
 				$email=$key->email;
+				$nama=$key->nama;
 				$active=$key->active;
 				$level=$key->level;
 				$foto=$key->foto;
@@ -34,6 +35,7 @@ class Account extends CI_Controller {
 				$data_session = array(
 					'id_user'=>$id_user,
 					'email'=>$email,
+					'nama'=>$nama,
 					'level'=>$level,
 					'username'=>$username,
 					'foto'=>$foto,
