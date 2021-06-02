@@ -26,7 +26,6 @@ class M_data_pinjam_barang extends CI_Model
 	{
 		$this->session->set_userdata(['id_user' => 1]);
 
-
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
