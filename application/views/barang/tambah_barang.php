@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>form tambah barang </title>
 </head>
 <body>
+	
 	<h1>Form Tambah Barang</h1>
 	<br>
 	

@@ -9,6 +9,7 @@ class Pinjam_barang extends CI_Controller
        
     }
 
+
     public function tampil_peminjam()
 	{
 		$data['pinjam_barang'] = $this->M_data_pinjam_barang->view();

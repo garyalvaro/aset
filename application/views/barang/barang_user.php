@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>List Barang</title>
 </head>
 <body>
+	
 	<h1> List Barang Users </h1>
 	<div class="table">
 		<table>

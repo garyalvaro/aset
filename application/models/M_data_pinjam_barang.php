@@ -8,6 +8,7 @@ class M_data_pinjam_barang extends CI_Model
         return $this->db->get('pinjam_barang')->result();
     }
 
+
 	public function view_by($id_barang)
 	{
 		$this->db->where('id_barang',$id_barang);
