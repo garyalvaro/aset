@@ -44,6 +44,25 @@ class User extends CI_Controller
         
     }
 
+    public function admin_profile_user($id_user) 
+    {
+        $row = $this->User_model->view_by($id_user);
+        if ($row) {
+            $data = array(
+        'foto' => $row->foto,
+        'username' => $row->username,
+        'nama' => $row->nama,
+        'nim' => $row->nim,
+        'email' => $row->email,
+        
+        );
+            $this->load->view('User/admin_user_profile',$data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('user'));
+        }
+    }
+    
     public function profile_user($id_user) 
     {
         $row = $this->User_model->view_by($id_user);
