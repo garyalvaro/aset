@@ -11,6 +11,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_model');
+        $this->load->library('form_validation');
        
     }
 
@@ -22,27 +23,50 @@ class User extends CI_Controller
 
     public function edit_user($id_user)
     {
-       
-        $data['user'] = $this->User_model->view_by($id_user);
+ //        $this->load->library('form_validation');
+ //        $this->form_validation->set_rules('username', 'Username', 'required|max_length[30]');
+ //        $this->form_validation->set_rules('nama', 'Nama', 'required|max_length[30]');
+ //        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+ //        $this->form_validation->set_rules('nim', 'NIM', 'required|numeric|max_length[15]');
+ //        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+        
+
+ // if($this->form_validation->run())
+ // {
+     
+            $data['user'] = $this->User_model->view_by($id_user);
+ 
         $this->load->view('user/user_edit',$data);
 
-        if($this->input->post('submit'))
+         if($this->input->post('submit'))
         {
             
             $data = array(
 
                     'username' => $this->input->post('username'),
                     'nama' => $this->input->post('nama'),
-                    'email' => $this->input->post('email')
+                    'email' => $this->input->post('email'),
+                    'nim' => $this->input->post('nim'),
+                    'password' => $this->input->post('password')
 
                     );
 
                     $this->User_model->edit($id_user,$data);
                     redirect('user/index');    
         }
-        
-        
+    // }
+
+
+    // else{
+    //     echo "proses update data";
     }
+       
+       
+
+  
+        
+        
+    
 
     public function admin_profile_user($id_user) 
     {
