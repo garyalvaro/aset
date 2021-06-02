@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>form Tambah</title>	
+	<title>form Ubah</title>	
 </head>
 <body>
 	<div style="color: red;"><?php echo validation_errors(); ?></div>
@@ -12,7 +12,7 @@
 	<table>
 		<tr>
 				<td> Nama Barang </td>
-				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('nama_barang', $barang->nama_barang);?>">
+				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('nama_barang', $barang->nama_barang);?>" required>
 				</td>
 			</tr>
 
@@ -29,7 +29,7 @@
    					<?php $p = set_value('satuan',$barang->satuan); ?>
 									<option value="" disabled>Pilih Salah Satu</option>
 									<?php foreach($sat as $row):?>
-										<option value="<?= $row->id_satuan; ?>" <?php if($p==$row->satuan){ echo 'selected'; } ?> >
+										<option value="<?= $row->id_satuan; ?>" <?php if($p==$row->satuan){ echo 'selected'; } ?>>
 											<?= ucfirst($row->satuan); ?>
 										</option>
    					<?php endforeach; ?>

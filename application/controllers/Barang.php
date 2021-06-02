@@ -88,6 +88,7 @@ class Barang extends CI_Controller
 
 	}
 
+
 	public function editBarang($id_barang)
 	{
 		$data['sat'] = $this->M_data->show_satuan();
