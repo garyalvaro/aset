@@ -71,7 +71,7 @@
 
 						<div class="form-group row">
 							<div class="col-sm-12 text-right">
-								<a class="btn btn-outline-secondary" href="<?php echo base_url();?>">Batal</a>
+								<a class="btn btn-outline-secondary" href="<?php echo base_url();?>Barang/tampil_barang">Batal</a>
 								&nbsp; &nbsp;
 								<input class="btn btn-primary" type="submit" name="submit" value="Simpan">
 							</div>
