@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				echo"<tr>
 				<td>".$data->nama_barang."</td>
 				<td>".$data->deskripsi."</td>
-				<td> <img src='".base_url("assets/uploads/".$data->foto)."'/></td>
+				<td> <img src='".base_url("assets/images/barang/".$data->foto)."'/></td>
 				<td><a href=".base_url()."><button class='ubah'>Pinjam</button></a></td>
 				</tr>";
 			}
