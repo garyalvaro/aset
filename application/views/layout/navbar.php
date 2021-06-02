@@ -29,7 +29,7 @@
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                         <!-- item-->
                                         <h6 class="dropdown-item"><?= $this->session->userdata('username'); ?></h6>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+                                        <a class="dropdown-item" href="<?= base_url(); ?>User/edit_user/<?= $this->session->userdata('id_user'); ?>"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item text-danger" href="<?= base_url(); ?>Account/logout"><i class="mdi mdi-power text-danger"></i> Logout</a>
                                     </div>                                                                    
@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">Hai, Budi</h4>
+                            <h4 class="page-title">Hai, <?= $this->session->userdata('nama') ?></h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item active">
                                     Selamat Datang di Sistem Informasi Aset Fasilkom-TI USU
