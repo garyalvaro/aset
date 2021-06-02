@@ -32,7 +32,7 @@
                 <?php $i=1; foreach ($list_user as $user) : ?>
                 <tr>
                     <td><?php echo $i; ?></td>
-                    <td><img src="<?=base_url("assets/images/user/".$user->foto)?>" alt="" width=100px></td>	
+                    <td><img src="<?=base_url("assets/images/user/".$user->foto)?>" alt="" style="width:100px; height:100px; object-fit:cover; object-position:0 0; border-radius:50%;"></td>	
                     <td><?php echo $user->username; ?></td>
                     <td><?php echo $user->nama; ?></td>
                     <td><?php echo $user->email; ?></td>

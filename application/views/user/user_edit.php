@@ -47,7 +47,7 @@
 
 						<div class="form-group row">
 							<div class="col-sm-12 text-right">
-								<a class="btn btn-outline-secondary" href="<?php $_SERVER['HTTP_REFERER'];?>">Batal</a>
+								<a class="btn btn-outline-secondary" href="<?php echo base_url();?>User">Batal</a>
 								&nbsp; &nbsp;
 								<input class="btn btn-primary" type="submit" name="submit" value="Simpan">
 							</div>
@@ -68,7 +68,7 @@
 
                         <div class="form-group row">
 							<div class="col-sm-4 m-b-10">
-                                <img src="<?php echo base_url()."assets/images/user/".$user->foto;?>" id="upfile1" style="cursor:pointer" width=100%>
+                                <img src="<?php echo base_url()."assets/images/user/".$user->foto;?>" id="upfile1" style="cursor:pointer; object-fit:cover; object-position:0 0; border-radius: 50%;" width=200px height=200px>
 							</div>
 							<div class="col-sm-8">
 								<input name="foto" type="file" id="foto" accept="image/jpeg" required>
