@@ -3,9 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Waktu pembuatan: 30 Bulan Mei 2021 pada 15.07
 -- Versi server: 10.1.30-MariaDB
 -- Versi PHP: 7.2.2
+=======
+-- Waktu pembuatan: 30 Bulan Mei 2021 pada 15.35
+-- Versi server: 10.1.36-MariaDB
+-- Versi PHP: 7.1.23
+>>>>>>> ac798eda5eae66e59d1e6b79ee4b944d95a856e6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -176,7 +182,7 @@ CREATE TABLE `user` (
   `password` char(64) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `nim` varchar(10) NOT NULL,
-  `active` int(1) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '1',
   `level` int(1) NOT NULL,
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

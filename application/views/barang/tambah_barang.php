@@ -10,10 +10,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<h1>Form Tambah Barang</h1>
 	<br>
-	<div style="color: red;"><?php echo validation_errors(); ?></div>
+	
 	<?php echo form_open_multipart('barang/tambahBrg'); ?>
+
 	<div class="table">
 		<table>
+			<div style="color: red;"> <?php echo validation_errors(); ?> </div>
 			<tr>
 				<td> Nama Barang </td>
 				<td> <input type="text" name="input_namaBrg" value="<?php echo set_value('nama_barang');?>">

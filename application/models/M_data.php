@@ -16,27 +16,28 @@ class M_data extends CI_Model
 
 	public function validation($mode)
 	{
-		// $this->load->library('form_validation');
+		$this->load->library('form_validation');
 		if($mode == "save")
+		{
 			$this->form_validation->set_rules('input_namaBrg','nama_barang','required');
 
 			$this->form_validation->set_rules('input_deskripsiBrg','deskripsi','required');
 
-			$this->form_validation->set_rules('qty','qty','required');
+			$this->form_validation->set_rules('qty','qty','required|numeric|max_length[11]');
 
 			$this->form_validation->set_rules('id_satuan','id_satuan','required');
 
 
-			if($this->form_validation->run() != FALSE)
+			if($this->form_validation->run())
 				return TRUE;
 			else
 				return FALSE;
-
+		}
 	}
 
 	public function validationEdit($mode)
 	{
-		// $this->load->library('form_validation');
+		$this->load->library('form_validation');
 		if($mode == "edit")
 			$this->form_validation->set_rules('input_namaBrg','nama_barang','required');
 
