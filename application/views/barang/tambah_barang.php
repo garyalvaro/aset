@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 
 	<input class="simpan" type="submit" name="submit" value="Simpan">
-	<a href="<?php echo base_url();?>">
+	<a href="<?php echo base_url('barang/tampil_barang');?>">
 	<input class="batal" type="button" value="Batal"></a></div>
 	
 	<?php echo form_close(); ?>
