@@ -26,9 +26,6 @@
 		<input type="password" name="konfirmasipassword" placeholder="Konfirmasi Password">
 	</div>
 	<div>
-		<input type="file" name="userfile">
-	</div>
-	<div>
 		<button type="submit">SUBMIT</button>
 	</div>
 	<?php echo form_close(); ?>
