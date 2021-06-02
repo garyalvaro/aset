@@ -11,19 +11,19 @@
     <table>
             <tr>
                 <td> Username </td>
-                <td> <input type="text" name="username" value="<?php echo set_value('username', $user->username);?>">
+                <td> <input type="text" name="username" value="<?php echo set_value('username', $user->username);?>" required>
                 </td>
             </tr>
 
             <tr>
                 <td> Nama</td>
-                <td> <input type="text" name="nama" required value="<?php echo set_value('nama', $user->nama); ?>" >
+                <td> <input type="text" name="nama" required value="<?php echo set_value('nama', $user->nama); ?>" required>
                 </td>
             </tr>
 
              <tr>
                 <td> Email</td>
-                <td> <input type="text" name="email" required value="<?php echo set_value('email', $user->email); ?>" >
+                <td> <input type="text" name="email" required value="<?php echo set_value('email', $user->email); ?>"required >
                 </td>
             </tr>
            
@@ -31,7 +31,7 @@
 
 </table> <hr>
     <input class="ubah" type="submit" name="submit" value="Ubah">
-    <a href="<?php echo base_url();?>">
+    <a href="<?php echo base_url("user");?>">
     <input class="batal" type="button" value="Batal"></a>
     <?php echo form_close(); ?></div>
 </hr> 
@@ -46,7 +46,7 @@
         </tr>
     </table>
     <input class="ubah" type="submit" name="submit" value="Ubah">
-    <a href="<?php echo base_url();?>">
+    <a href="<?php echo base_url("user");?>">
     <input class="batal" type="button" value="Batal"></a>
 <?php echo form_close(); ?></div>
 

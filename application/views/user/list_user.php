@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   			<td><?php echo $user->email; ?></td>
   			<?php echo"
   				<td>
-				<a href=".base_url("user/profile_user/".$user->id_user)."><button class='detail'>Detail</button></a>
+				<a href=".base_url("user/admin_profile_user/".$user->id_user)."><button class='detail'>Detail</button></a>
 				<a href=".base_url("user/edit_user/".$user->id_user)."><button class='ubah'>Ubah</button></a>
 				<a href=".base_url("user/hapus_user/".$user->id_user)."><button class='hapus'>Hapus</button></a>
 				</td>"?>
