@@ -28,7 +28,7 @@ class Barang extends CI_Controller
 		$data['sat'] = $this->M_data->show_satuan();
 		$this->load->view('barang/tambah_barang', $data);
 		//File Upload Config
-		$config['upload_path']       = 'assets/uploads';
+		$config['upload_path']       = 'assets/images/barang';
 		$config['allowed_types']    = 'jpg|png';
 		$config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
 		$config['overwrite']			= true;
@@ -65,7 +65,7 @@ class Barang extends CI_Controller
 	public function editFoto($id_barang)
 	{
 		$this->load->view('barang/ubah',$data);
-		$config['upload_path']       = './assets/uploads';
+		$config['upload_path']       = 'assets/images/barang';
 		$config['allowed_types']    = 'jpg|png';
 		$config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
 		$config['overwrite']			= true;
@@ -107,7 +107,7 @@ class Barang extends CI_Controller
 					
 				);
 					$this->M_data->edit($id_barang,$data);
-					redirect('barang/tampil_barang');
+					redirect('barang/editBarang/'.$id_barang);
 			}	
 		}
 		
