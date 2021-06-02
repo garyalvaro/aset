@@ -107,28 +107,42 @@ class Pinjam_barang extends CI_Controller
 
 		//$t = $this->input->post(); ($t['ïd_barang']);
 		$data['detail'] = $this->M_data->view_by($id_barang);
-		$this->load->view('pinjam_barang/pinjam_barang', $data);
+		if ($this->input->post('cek_stok')) {
+			$id_barang = $this->input->post('id_barang');
+			$tgl_pinjam = $this->input->post('tgl_pinjam');
+			$tgl_kembali = $this->input->post('tgl_pengembalian');
+			$qty = $this->input->post('qty');
+		
+			$datas = array(
+				'id_barang' => $id_barang,
+				'tgl_pinjam' => $tgl_pinjam,
+				'tgl_kembali' => $tgl_kembali,
+				'qty' => $qty
+			);
 
-		if($this->input->post('submit'))
+			$data['status']= $this->M_data_pinjam_barang->cek_stok($datas);
+			$this->load->view('pinjam_barang/pinjam_barang1',$data);
+		}
+		elseif($this->input->post('submit'))
 		{
+			$data = array(
+				'id_user' => $this->input->post('id_user'),
+				'id_barang' => $this->input->post('id_barang'),
+				'tgl_pinjam' => $this->input->post('tgl_pinjam'),
+				'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),
+				'qty' => $this->input->post('qty'),
+				'alasan_peminjaman' => $this->input->post('alasan_peminjaman'),
+				'action_datetime' => $this->input->post('action_datetime')
+			);
 			
-				$data = array(
-					'id_user' => $this->input->post('id_user'),
-					'id_barang' => $this->input->post('id_barang'),
-					'tgl_pinjam' => $this->input->post('tgl_pinjam'),
-					'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),
-					'qty' => $this->input->post('qty'),
-					'alasan_peminjaman' => $this->input->post('alasan_peminjaman'),
-					'action_datetime' => $this->input->post('action_datetime')
-				);
+			$this->M_data_pinjam_barang->pinjam($id_barang, $data);
+			redirect('barang/tampil_barang_users');
+		}
+		else{
 
-				
-				$this->M_data_pinjam_barang->pinjam($id_barang, $data);
-				redirect('barang/tampil_barang_users');
-			
+			$this->load->view('pinjam_barang/pinjam_barang', $data);
 		}
 	}
-
 	// public function detail($id_barang)
 	// {
 	// 	$this->load->model('M_data');

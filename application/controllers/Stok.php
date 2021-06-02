@@ -25,7 +25,7 @@ class Stok extends CI_Controller
 		);
 
 		$page['status']= $this->M_stok->cek_stok($data);
-		$this->load->view('stok/index2',$page,$data);
+		$this->load->view('stok/index2',$page);
 	}
 }
 ?>

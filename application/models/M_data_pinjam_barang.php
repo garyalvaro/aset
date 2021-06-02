@@ -134,6 +134,14 @@ class M_data_pinjam_barang extends CI_Model
 		return $query;
 	}
 
+	public function cek_stok($data)
+	{
+		$id_barang = $data['id_barang'];
+		$tgl_pinjam = $data['tgl_pinjam'];
+		$tgl_kembali = $data['tgl_kembali'];
+		$qty = $data['qty'];
+		return $this->db->query("SELECT cek_availability($id_barang, '$tgl_pinjam', '$tgl_kembali', $qty) AS stok")->row();
+	}
 
 
 }
