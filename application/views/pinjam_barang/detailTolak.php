@@ -4,6 +4,8 @@
 	<title>Tolak Peminjaman</title>	
 </head>
 <body>
+<?php if($this->session->flashdata()) {
+	echo $this->session->flashdata('sudahDisetujui'); }?>
 	
 	<br>
 	<h1>Form Penolakan Peminjaman</h1>

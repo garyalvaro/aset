@@ -4,11 +4,13 @@
 	<title>Selesaikan Peminjaman</title>	
 </head>
 <body>
+<?php if($this->session->flashdata()) {
+	echo $this->session->flashdata('belumDirespon'); }?>
 	
 	<br>
 	<h1>Form Penyelesaian Peminjaman</h1>
 	<br><br>
-	<?php echo form_open_multipart('pinjam_barang/pinjam_setujui/'.$data->id_pinjamBarang); ?>
+	<?php echo form_open_multipart('pinjam_barang/pinjam_selesaikan/'.$data->id_pinjamBarang); ?>
 	<table>
 		<tr>
 				<td> ID Pinjam Barang </td>

@@ -4,6 +4,8 @@
 	<title>Setujui Peminjaman</title>	
 </head>
 <body>
+<?php if($this->session->flashdata()) {
+	echo $this->session->flashdata('sudahDitolak'); }?>
 	
 	<br>
 	<h1>Form Persetujuan Peminjaman</h1>

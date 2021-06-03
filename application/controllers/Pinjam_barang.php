@@ -25,9 +25,9 @@ class Pinjam_barang extends CI_Controller
 		// $this->load->view('pinjam_barang/tampil_pinjaman_barang',$data);
     	$data['data'] = $this->M_data_pinjam_barang->view_idPinjam($id_pinjamBarang);
     	$this->load->view('pinjam_barang/detailSetujui', $data);
-		
+		$status_peminjaman = $this->input->post('status_peminjaman');
 		if($this->input->post('submit'))
-		{
+		{ if ($status_peminjaman == 0 ){
 			$data = array(
 				'qty' => $this->input->post('qty'),
 				'tgl' => date('Y-m-d'),
@@ -42,6 +42,10 @@ class Pinjam_barang extends CI_Controller
 		);
 			$this->M_data_pinjam_barang->setujui($id_pinjamBarang,$data);
 			redirect('pinjam_barang/tampil_peminjam');
+			} elseif ($status_peminjaman == 2 ){
+				$this->session->set_flashdata('sudahDitolak', 'Peminjaman sudah ditolak');
+				//echo "Peminjaman sudah ditolak";
+			} 
 		}	
 		
 		
@@ -54,6 +58,7 @@ class Pinjam_barang extends CI_Controller
 		// $this->load->view('pinjam_barang/tampil_pinjaman_barang',$data);
     	$data['data'] = $this->M_data_pinjam_barang->view_idPinjam($id_pinjamBarang);
     	$this->load->view('pinjam_barang/detailTolak', $data);
+		$status_peminjaman = $this->input->post('status_peminjaman');
 		if($this->input->post('submit'))
 		{ if ($status_peminjaman == 0 ){
 			$data = array(
@@ -72,7 +77,8 @@ class Pinjam_barang extends CI_Controller
 			redirect('pinjam_barang/tampil_peminjam');
 			}
 		elseif($status_peminjaman == 1){
-			echo "Peminjaman sudah disetujui ";
+			$this->session->set_flashdata('sudahDisetujui', 'Peminjaman sudah disetujui');
+			//echo "Peminjaman sudah disetujui";
 		} 
 		}	
     }
@@ -82,9 +88,9 @@ class Pinjam_barang extends CI_Controller
 		// $this->load->view('pinjam_barang/tampil_pinjaman_barang',$data);
     	$data['data'] = $this->M_data_pinjam_barang->view_idPinjam($id_pinjamBarang);
     	$this->load->view('pinjam_barang/detailSelesaikan', $data);
-		
+		$status_peminjaman = $this->input->post('status_peminjaman');
 		if($this->input->post('submit'))
-		{
+		{if ($status_peminjaman == 1 || $status_peminjaman == 2 ){
 			$data = array(
 				'qty' => $this->input->post('qty'),
 				'tgl' => date('Y-m-d'),
@@ -100,6 +106,11 @@ class Pinjam_barang extends CI_Controller
 			$this->M_data_pinjam_barang->selesaikan($id_pinjamBarang,$data);
 			redirect('pinjam_barang/tampil_peminjam');
 		}	
+		elseif($status_peminjaman == 0){
+			$this->session->set_flashdata('belumDirespon', 'Peminjaman belum di respon');
+			//echo "Peminjaman belum di respon";
+		} 
+		}
     }
 	
 	public function pinjam_user($id_barang)
