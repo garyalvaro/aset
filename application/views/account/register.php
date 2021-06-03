@@ -33,37 +33,37 @@
 
                         <?php echo form_open_multipart('Account/register'); ?>
 
-                            <div class="form-group">
+                            <div class="m-b-10">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email aktif" value="<?php echo set_value('email'); ?>">
                                 <label class="error text-danger"><?php echo form_error('email'); ?></label>
                             </div>
 
-							<div class="form-group">
+							<div class="m-b-10">
                                 <label for="nama">Nama</label>
                                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama lengkap" value="<?php echo set_value('nama'); ?>">
                                 <label class="error text-danger"><?php echo form_error('nama'); ?></label>
                             </div>
 
-							<div class="form-group">
+							<div class="m-b-10">
                                 <label for="nim">NIM</label>
                                 <input type="text" class="form-control" id="nim" name="nim" placeholder="Masukkan Nomor Induk Mahasiswa" value="<?php echo set_value('nim'); ?>">
                                 <label class="error text-danger"><?php echo form_error('nim'); ?></label>
                             </div>
 
-                            <div class="form-group">
+                            <div class="m-b-10">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" value="<?php echo set_value('username'); ?>">
                                 <label class="error text-danger"><?php echo form_error('username'); ?></label>
                             </div>
 
-                            <div class="form-group">
+                            <div class="m-b-10">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" value="<?php echo set_value('password'); ?>">
                                 <label class="error text-danger"><?php echo form_error('password'); ?></label>
                             </div>
 
-							<div class="form-group">
+							<div class="m-b-10">
                                 <label for="konfirmasipassword">Konfirmasi Password</label>
                                 <input type="password" class="form-control" id="konfirmasipassword" name="konfirmasipassword" placeholder="Ulangi password" value="<?php echo set_value('konfirmasipassword'); ?>">
                                 <label class="error text-danger"><?php echo form_error('konfirmasipassword'); ?></label>
