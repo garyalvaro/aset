@@ -35,7 +35,7 @@
                             <div class="col-6 col-md-6 col-lg-6 col-xl-3 divBesar">
                                 <!-- Simple card -->
                                 <div class="card m-b-30">
-                                    <img class="card-img-top img-fluid" src="<?= base_url("assets/uploads/".$data->foto); ?>" alt="">
+                                    <img class="card-img-top img-fluid" src="<?= base_url("assets/images/barang/".$data->foto); ?>" alt="">
                                     <div class="card-body">
                                         <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
                                         <p>Tersisa <b><?= $this->M_data->cek_stok($data->id_barang)?></b></p>
@@ -96,7 +96,7 @@
                             <div class="form-group row">
                                 <label for="deskripsi" class="col-sm-12 col-form-label">Jumlah</label>
                                 <div class="col-sm-12">
-                                    <input id="qty" type="text" name="qty" value="1">
+                                    <input id="qty" type="number" name="qty" value="1">
                                 </div>
                             </div>
 
@@ -142,6 +142,9 @@
     }
 </script>
 
+<script>
+
+</script>
 
 <!-- Bootstrap Touchpin js -->
 <script src="<?=base_url()?>assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js"></script>

@@ -72,14 +72,14 @@
                 <div class="card m-b-20">
                     <div class="card-body">
                         <h4 class="mt-0 header-title"> Foto</h4>
-                        <p class="text-muted m-b-30 ">Gani Foto <?=$barang->nama_barang?>
+                        <p class="text-muted m-b-30 ">Ganti Foto <?=$barang->nama_barang?>
                         </p>
 
                         <?php echo form_open_multipart('barang/editFoto/'.$barang->id_barang); ?>
 
                         <div class="form-group row">
 							<div class="col-sm-6 m-b-10">
-                                <img src="<?php echo base_url()."assets/uploads/".$barang->foto;?>" id="upfile1" style="cursor:pointer" width=100%>
+                                <img src="<?php echo base_url()."assets/images/barang/".$barang->foto;?>" id="upfile1" style="cursor:pointer" width=100%>
 							</div>
 							<div class="col-sm-6">
 								<input name="foto" type="file" id="foto" accept="image/jpeg" required>
@@ -108,10 +108,20 @@
 <?php $this->load->view('layout/footerA'); ?>
 <!-- JS PLUGINS START  -->
 
+<!-- JS untuk preview gambar -->
 <script>
-$("#upfile1").click(function () {
-    $("#foto").trigger('click');
-});
+	foto.onchange = evt => {
+		const [file] = foto.files
+		if (file) {
+			upfile1.src = URL.createObjectURL(file)
+		}
+	}
+</script>
+
+<script>
+	$("#upfile1").click(function () {
+		$("#foto").trigger('click');
+	});
 </script>
 
                         
