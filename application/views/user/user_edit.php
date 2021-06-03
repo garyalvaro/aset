@@ -5,7 +5,7 @@
 </head>
 <body>
       
-            <?php echo validation_errors(); ?>
+         <div style="color: red;"><?php echo validation_errors(); ?></div>
      
 
     <?php echo form_open_multipart('user/edit_user/'.$user->id_user); ?>
@@ -14,33 +14,37 @@
     <br><br>
     <table>
             <tr>
-                <td><label>Username :</label></td>
+                <td>Username</td>
                 <td> <input type="text" name="username" required value="<?php echo set_value('username', $user->username);?>" placeholder="Masukan Username">
                 </td>
             </tr>
 
             <tr>
-                 <td><label>Nama:</label></td>            
+                 <td>Nama</td>            
                  <td><input type="text" name="nama" required value="<?php echo set_value('nama', $user->nama); ?>" placeholder="Masukan Nama">
                 </td>
             </tr>
 
              <tr>
-                <td><label>Email:</label></td>
+                <td>Email</td>
                  <td> <input type="email" name="email" required value="<?php echo set_value('email', $user->email); ?>"placeholder="Masukan Email" >
                 </td>
             </tr>
              <tr>
-                <td><label>NIM :</label></td>
+                <td>NIM</td>
                 <td> <input type="text" name="nim" required value="<?php echo set_value('nim', $user->nim); ?>"placeholder="Masukan NIM">
                 </td>
             </tr>
              <tr>
-                <td><label>Password :</label></td>
+                <td>Password</td>
                 <td> <input type="password" name="password" required value="<?php echo set_value('password', $user->password); ?>"placeholder="Masukan Password" >
                 </td>
             </tr> 
-            
+             <tr>
+                <td>Konfirmasi Password</td>
+                <td> <input type="password" name="konfirmasi_password" required placeholder="Masukan Password terbaru" >
+                </td>
+            </tr> 
 
 
 </table> <hr>

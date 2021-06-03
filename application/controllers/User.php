@@ -23,50 +23,45 @@ class User extends CI_Controller
 
     public function edit_user($id_user)
     {
- //        $this->load->library('form_validation');
- //        $this->form_validation->set_rules('username', 'Username', 'required|max_length[30]');
- //        $this->form_validation->set_rules('nama', 'Nama', 'required|max_length[30]');
- //        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
- //        $this->form_validation->set_rules('nim', 'NIM', 'required|numeric|max_length[15]');
- //        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-        
-
- // if($this->form_validation->run())
- // {
-     
-            $data['user'] = $this->User_model->view_by($id_user);
  
+        $data['user'] = $this->User_model->view_by($id_user);
         $this->load->view('user/user_edit',$data);
 
          if($this->input->post('submit'))
         {
-            
-            $data = array(
+            if($this->User_model->validation("edit"))
+            {
+                 $data = array(
 
                     'username' => $this->input->post('username'),
                     'nama' => $this->input->post('nama'),
                     'email' => $this->input->post('email'),
                     'nim' => $this->input->post('nim'),
-                    'password' => $this->input->post('password')
+                    'password' => $this->input->post('password'),                
+                    'konfirmasi_password' => $this->input->post('konfirmasi_password')
+
 
                     );
+                 if($data['password'] == $data['konfirmasi_password'])
+                 {
+                     $this->User_model->edit($id_user,$data);
+                    redirect('user/index');  
+                 }
 
-                    $this->User_model->edit($id_user,$data);
-                    redirect('user/index');    
+                 else{
+                    echo "password salah";
+                 }
+
+                     
+            }
         }
-    // }
-
-
-    // else{
-    //     echo "proses update data";
+            
     }
-       
-       
 
-  
-        
-        
-    
+   //  $this->form_validation->set_rules('konfirmasi password', 'Konfirmasi Password', '|min_length[5]|matches[password]');
+       
+       
+   
 
     public function admin_profile_user($id_user) 
     {
