@@ -33,17 +33,6 @@
 
                         <?php echo form_open_multipart('Account/register'); ?>
 
-							<div class="user-thumb text-center m-b-30">
-                                <img src="<?= base_url(); ?>assets/images/user/user-icon.png" class="rounded-circle img-thumbnail" alt="thumbnail" id="blah" style="cursor:pointer">
-                                <input name="userfile" type="file" id="userfile" accept="image/jpeg" hidden value="">
-								<div class=" col-sm-12">Ganti Foto</div>
-								<label class="error col-sm-12">
-									<?php 
-									if($this->session->flashdata('error_upload'))
-									echo $this->session->flashdata('error_upload'); ?>
-								</label>
-                            </div>
-
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email aktif" value="<?php echo set_value('email'); ?>">
@@ -104,24 +93,6 @@
         <script src="<?= base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
         <script src="<?= base_url(); ?>assets/js/jquery.slimscroll.js"></script>
         <script src="<?= base_url(); ?>assets/js/waves.min.js"></script>
-
-		<!-- JS untuk preview gambar -->
-		<script>
-			userfile.onchange = evt => {
-				const [file] = userfile.files
-				if (file) {
-					blah.src = URL.createObjectURL(file)
-				}
-			}
-		</script>
-
-		<!-- JS untuk klik foto langsung minta upload  -->
-		<script>
-		$("#blah").click(function () {
-			$("#userfile").trigger('click');
-		});
-		</script>
-
 
         <!-- App js -->
         <script src="<?= base_url(); ?>assets/js/app.js"></script>

@@ -70,33 +70,12 @@ class Account extends CI_Controller {
 			// redirect('Account/register');
 		}
 		else
-		{
-			$config['upload_path'] = './assets/images/user';
-			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			$config['max_size'] = '2048000'; // max size in KB
-			$config['max_width'] = '20000'; //max resolution width
-			$config['max_height'] = '20000';  //max resolution height
-			// load CI libarary called upload
-			$this->load->library('upload', $config);
-			// body of if clause will be executed when image uploading is failed
-			if(!$this->upload->do_upload()){
-				$errors = array('error' => $this->upload->display_errors());
-				// This image is uploaded by deafult if the selected image in not uploaded
-				$image = 'user-icon.png';
-				//redirect('Account/dashboard');
-			}
-			// body of else clause will be executed when image uploading is succeeded
-			else{
-				$data = array('upload_data' => $this->upload->data());
-				$image = $_FILES['userfile']['name'];  //name must be userfile
-
-			}
-			$this->session->set_flashdata('success','Image stored');
-		
+		{		
 			$username=$this->input->post('username');
 			$email=$this->input->post('email');
 			$nama=$this->input->post('nama');
 			$nim=$this->input->post('nim');
+			$image='user-icon.png';
 			$password=$this->input->post('password');
 			$password = sha1($password);
 
