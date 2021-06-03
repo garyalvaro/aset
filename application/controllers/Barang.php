@@ -15,6 +15,7 @@ class Barang extends CI_Controller
 	public function tampil_barang()
 	{
 		$data['barang'] = $this->M_data->view();
+		$data['action'] = $this->M_data->show_action();
 		$this->load->view('barang/tampil',$data);
 	}
 
