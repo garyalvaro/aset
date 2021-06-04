@@ -63,7 +63,8 @@
 			// Date Picker
 			jQuery('#date-range').datepicker({
 				toggleActive: true,
-				format: 'yyyy-mm-dd'
+				format: 'yyyy-mm-dd',
+				startDate: "dateToday"
 			});
 			jQuery('#date-range').on("change", function (){
 
