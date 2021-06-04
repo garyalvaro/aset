@@ -1,6 +1,8 @@
 <?php $this->load->view('layout/headerA'); ?>
     <!-- CSS PLUGINS START  -->
 
+    <!-- Sweet Alert -->
+    <link href="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
 
     <!-- CSS PLUGINS END  -->
 <?php $this->load->view('layout/headerB'); ?>
@@ -8,6 +10,13 @@
 <?php $this->load->view('layout/navbar'); ?>
 
 
+<?php
+if($this->session->flashdata())
+{
+    if($this->session->flashdata('pinjam_sukses'))
+        echo "<span id='pinjam_sukses'></span>";
+}
+?>
 
 <div class="wrapper">
             <div class="container-fluid">
@@ -72,6 +81,38 @@
             }       
         }
     }
+</script>
+
+<!-- Sweet-Alert  -->
+<script src="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+<script>
+!function ($) {
+    "use strict";
+    var SweetAlert = function () {};
+
+    SweetAlert.prototype.init = function () {
+        //Success Message
+        $('#pinjam_sukses').show(function () {
+            Swal.fire(
+                {
+                    title: 'Berhasil!',
+                    text: 'Peminjaman Anda akan kami proses!',
+                    type: 'success',
+                    confirmButtonColor: "#58db83"
+                }
+            )
+        });
+
+    },
+    //init
+    $.SweetAlert = new SweetAlert, $.SweetAlert.Constructor = SweetAlert
+}(window.jQuery),
+
+//initializing
+    function ($) {
+        "use strict";
+        $.SweetAlert.init()
+    }(window.jQuery);
 </script>
 
 <!-- JS PLUGINS END  -->
