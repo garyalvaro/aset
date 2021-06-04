@@ -50,8 +50,7 @@ class M_data_pinjam_barang extends CI_Model
 	{
 		$this->session->set_userdata(['id_user' => 1]);
 
-		$status_peminjaman == $this->input->post('status_peminjaman');
-		if ($status_peminjaman != 1) {
+		
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
@@ -65,19 +64,17 @@ class M_data_pinjam_barang extends CI_Model
 		$id_barang = $this->input->post('id_barang');
 
 		$this->db->query("BEGIN;");
-		$this->db->query("DELETE FROM pinjam_barang WHERE id_pinjamBarang=$id_pinjamBarang");
+		$this->db->query("UPDATE pinjam_barang SET status_peminjaman='2' WHERE id_pinjamBarang=$id_pinjamBarang;");
 		$this->db->query("COMMIT;");
 		return TRUE;
-		}
-		else { redirect('pinjam_barang/tampil_peminjam');}
+		
 	}
 
 	public function selesaikan($id_pinjamBarang, $data)
 	{
 		$this->session->set_userdata(['id_user' => 1]);
 
-		$status_peminjaman == $this->input->post('status_peminjaman');
-		if ($status_peminjaman != 1) {
+		
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
@@ -96,8 +93,8 @@ class M_data_pinjam_barang extends CI_Model
 
 		$this->db->query("COMMIT;");
 		return TRUE;
-	}
-		else { redirect('pinjam_barang/tampil_peminjam');}
+	
+		
 	}
 
 	public function pinjam($id_barang,$data)
