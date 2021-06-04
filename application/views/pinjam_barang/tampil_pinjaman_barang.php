@@ -1,79 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Peminjam</title>
-</head>
-<body>
+<?php $this->load->view('layout/headerA'); ?>
+<!-- CSS PLUGINS START  -->
 
-<body>
-	<h1> Daftar Peminjam </h1>
-	<div class="table">
-		<table>
-			<tr>
-				<th>ID Peminjaman </th>
-				<th>Peminjam</th>
-				<th>Barang</th>
-				<th>Tanggal Peminjaman</th>
-				<th>Tanggal Pengembalian</th>
-				<th>Jumlah</th>
-				<th>Status Peminjaman</th>
-				<th>Alasan Peminjaman</th>
-				<th>Deskripsi Persetujuan</th>
-				<th>Waktu Peminjaman </th>
-				
+    <!-- DataTables -->
+    <link href="<?= base_url(); ?>assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url(); ?>assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="<?= base_url(); ?>assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-				<th colspan="3">Action</th>
-			</tr>
+	<!-- Sweet Alert -->
+	<link href="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
 
-			<?php
-			if( ! empty($pinjam_barang)) :  ?>  
-		
-			<?php foreach($pinjam_barang as $data) :?>  
-			
+<!-- CSS PLUGINS END  -->
+<?php $this->load->view('layout/headerB'); ?>
+
+<?php $this->load->view('layout/navbar'); ?>
+
+<?php
+if($this->session->flashdata())
+{
+    if($this->session->flashdata('acc_berhasil'))
+        echo "<span id='acc_berhasil'></span>";
+	if($this->session->flashdata('selesai_berhasil'))
+        echo "<span id='selesai_berhasil'></span>";
+}
+?>
+
+<div class="wrapper">
+	<div class="container-fluid">
+		<h4 class="font-20">Peminjaman Baru</h4>
+		<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+			<thead>
 				<tr>
-				<td><?php echo$data->id_pinjamBarang ?></td>
-				<td><?php echo$data->id_user ?></td>
-				<td><?php echo$data->id_barang ?></td>
-				<td><?php echo$data->tgl_pinjam ?></td>
-				<td><?php echo$data->tgl_pengembalian ?></td>
-				<td><?php echo$data->qty ?></td>
-				<td><?php echo$data->status_peminjaman ?></td>
-				<td><?php echo$data->alasan_pinjam ?></td>
-				<td><?php echo$data->deskripsi_acc ?></td>
-				<td><?php echo$data->action_datetime?></td>
-				<td class="text-center">
-					
-					<a href="<?php echo base_url('pinjam_barang/pinjam_setujui/'. $data->id_pinjamBarang); ?>"><input type="submit" name="submit" value="Setujui"> </a>
-                            <!-- <form action="<?php echo base_url('pinjam_barang/pinjam_setujui') ?>" method="post">
-										          <input type="hidden" name="id" value="<?php echo $data->id_pinjamBarang ?>">
-										          <button class="btn btn-success btn-xs btn-edit" type="submit" data-original-title="Ubah" data-placement="top" data-toggle="tooltip"><i class="fa fa-check"></i> Setujui</button>
-								 	          </form>
-                          </td>
-						  <td class="text-center">
-                            <form action="<?php echo base_url('pinjam_barang/pinjam_tolak') ?>" method="post">
-                              <input type="hidden" name="id_pinjam" value="<?php echo $data->id_pinjamBarang ?>">
-                              <input type="hidden" name="id_peminjam" value="<?php echo $data->id_user ?>">
-                              <input type="hidden" name="id_barang" value="<?php echo $data->id_barang ?>">
-                              <input type="hidden" name="jml" value="<?php echo $data->qty ?>">
-                              <input type="hidden" name="tgl_pinjam" value="<?php echo $data->tgl_pinjam ?>">
-                              <input type="hidden" name="tgl_kembali" value="<?php echo $data->tgl_pengembalian ?>">
-										          <input type="hidden" name="status" value="0">
-										          <button class="btn btn-danger btn-xs btn-delete" type="submit" data-original-title="delete" data-placement="top" data-toggle="tooltip"><i class="fa fa-times"></i> Tolak</button>
-								 	          </form>
-                          </td> -->
-				<td><a href="<?php echo base_url('pinjam_barang/pinjam_tolak/'. $data->id_pinjamBarang); ?>"><input type="submit" name="submit" value="Tolak"> </a> </td>
-				<td><a href="<?php echo base_url('pinjam_barang/pinjam_selesaikan/'. $data->id_pinjamBarang); ?>"><input type="submit" name="submit" value="Selesaikan"> </a> </td>
-				</tr>;
-			<?php endforeach; ?>
-		<?php endif; ?>
-			
-		</table>
+					<td>Barang</td>
+					<td>Jumlah</td>
+					<td>Peminjam</td>
+					<td>Tanggal Peminjaman</td>
+					<td>Tanggal Pengembalian</td>
+					<td>Waktu Peminjaman</td>
+					<td>Aksi</td>
+				</tr>
+			</thead>
 
-</body>
-</html>
-    
-</body>
-</html>
+			<tbody>
+				<?php if(!empty($pinjam_barang)): ?> 
+				<?php foreach($pinjam_barang as $data) :?>
+					<tr>
+						<td><?=$data->nama_barang?></td>
+						<td><?=$data->qty?></td>
+						<td><?=$data->nama?></td>
+						<td><?=$data->tgl_pinjam?></td>
+						<td><?=$data->tgl_pengembalian?></td>
+						<td><?=$data->action_datetime?></td>
+						<td>
+							<a href="<?=base_url('Pinjam_barang/detail/'.$data->id_pinjamBarang)?>" class="btn btn-info">Detail</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+				<?php endif; ?>
+			</tbody>
+		</table>
+		
+	</div>
+</div>
+
+<?php $this->load->view('layout/footerA'); ?>
+<!-- JS PLUGINS START  -->
+
+
+    <!-- Required datatable js -->
+    <script src="<?= base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="<?= base_url(); ?>assets/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="<?= base_url(); ?>assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+    <!-- Datatable Init -->
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        } );
+    </script>
+
+	<!-- Sweet Alert  -->
+	<script src="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+	<script>
+	$('#selesai_berhasil').show(function(){
+		Swal.fire({
+			title: "Selesai!",
+			text: "Proses peminjaman sudah kelar!",
+			type: "success"
+		});
+	});
+	$('#acc_berhasil').show(function(){
+		Swal.fire({
+			title: "Done!",
+			text: "ACC berhasil!",
+			type: "success"
+		});
+	});
+	</script>
+
+
+
+<!-- JS PLUGINS END  -->
+<?php $this->load->view('layout/footerB'); ?>

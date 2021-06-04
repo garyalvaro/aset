@@ -7,9 +7,7 @@ class Pinjam_barang extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_data_pinjam_barang');
-       
     }
-
 
     public function tampil_peminjam()
 	{
@@ -17,106 +15,36 @@ class Pinjam_barang extends CI_Controller
 		$this->load->view('pinjam_barang/tampil_pinjaman_barang',$data);
 	}
 
-
-    
-    function pinjam_setujui($id_pinjamBarang)
+	
+	public function detail($id_pinjamBarang)
 	{
-		// $data['pinjam_barang'] = $this->M_data_pinjam_barang->view_by($id_barang);
-		// $this->load->view('pinjam_barang/tampil_pinjaman_barang',$data);
-    	$data['data'] = $this->M_data_pinjam_barang->view_idPinjam($id_pinjamBarang);
-    	$this->load->view('pinjam_barang/detailSetujui', $data);
-		$status_peminjaman = $this->input->post('status_peminjaman');
-		if($this->input->post('submit'))
-		{ if ($status_peminjaman == 0 ){
-			$data = array(
-				'qty' => $this->input->post('qty'),
-				'tgl' => date('Y-m-d'),
-				'id_user' => $this->session->userdata('id_user'),
-				'deskripsi' => $this->input->post('deskripsi'),
-				'tgl_pinjam' => $this->input->post('tgl_pinjam'),
-				'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),
-				'alasan' => $this->input->post('alasan_pinjam'),
-				'des' => $this->input->post('deskripsi_acc'),
-				'action_datetime' => $this->input->post('action_datetime'),
-				'id_barang' => $this->input->post('id_barang')
-		);
-			$this->M_data_pinjam_barang->setujui($id_pinjamBarang,$data);
-			redirect('pinjam_barang/tampil_peminjam');
-			} elseif ($status_peminjaman == 2 ){
-				$this->session->set_flashdata('sudahDitolak', 'Peminjaman sudah ditolak');
-				//echo "Peminjaman sudah ditolak";
-			} 
-		}	
-		
-		
-
+		$data['detail'] = $this->M_data_pinjam_barang->view_by($id_pinjamBarang);
+		$this->load->view('pinjam_barang/detail_pinjaman',$data);
 	}
 
-	
-	function pinjam_tolak($id_pinjamBarang)
-	{// $data['pinjam_barang'] = $this->M_data_pinjam_barang->view_by($id_barang);
-		// $this->load->view('pinjam_barang/tampil_pinjaman_barang',$data);
-    	$data['data'] = $this->M_data_pinjam_barang->view_idPinjam($id_pinjamBarang);
-    	$this->load->view('pinjam_barang/detailTolak', $data);
-		$status_peminjaman = $this->input->post('status_peminjaman');
-		if($this->input->post('submit'))
-		{ if ($status_peminjaman == 0 ){
-			$data = array(
-				'qty' => $this->input->post('qty'),
-				'tgl' => date('Y-m-d'),
-				'id_user' => $this->session->userdata('id_user'),
-				'deskripsi' => $this->input->post('deskripsi'),
-				'tgl_pinjam' => $this->input->post('tgl_pinjam'),
-				'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),
-				'alasan' => $this->input->post('alasan_pinjam'),
-				'des' => $this->input->post('deskripsi_acc'),
-				'action_datetime' => $this->input->post('action_datetime'),
-				'id_barang' => $this->input->post('id_barang')
-		);
-			$this->M_data_pinjam_barang->tolak($id_pinjamBarang,$data);
-			redirect('pinjam_barang/tampil_peminjam');
-			}
-		elseif($status_peminjaman == 1){
-			$this->session->set_flashdata('sudahDisetujui', 'Peminjaman sudah disetujui');
-			//echo "Peminjaman sudah disetujui";
-		} 
-		}	
-    }
-
-	function pinjam_selesaikan($id_pinjamBarang)
-	{// $data['pinjam_barang'] = $this->M_data_pinjam_barang->view_by($id_barang);
-		// $this->load->view('pinjam_barang/tampil_pinjaman_barang',$data);
-    	$data['data'] = $this->M_data_pinjam_barang->view_idPinjam($id_pinjamBarang);
-    	$this->load->view('pinjam_barang/detailSelesaikan', $data);
-		$status_peminjaman = $this->input->post('status_peminjaman');
-		if($this->input->post('submit'))
-		{if ($status_peminjaman == 1 || $status_peminjaman == 2 ){
-			$data = array(
-				'qty' => $this->input->post('qty'),
-				'tgl' => date('Y-m-d'),
-				'id_user' => $this->session->userdata('id_user'),
-				'deskripsi' => $this->input->post('deskripsi'),
-				'tgl_pinjam' => $this->input->post('tgl_pinjam'),
-				'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),
-				'alasan' => $this->input->post('alasan_pinjam'),
-				'des' => $this->input->post('deskripsi_acc'),
-				'action_datetime' => $this->input->post('action_datetime'),
-				'id_barang' => $this->input->post('id_barang')
-		);
-			$this->M_data_pinjam_barang->selesaikan($id_pinjamBarang,$data);
-			redirect('pinjam_barang/tampil_peminjam');
-		}	
-		elseif($status_peminjaman == 0){
-			$this->session->set_flashdata('belumDirespon', 'Peminjaman belum di respon');
-			//echo "Peminjaman belum di respon";
-		} 
+	public function acc($id_pinjamBarang)
+	{
+		if($this->input->post('terima')){
+			$data = [ 'deskripsi_acc' => $this->input->post('deskripsi_acc') ];
+			$this->M_data_pinjam_barang->terima($id_pinjamBarang, $data);
 		}
-    }
+		elseif ($this->input->post('tolak')) {
+			$data = [ 'deskripsi_acc' => $this->input->post('deskripsi_acc') ];
+			$this->M_data_pinjam_barang->tolak($id_pinjamBarang, $data);
+		}
+		$this->session->set_flashdata('acc_berhasil', 'acc_berhasil');
+		redirect('Pinjam_barang/tampil_peminjam');
+	}
+
+	public function selesaikan($id_pinjamBarang)
+	{
+		$this->M_data_pinjam_barang->selesai($id_pinjamBarang);
+		$this->session->set_flashdata('selesai_berhasil', 'selesai_berhasil');
+		redirect('Pinjam_barang/tampil_peminjam');
+	}
 	
 	public function pinjam_user($id_barang)
 	{
-
-		//$t = $this->input->post(); ($t['ïd_barang']);
 		$data['detail'] = $this->M_data->view_by($id_barang);
 		if ($this->input->post('cek_stok')) {
 			$id_barang = $this->uri->segment(3);
@@ -130,7 +58,6 @@ class Pinjam_barang extends CI_Controller
 				'tgl_kembali' => $tgl_kembali,
 				'qty' => $qty
 			);
-
 			$data['status']= $this->M_data_pinjam_barang->cek_stok($datas);
 			$this->load->view('pinjam_barang/pinjam_barang1',$data);
 		}
@@ -144,22 +71,15 @@ class Pinjam_barang extends CI_Controller
 				'qty' => $this->input->post('qty'),
 				'alasan_peminjaman' => $this->input->post('alasan_peminjaman')
 			);
-			
 			$this->M_data_pinjam_barang->pinjam($id_barang, $data);
 			$this->session->set_flashdata('pinjam_sukses','pinjam_sukses');
 			redirect('barang/tampil_barang_users');
 		}
-		else{
+		else
 			$this->load->view('pinjam_barang/pinjam_barang', $data);
-		}
+		
 	}
-	// public function detail($id_barang)
-	// {
-	// 	$this->load->model('M_data');
-	// 	$detail = $this->M_data_pinjam_barang->detail_barang($id_barang);
-	// 	$data['detail'] = $detail;
-	// 	$this->load->view('pinjam_barang/pinjam_barang', $data);
-	// }
+
 
 	
 }
