@@ -89,6 +89,18 @@ class Account extends CI_Controller {
 				'active'=>1
 			);
 			$this->Account_model->register('user',$data);
+
+			$data_session = array(
+				'id_user'=>$id_user,
+				'email'=>$email,
+				'nama'=>$nama,
+				'level'=>$level,
+				'username'=>$username,
+				'foto'=>$foto,
+				'LoggedIN'=>TRUE
+			);  
+			$this->session->set_userdata($data_session);
+
 			redirect('');
 		}
 	}
