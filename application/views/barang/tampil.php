@@ -39,7 +39,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
                                         <p>Tersisa <b><?= $this->M_data->cek_stok($data->id_barang)?></b></p>
-                                        <p class="card-text"><?= $data->deskripsi; ?></p>
+                                        <p class="card-text" id="target"><?= $data->deskripsi; ?></p>
                                         <a href="<?=base_url("barang/editBarang/".$data->id_barang);?>" class="btn btn-outline-secondary waves-effect waves-light m-b-10">Edit Data</a>
                                         <button type="button" class="btn btn-primary waves-effect waves-light m-b-10" data-toggle="modal" data-target=".bs-example-modal-sm<?= $data->id_barang; ?>">Update Stok</button>
                                     </div>
@@ -173,6 +173,19 @@ function ($) {
     $.AdvancedForm.init();
 }(window.jQuery);
 
+</script>
+
+
+<!-- Truncate String JS -->
+<script>
+    function ellipsify (str) {
+        if (str.length > 10) 
+            return (str.substring(0, 100) + "...");
+        else 
+            return str;
+    }
+    var div = document.getElementById('target');
+    div.textContent = ellipsify(div.textContent);
 </script>
 
 

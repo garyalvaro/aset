@@ -37,10 +37,10 @@ if($this->session->flashdata())
                             <div class="col-md-6 col-lg-6 col-xl-3 divBesar">
                                 <!-- Simple card -->
                                 <div class="card m-b-30">
-                                    <img class="card-img-top img-fluid" src="<?= base_url("assets/uploads/".$data->foto); ?>" alt="">
+                                    <img class="card-img-top img-fluid" src="<?= base_url("assets/images/barang/".$data->foto); ?>" alt="">
                                     <div class="card-body">
                                         <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
-                                        <p class="card-text"><?= $data->deskripsi; ?></p>
+                                        <p class="card-text" id="target"><?= $data->deskripsi; ?></p>
                                         <a href="<?=base_url('pinjam_barang/pinjam_user/'.$data->id_barang);?>" class="btn btn-info waves-effect waves-light">Pinjam</a>
                                     </div>
                                 </div>
@@ -113,6 +113,19 @@ if($this->session->flashdata())
         "use strict";
         $.SweetAlert.init()
     }(window.jQuery);
+</script>
+
+
+<!-- Truncate String JS -->
+<script>
+    function ellipsify (str) {
+        if (str.length > 10) 
+            return (str.substring(0, 100) + "...");
+        else 
+            return str;
+    }
+    var div = document.getElementById('target');
+    div.textContent = ellipsify(div.textContent);
 </script>
 
 <!-- JS PLUGINS END  -->
