@@ -30,15 +30,16 @@ class User extends CI_Controller
         {
             
             $data = array(
+                'username' => $this->input->post('username'),
+                'nama' => $this->input->post('nama'),
+                'email' => $this->input->post('email')
+            );
 
-                    'username' => $this->input->post('username'),
-                    'nama' => $this->input->post('nama'),
-                    'email' => $this->input->post('email')
+            if($this->session->userdata('id_user') == $id_user)
+                $this->session->set_userdata($data);
 
-                    );
-
-                    $this->User_model->edit($id_user,$data);
-                    redirect('user/index');    
+            $this->User_model->edit($id_user,$data);
+            redirect('user/edit_user/'.$id_user);    
         }
         
         
@@ -94,14 +95,15 @@ class User extends CI_Controller
 
         if($this->input->post('submit'))
         {
-        $namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
+            $namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
             $data = array('foto' =>$namafile);
             
-            if($this->User_model->edit_foto($id_user, $data))
-                $this->session->set_flashdata('editFoto_success', 'editFoto_success');
-            else
-                $this->session->set_flashdata('editFoto_failed', 'editFoto_failed');
-            redirect('user/index');
+            $this->User_model->edit_foto($id_user, $data);
+
+            if($this->session->userdata('id_user') == $id_user)
+                $this->session->set_userdata($data);
+
+            redirect('user/edit_user/'.$id_user);
         }
 
     }
