@@ -27,6 +27,10 @@ class M_data_pinjam_barang extends CI_Model
 	{
 		$this->session->set_userdata(['id_user' => 1]);
 
+		$data = array(
+			"deskripsi_acc" => $this->input->post('deskripsi_acc'),
+		);
+
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
@@ -35,22 +39,28 @@ class M_data_pinjam_barang extends CI_Model
 		// $tgl_pinjam = $this->input->post('tgl_pinjam');
 		// $tgl_pengembalian = $this->input->post('tgl_pengembalian');
 		// $alasan = $this->input->post('alasan_pinjam');
-		// $des = $this->input->post('deskripsi_acc');
+		//$deskripsi_acc = $this->input->post('deskripsi_acc');
 		$action_datetime = $this->input->post('action_datetime');
 		$id_barang = $this->input->post('id_barang');
 
 		$this->db->query("BEGIN;");
 		$this->db->query("UPDATE pinjam_barang SET status_peminjaman='1' WHERE id_pinjamBarang=$id_pinjamBarang;");
 		$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','2', '$tgl');");
-			
+
 		$this->db->query("COMMIT;");
+
+		$this->db->where('id_pinjamBarang',$id_pinjamBarang);
+		$this->db->update('pinjam_barang',$data);	
 	}
 
 	public function tolak($id_pinjamBarang, $data)
 	{
 		$this->session->set_userdata(['id_user' => 1]);
 
-		
+		$data = array(
+			"deskripsi_acc" => $this->input->post('deskripsi_acc'),
+		);
+
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
@@ -66,6 +76,9 @@ class M_data_pinjam_barang extends CI_Model
 		$this->db->query("BEGIN;");
 		$this->db->query("UPDATE pinjam_barang SET status_peminjaman='2' WHERE id_pinjamBarang=$id_pinjamBarang;");
 		$this->db->query("COMMIT;");
+
+		$this->db->where('id_pinjamBarang',$id_pinjamBarang);
+		$this->db->update('pinjam_barang',$data);	
 		return TRUE;
 		
 	}

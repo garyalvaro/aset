@@ -61,7 +61,7 @@
 
             <tr>
 				<td> Deskripsi Persetujuan</td>
-				<td> <input type="text" name="deskripsi_acc" required value="<?php echo set_value('deskripsi_acc', $data->deskripsi_acc); ?>" readonly>
+				<td> <input type="text" name="deskripsi_acc" required value="<?php echo set_value('deskripsi_acc', $data->deskripsi_acc); ?>" >
 				</td>
 			</tr>
 
