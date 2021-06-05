@@ -90,6 +90,16 @@ class Account extends CI_Controller {
 			);
 			$this->Account_model->register('user',$data);
 
+			// Untuk mendapatkan data ke session 
+			$cek = $this->Account_model->login($username,$password,'user');
+			foreach ($cek as $key) {
+				$id_user=$key->id_user;
+				$email=$key->email;
+				$nama=$key->nama;
+				$active=$key->active;
+				$level=$key->level;
+				$foto=$key->foto;
+			}
 			$data_session = array(
 				'id_user'=>$id_user,
 				'email'=>$email,

@@ -24,7 +24,7 @@
                                 <div class="dropdown notification-list nav-pro-img">
                                     <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <?php $foto = $this->session->userdata('foto'); ?>
-                                        <img src="<?= base_url(); ?>assets/images/user/<?=$foto?>" alt="user" class="rounded-circle" style="object-fit:cover; object-position:0 0;">
+                                        <img src="<?= base_url(); ?>assets/images/user/<?= $this->session->userdata('foto'); ?>" alt="user" class="rounded-circle" style="object-fit:cover; object-position:0 0;">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                         <!-- item-->
@@ -101,3 +101,4 @@
             </div> <!-- end navbar-custom -->
         </header>
         <!-- End Navigation Bar-->
+
