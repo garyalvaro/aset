@@ -18,7 +18,7 @@ class M_data_pinjam_barang extends CI_Model
 	{
 		// $this->db->where('id_barang',$id_barang);
 		// return $this->db->get('barang')->row();
-		$query = $this->db->query("SELECT id_pinjamBarang, nama, user.foto as foto_user, nama_barang, barang.foto as foto_barang, satuan, tgl_pinjam, tgl_pengembalian, qty, status_peminjaman, alasan_pinjam, deskripsi_acc, action_datetime
+		$query = $this->db->query("SELECT id_pinjamBarang, nama, user.foto as foto_user, nama_barang, barang.foto as foto_barang, satuan, tgl_pinjam, tgl_pengembalian, qty, status_peminjaman, alasan_pinjam, deskripsi_acc, action_datetime,email
             FROM pinjam_barang
             JOIN user ON pinjam_barang.id_user = user.id_user
             JOIN barang ON pinjam_barang.id_barang = barang.id_barang

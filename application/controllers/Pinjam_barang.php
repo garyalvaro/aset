@@ -24,16 +24,65 @@ class Pinjam_barang extends CI_Controller
 	public function acc($id_pinjamBarang)
 	{
 		if($this->input->post('terima')){
-			$data = [ 'deskripsi_acc' => $this->input->post('deskripsi_acc') ];
+			$data = [ 
+				'deskripsi_acc' => $this->input->post('deskripsi_acc'),
+				'status_acc' => 'Peminjaman diterima' 
+			];
 			$this->M_data_pinjam_barang->terima($id_pinjamBarang, $data);
 		}
 		elseif ($this->input->post('tolak')) {
-			$data = [ 'deskripsi_acc' => $this->input->post('deskripsi_acc') ];
+			$data = [ 
+				'deskripsi_acc' => $this->input->post('deskripsi_acc'),
+				'status_acc' => 'Peminjaman ditolak' 
+			];
 			$this->M_data_pinjam_barang->tolak($id_pinjamBarang, $data);
 		}
+		$data['detail'] = $this->M_data_pinjam_barang->view_by($id_pinjamBarang);
+		$this->send_email($data);
+
 		$this->session->set_flashdata('acc_berhasil', 'acc_berhasil');
+		// $this->load->view('pinjam_barang/email',$data);
 		redirect('Pinjam_barang/tampil_peminjam');
 	}
+	public function send_email($data)
+    {
+      // Konfigurasi email
+        $config = [
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'tubes.pi.semangat@gmail.com',  // Email gmail
+            'smtp_pass'   => 'Tubes123',  // Password gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+
+        // Load library email dan konfigurasinya
+        $this->load->library('email', $config);
+
+        // Email dan nama pengirim
+        $this->email->from('tubes.pi.semangat@gmail.com', 'Tubes PI');
+
+        // Email penerima
+        $this->email->to($data['detail']->email); // Ganti dengan email tujuan
+
+        // Subject email
+        $this->email->subject('Status Peminjaman Anda di Aset');
+
+        // Isi email
+        $body = $this->load->view('pinjam_barang/email',$data,TRUE);
+        $this->email->message($body);
+        // $this->email->message("Ini adalah contoh email yang dikirim menggunakan SMTP Gmail pada CodeIgniter.<br><br> Klik <strong><a href='https://masrud.com/post/kirim-email-dengan-smtp-gmail' target='_blank' rel='noopener'>disini</a></strong> untuk melihat tutorialnya.");
+        if ($this->email->send()) {
+            echo 'Sukses! email berhasil dikirim.';
+        } else {
+            echo 'Error! email tidak dapat dikirim.';
+        }
+
+    }
 
 	public function selesaikan($id_pinjamBarang)
 	{

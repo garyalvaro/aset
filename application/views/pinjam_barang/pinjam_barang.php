@@ -28,8 +28,8 @@
 						<div class="row">
 							<div class="col-12 col-sm-7 mb-2">
 								<div class="input-daterange input-group" id="date-range">
-									<input type="text" class="form-control" name="tgl_pinjam" value="<?php echo set_value('tgl_pinjam');?>" placeholder="Tanggal Peminjaman" required>
-									<input type="text" class="form-control" name="tgl_pengembalian" value="<?php echo set_value('tgl_pengembalian');?>" placeholder="Tanggal Pengembalian" required>
+									<input type="text" autocomplete="off" class="form-control" name="tgl_pinjam" value="<?php echo set_value('tgl_pinjam');?>" placeholder="Tanggal Peminjaman" required>
+									<input type="text" autocomplete="off" class="form-control" name="tgl_pengembalian" value="<?php echo set_value('tgl_pengembalian');?>" placeholder="Tanggal Pengembalian" required>
 								</div>
 							</div>
 							<div class="col-7 col-sm-3 mb-2">
