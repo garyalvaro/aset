@@ -14,7 +14,6 @@ class Pinjam_barang extends CI_Controller
 		$data['pinjam_barang'] = $this->M_data_pinjam_barang->view();
 		$this->load->view('pinjam_barang/tampil_pinjaman_barang',$data);
 	}
-
 	
 	public function detail($id_pinjamBarang)
 	{
@@ -78,6 +77,12 @@ class Pinjam_barang extends CI_Controller
 		else
 			$this->load->view('pinjam_barang/pinjam_barang', $data);
 		
+	}
+
+	public function user($id_user)
+	{
+		$data['pinjaman'] = $this->M_data_pinjam_barang->view_by_user($id_user);
+		$this->load->view('pinjam_barang/pinjaman_user', $data);
 	}
 
 
