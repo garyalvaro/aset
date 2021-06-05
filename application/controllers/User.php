@@ -159,5 +159,14 @@ class User extends CI_Controller
             return redirect('user');
         }
     }
+
+    public function update_status_byid($id_user, $actived)
+    {
+        if($actived == 0)
+            $this->User_model->update_status_byid($id_user, 1);
+        else
+            $this->User_model->update_status_byid($id_user, 0);
+        redirect('User/edit_user/'.$id_user);
+    }
 }
 ?>

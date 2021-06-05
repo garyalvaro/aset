@@ -83,23 +83,25 @@ public function view()
 
 
    public function update_status()
-{
-    $id_user = $_REQUEST['sid'];
-    $saval = $_REQUEST['sval'];
-    if($saval==1)
     {
-        $active = 0;
+        $id_user = $_REQUEST['sid'];
+        $saval = $_REQUEST['sval'];
+        if($saval==1)
+            $active = 0;
+        else
+            $active = 1;
+
+        $data = array( 'active' => $active );
+        $this->db->where('id_user',$id_user);
+        return $this->db->update('user',$data);
     }
-    else{
-        $active = 1;
+
+    public function update_status_byid($id_user, $active)
+    {
+        $data = array( 'active' => $active );
+        $this->db->where('id_user',$id_user);
+        return $this->db->update('user',$data);
     }
-
-    $data = array( 'active' => $active );
-
-    $this->db->where('id_user',$id_user);
-
-    return $this->db->update('user',$data);
-}
     
     public function hapus($id_user)
     {

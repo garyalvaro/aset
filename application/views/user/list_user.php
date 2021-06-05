@@ -44,7 +44,7 @@
                                         
                     <td>
                         <?php if($user->active == 1): ?>
-                            <a href="<?= base_url(); ?>user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-success">Aktif</a>
+                            <a href="<?= base_url('User/update_status_byid/'.$user->id_user.'/'.$user->active); ?>" class="btn btn-success">Aktif</a>
                         <?php else:  ?>
                             <a href="<?= base_url(); ?>user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-danger">Nonaktif</a>
                         <?php endif; ?>
