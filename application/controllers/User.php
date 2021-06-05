@@ -11,6 +11,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_model');
+        $this->load->library('form_validation');
        
     }
 
@@ -22,28 +23,45 @@ class User extends CI_Controller
 
     public function edit_user($id_user)
     {
-       
+ 
         $data['user'] = $this->User_model->view_by($id_user);
         $this->load->view('user/user_edit',$data);
 
-        if($this->input->post('submit'))
+         if($this->input->post('submit'))
         {
-            
-            $data = array(
-                'username' => $this->input->post('username'),
-                'nama' => $this->input->post('nama'),
-                'email' => $this->input->post('email')
-            );
+            if($this->User_model->validation("edit"))
+            {
+                 $data = array(
 
-            if($this->session->userdata('id_user') == $id_user)
-                $this->session->set_userdata($data);
+                    'username' => $this->input->post('username'),
+                    'nama' => $this->input->post('nama'),
+                    'email' => $this->input->post('email'),
+                    'nim' => $this->input->post('nim'),
+                    'password' => $this->input->post('password'),                
+                    'konfirmasi_password' => $this->input->post('konfirmasi_password')
 
-            $this->User_model->edit($id_user,$data);
-            redirect('user/edit_user/'.$id_user);    
+
+                    );
+                 if($data['password'] == $data['konfirmasi_password'])
+                 {
+                     $this->User_model->edit($id_user,$data);
+                    redirect('user/index');  
+                 }
+
+                 else{
+                    echo "password salah";
+                 }
+
+                     
+            }
         }
-        
-        
+            
     }
+
+   //  $this->form_validation->set_rules('konfirmasi password', 'Konfirmasi Password', '|min_length[5]|matches[password]');
+       
+       
+   
 
     public function admin_profile_user($id_user) 
     {

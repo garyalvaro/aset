@@ -6,8 +6,14 @@
 
 <?php $this->load->view('layout/navbar'); ?>
 
+<?php
+    $level = $this->session->userdata('level');
+    $id_user = $this->session->userdata('id_user');
+    $id_url = $this->uri->segment(3);
+?>
 
 
+<?php if($level == 1 && $id_user == $id_url): ?>
 <div class="wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -44,6 +50,29 @@
                             <label class="error col-sm-12"><?php echo form_error('email'); ?></label>
 						</div>
 
+                        <div class="form-group row">
+							<label for="nim" class="col-sm-2 col-form-label">Nomor Induk Mahasiswa</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" id="nim" name="nim" autocomplete="off" value="<?=$user->nim?>" required>
+							</div>
+                            <label class="error col-sm-12"><?php echo form_error('nim'); ?></label>
+						</div>
+											
+						<div class="form-group row">
+							<label for="password" class="col-sm-2 col-form-label">Password Baru</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="password" id="password" name="password" autocomplete="off" value="<?=$user->password?>" required>
+							</div>
+                            <label class="error col-sm-12"><?php echo form_error('password'); ?></label>
+						</div>
+
+                        <div class="form-group row">
+							<label for="konfirmasi_password" class="col-sm-2 col-form-label">Konfirmasi Password Baru</label>
+							<div class="col-sm-10">
+								<input class="form-control" type="password" id="konfirmasi_password" name="konfirmasi_password" autocomplete="off" value="<?=$user->konfirmasi_password?>" required>
+							</div>
+                            <label class="error col-sm-12"><?php echo form_error('konfirmasi_password'); ?></label>
+						</div>
 
 						<div class="form-group row">
 							<div class="col-sm-12 text-right">
@@ -92,6 +121,9 @@
 	</div> <!-- end container-fluid -->
 </div>
 <!-- end wrapper -->
+<?php endif; ?>
+
+
 
 
 <?php $this->load->view('layout/footerA'); ?>

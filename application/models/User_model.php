@@ -22,12 +22,36 @@ public function view()
         $data = array(
             "username" => $this->input->post('username'),
             "nama" => $this->input->post('nama'),
-            "email" => $this->input->post('email')
+            "email" => $this->input->post('email'),
+            "nim" => $this->input->post('nim'),
+            "password" => $this->input->post('password')
 
         );
 
         $this->db->where('id_user',$id_user);
         $this->db->update('user',$data);
+    }
+
+    public function validation($mode)
+    {
+        $this->load->library('form_validation');
+        if($mode == "edit")
+        {
+
+                    $this->load->library('form_validation');
+        $this->form_validation->set_rules('username', 'Username', 'required|max_length[30]');
+        $this->form_validation->set_rules('nama', 'Nama', 'required|max_length[30]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('nim', 'NIM', 'required|numeric|max_length[15]');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+        $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi_Password', 'min_length[5]|matches[password]');
+            if($this->form_validation->run())
+                return TRUE;
+            else
+                return FALSE;
+        }
+
+
     }
 
         public function edit_foto($id_user, $data)
