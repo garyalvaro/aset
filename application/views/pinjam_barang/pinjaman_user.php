@@ -53,7 +53,7 @@
                         <?php for ($i=0; $i<4 ; $i++): ?>
                         <div class="tab-pane p-3 <?php if($i==0) echo "active";?> " id="stat<?=$i?>" role="tabpanel">
                             <div class="table-rep-plugin">
-                                <div class="table-responsive mb-0" data-pattern="priority-columns">
+                                <div class="table-responsive mb-0" data-pattern="priority-columns" id="tr<?=$i?>">
                                     <table id="tech-companies-1" class="table table-striped">
                                         <thead>
                                             <tr>
@@ -101,7 +101,16 @@
 <script src="<?= base_url(); ?>assets/plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js"></script>
 <script>
     $(function() {
-        $('.table-responsive').responsiveTable({
+        $('#tr0').responsiveTable({
+            addDisplayAllBtn: 'btn btn-secondary'
+        });
+        $('#tr1').responsiveTable({
+            addDisplayAllBtn: 'btn btn-secondary'
+        });
+        $('#tr2').responsiveTable({
+            addDisplayAllBtn: 'btn btn-secondary'
+        });
+        $('#tr3').responsiveTable({
             addDisplayAllBtn: 'btn btn-secondary'
         });
     });
