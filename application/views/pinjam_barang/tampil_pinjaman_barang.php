@@ -37,6 +37,8 @@ if($this->session->flashdata())
 					<td>Tanggal Peminjaman</td>
 					<td>Tanggal Pengembalian</td>
 					<td>Waktu Peminjaman</td>
+					<th>Status Peminjaman</th>
+
 					<td>Aksi</td>
 				</tr>
 			</thead>
@@ -51,6 +53,14 @@ if($this->session->flashdata())
 						<td><?=$data->tgl_pinjam?></td>
 						<td><?=$data->tgl_pengembalian?></td>
 						<td><?=$data->action_datetime?></td>
+						<td>
+						    <?php
+						    	if ($data->status_peminjaman==0) { echo "Dalam proses pemeriksaan"; }
+						    	elseif ($data->status_peminjaman==1) { echo "Pinjaman diterima"; }
+						    	elseif ($data->status_peminjaman==2) { echo "Pinjaman ditolak"; }
+						    	elseif ($data->status_peminjaman==4) { echo "Pinjaman telah dikembalikan"; }
+						    ?>
+						</td>
 						<td>
 							<a href="<?=base_url('Pinjam_barang/detail/'.$data->id_pinjamBarang)?>" class="btn btn-info">Detail</a>
 						</td>

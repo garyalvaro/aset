@@ -9,7 +9,8 @@ class M_data_pinjam_barang extends CI_Model
 		$query = $this->db->query("SELECT id_pinjamBarang, nama, nama_barang, tgl_pinjam, tgl_pengembalian, qty, status_peminjaman, alasan_pinjam, deskripsi_acc, action_datetime
             FROM pinjam_barang
             JOIN user ON pinjam_barang.id_user = user.id_user
-            JOIN barang ON pinjam_barang.id_barang = barang.id_barang;
+            JOIN barang ON pinjam_barang.id_barang = barang.id_barang
+           	ORDER BY action_datetime DESC;
         ");
         return $query->result();	
     }
