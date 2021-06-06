@@ -30,7 +30,7 @@ class M_data_pinjam_barang extends CI_Model
 
 	public function view_by_user($id_user)
 	{
-		$query = $this->db->query("SELECT user.id_user, nama, user.foto as foto_user, nama_barang, barang.foto as foto_barang, satuan, tgl_pinjam, tgl_pengembalian, qty, status_peminjaman, alasan_pinjam, deskripsi_acc, action_datetime
+		$query = $this->db->query("SELECT user.id_user, nama, user.foto as foto_user, nama_barang, barang.foto as foto_barang, satuan, tgl_pinjam, tgl_pengembalian, qty, status_peminjaman, alasan_pinjam, deskripsi_acc, action_datetime, id_pinjamBarang
             FROM pinjam_barang
             JOIN user ON pinjam_barang.id_user = user.id_user
             JOIN barang ON pinjam_barang.id_barang = barang.id_barang

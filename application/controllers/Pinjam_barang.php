@@ -18,6 +18,11 @@ class Pinjam_barang extends CI_Controller
 	public function detail($id_pinjamBarang)
 	{
 		$data['detail'] = $this->M_data_pinjam_barang->view_by($id_pinjamBarang);
+		$this->load->view('pinjam_barang/detail_pinjaman_admin',$data);
+	}
+	public function detail_pinjaman($id_pinjamBarang)
+	{
+		$data['detail'] = $this->M_data_pinjam_barang->view_by($id_pinjamBarang);
 		$this->load->view('pinjam_barang/detail_pinjaman',$data);
 	}
 
@@ -75,7 +80,7 @@ class Pinjam_barang extends CI_Controller
         // Isi email
         $body = $this->load->view('pinjam_barang/email',$data,TRUE);
         $this->email->message($body);
-        // $this->email->message("Ini adalah contoh email yang dikirim menggunakan SMTP Gmail pada CodeIgniter.<br><br> Klik <strong><a href='https://masrud.com/post/kirim-email-dengan-smtp-gmail' target='_blank' rel='noopener'>disini</a></strong> untuk melihat tutorialnya.");
+        
         if ($this->email->send()) {
             echo 'Sukses! email berhasil dikirim.';
         } else {

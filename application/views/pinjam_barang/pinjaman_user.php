@@ -67,7 +67,7 @@
                                         <tbody>
                                             <?php foreach ($pinjaman as $key): ?>
                                             <?php if($key->status_peminjaman == $i): ?>
-                                                <tr>
+                                                <tr class='clickable-row' data-href="<?= base_url('Pinjam_barang/detail_pinjaman/'.$key->id_pinjamBarang); ?>" style='cursor: pointer;'>
                                                     <td><?=$key->nama_barang?></td>
                                                     <td><?=$key->qty?></td>
                                                     <td><?=$key->tgl_pinjam?></td>
@@ -112,6 +112,13 @@
         });
         $('#tr3').responsiveTable({
             addDisplayAllBtn: 'btn btn-secondary'
+        });
+    });
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            window.location = $(this).data("href");
         });
     });
 </script>

@@ -3,22 +3,6 @@
 
 <!-- Sweet Alert -->
 <link href="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-    .btn-acc{
-        border-radius: 5px;
-        background: #17be80;
-        color: white;
-        display: inline-block;
-        padding: 1px 10px;
-    }
-    .btn-reject{
-        border-radius: 5px;
-        background: #dc5a66;
-        color: white;
-        display: inline-block;
-        padding: 1px 10px;
-    }
-</style>
 <!-- CSS PLUGINS END  -->
 <?php $this->load->view('layout/headerB'); ?>
 
@@ -75,62 +59,55 @@
                 <?php if($detail->status_peminjaman == 0) :?>
                     <div class="card m-b-20">
                         <div class="card-body">
-                            <h4 class="mt-0 header-title">Status peminjaman Anda pada saat ini :</h4>
-                            <div class="alert alert-warning">
-                                Peminjaman sedang <strong>dalam proses Persetujuan Admin</strong>.
-                            </div>
-                            <p>Mohon menunggu pemberitahuan selanjutnya melalui email.</p>
+                            <h4 class="mt-0 header-title">Persetujuan Admin</h4>
+                            <p>Apakah peminjaman diterima atau ditolak?</p> 
+                            
+                            <?php echo form_open_multipart('pinjam_barang/acc/'.$detail->id_pinjamBarang); ?>
+                                <label for="">Catatan: (<i>Opsional</i>)</label>
+                                <textarea name="deskripsi_acc" rows="5" class="form-control"></textarea>
+                                <br>
+                                <input type="submit" name="terima" class="btn btn-success btn-block" value="Terima">
+                                <input type="submit" name="tolak" class="btn btn-danger btn-block" value="Tolak"> 
+                            <?php echo form_close(); ?>
                         </div>
                     </div>
                 <?php elseif($detail->status_peminjaman == 1): ?>
                     <div class="card m-b-20">
                         <div class="card-body">
-                            <h4 class="mt-0 header-title">Status peminjaman Anda pada saat ini :</h4>
-                            <div class="alert alert-success">
-                                Peminjaman <strong>Diterima</strong>, dengan alasan: <br>
-                                <p style='margin-bottom:0; color:#666'>
-                                <?php 
-                                    if($detail->deskripsi_acc == "")
-                                        echo "Selamat, peminjaman anda diterima";
-                                    else
-                                        echo $detail->deskripsi_acc;
-                                ?>
-                                </p>
-                            </div>
-                            <p>Mohon melakukan pengambilan barang pada waktu yang ditentukan pada jadwal berikut ini.</p>
-                            <table style="float: left; display: contents;">
-                                <tr>
-                                    <td width="15%">Tanggal </td>
-                                    <td>: </td>
-                                    <td><?=$detail->tgl_pinjam?></td>
-                                </tr>
-                                <tr>
-                                    <td>Waktu </td>
-                                    <td>: </td>
-                                    <td>08.00 - 15.00 </td>
-                                </tr>
-                                <tr>
-                                    <td style="float: left">Lokasi </td>
-                                    <td style="vertical-align: -webkit-baseline-middle;">: </td>
-                                    <td>Gedung Fasilkom-TI USU<br>Jl. Alumni No.3, Padang Bulan, Medan Baru, Medan City, North Sumatra 20155</td>
-                                </tr>
-                            </table>
+                            <h4 class="mt-0 header-title">Persetujuan Admin</h4>
+                            <p>Apakah peminjaman sudah selesai?</p> 
+
+                            <div class="custom-control custom-checkbox my-3">
+								<input type="checkbox" class="custom-control-input" value="1" id="ok" onclick="ok_changed(this)">
+								<label class="custom-control-label text-muted" for="ok">Benar, peminjaman atas nama <?=$detail->nama;?> sudah dikembalikan.</label>
+							</div>
+                            <button class="btn btn-success btn-block" id="ok_button" disabled=TRUE>Selesaikan</button>
+                            <script>
+								function ok_changed(okCheckBox){
+									if(okCheckBox.checked){
+										document.getElementById("ok_button").disabled = false;
+									} else{
+										document.getElementById("ok_button").disabled = true;
+									}
+								}
+							</script>
 
                         </div>
                     </div>
                 <?php elseif($detail->status_peminjaman == 2): ?>
                     <div class="card m-b-20">
                         <div class="card-body">
-                            <h4 class="mt-0 header-title">Status peminjaman Anda pada saat ini :</h4>
+                            <h4 class="mt-0 header-title">Keterangan</h4>
+                            <p>Bagaimana peminjamannya?</p> 
                             <div class="alert alert-danger">
-                                Peminjaman <strong>Ditolak</strong>
-                                
+                                Peminjaman <strong>Ditolak</strong>, dengan alasan: 
                                 <?php 
-                                    if($detail->deskripsi_acc != "")
-                                        echo ", dengan alasan: <br><p style='margin-bottom:0; color:#666'>".$detail->deskripsi_acc."</p>";
+                                    if($detail->deskripsi_acc == "")
+                                        echo "-----";
+                                    else
+                                        echo $detail->deskripsi_acc;
                                 ?>
                             </div>
-                            <p style='margin-bottom:0;'>Mohon maaf peminjaman Anda belum diterima pada saat ini.</p>
                         </div>
                     </div>
                 <?php elseif($detail->status_peminjaman == 3): ?>

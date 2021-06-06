@@ -369,7 +369,29 @@ ul.social li{
 					  </tr>
 					 
 					  <tr>
-					  	<td valign="middle" style="text-align:left; padding: 1em 2.5em;">
+					  	<td colspan="2" valign="middle" style="text-align:left; padding: 1em 2.5em;">
+		  					<?php
+		  		  				if ($detail->status_peminjaman == 1) {
+		  					?>
+						  		<p>Mohon melakukan pengambilan barang pada waktu yang ditentukan pada jadwal berikut ini.</p>
+						  		<table style="float: left; display: contents;">
+						  			<tr>
+						  				<td width="15%">Tanggal </td>
+						  				<td>: </td>
+						  				<td><?=$detail->tgl_pinjam?></td>
+						  			</tr>
+						  			<tr>
+						  				<td>Waktu </td>
+						  				<td>: </td>
+						  				<td>08.00 - 15.00 </td>
+						  			</tr>
+						  			<tr>
+						  				<td style="float: left">Lokasi </td>
+						  				<td style="vertical-align: -webkit-baseline-middle;">: </td>
+						  				<td>Gedung Fasilkom-TI USU<br>Jl. Alumni No.3, Padang Bulan, Medan Baru, Medan City, North Sumatra 20155</td>
+						  			</tr>
+						  		</table>
+						  	<?php } ?>
 					  		<p><a href="localhost/send_email/tes" class="btn btn-primary">Lihat detail peminjaman</a></p>
 					  	</td>
 					  </tr>
@@ -399,7 +421,7 @@ ul.social li{
         </tr><!-- end: tr -->
         <tr>
           <td class="bg_white" style="text-align: center;">
-          	<p>&copy;&nbsp;Copyright Aset Kelompok 1 Tubes PI 2021</p>
+          	<p>&copy;&nbsp;2021 Team A1 - Sistem Informasi Aset Fasilkom-TI USU.</p>
           </td>
         </tr>
       </table>
