@@ -45,7 +45,13 @@
 								<select class="form-control" id="id_satuan" name="id_satuan" required>
 								<option value="" disabled>Pilih Satuan</option>
 								<?php foreach($sat as $row):?>
-									<option value="<?= $row->id_satuan; ?>" >
+									<option value="<?= $row->id_satuan; ?>" 
+										<?php
+											if ($row->id_satuan == $barang->id_satuan) {
+												echo "selected";
+											}
+										?>
+										>
 										<?= ucfirst($row->satuan); ?>
 									</option>
 								<?php endforeach; ?>
