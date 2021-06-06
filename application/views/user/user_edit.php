@@ -13,7 +13,7 @@
 ?>
 
 
-<?php if($level == 0 && $id_user == $id_url): ?>
+<?php if($id_user == $id_url): ?>
 <div class="wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -129,9 +129,7 @@
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="card m-b-20">
-					<div class="card-body">
-                        <img src="<?php echo base_url()."assets/images/user/".$user->foto;?>" width=100%>
-                    </div>
+					<img src="<?php echo base_url()."assets/images/user/".$user->foto;?>" width=100% class="card-img-top img-fluid">
                 </div>
             </div>
 
@@ -161,7 +159,34 @@
                         <?php endif; ?>
                     </div>
                 </div>
+
+				<div class="card m-b-20 pb-2">
+					<div class="card-body">
+                        <h5>Hapus Akun Pengguna</h5>
+                        <br>
+                        <button onclick="pencet()" class="btn btn-outline-danger btn-block"><span class="typcn typcn-trash"></span> Hapus</button>
+						<div id="kotakhapus" style="display:none;">
+							<div class="custom-control custom-checkbox my-3">
+								<input type="checkbox" class="custom-control-input" value="1" id="del" onclick="del_changed(this)">
+								<label class="custom-control-label text-muted" for="del">Saya paham dan mengerti bahwa akun yang sudah dihapus tidak dapat dikembalikan lagi.</label>
+							</div>
+							<?php echo form_open("user/hapus_user/".$user->id_user); ?>
+								<button type="submit" class="btn btn-danger" id="del_button" disabled=TRUE>Hapus</button>
+							<?php echo form_close();?>
+							<script>
+								function del_changed(delCheckBox){
+									if(delCheckBox.checked){
+										document.getElementById("del_button").disabled = false;
+									} else{
+										document.getElementById("del_button").disabled = true;
+									}
+								}
+							</script>
+						</div>
+                    </div>
+                </div>
             </div>
+			
 
         </div>
     </div>
@@ -190,6 +215,24 @@
 $("#upfile1").click(function () {
     $("#foto").trigger('click');
 });
+</script>
+
+<script>
+function pencet(){
+	var x = document.getElementById("kotakhapus");
+	if (x.style.display == "none")
+		x.style.display = "block";
+	else
+		x.style.display = "none";
+}
+
+function ceklis(checker){
+	var sendbtn = document.getElementById('btn-hapus');
+	if(checker.checked)
+		sendbtn.disabled=FALSE;
+	else
+		sendbtn.disabled=TRUE;
+}
 </script>
 
 <!-- JS PLUGINS END  -->

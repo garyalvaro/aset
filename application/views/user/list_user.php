@@ -37,9 +37,7 @@
                     <td><?php echo $user->nama; ?></td>
                     <td><?php echo $user->email; ?></td>
                     <td>
-                        <a href="<?=base_url("user/profile_user/".$user->id_user)?>" class="btn btn-primary">Detail</a>
-                        <a href="<?=base_url("user/edit_user/".$user->id_user)?>" class="btn btn-info"><span class="mdi mdi-pencil"></span></a>
-                        <a href="<?=base_url("user/hapus_user/".$user->id_user)?>" class="btn btn-danger"><span class="mdi mdi-delete"></span></a>
+                        <a href="<?=base_url("user/edit_user/".$user->id_user)?>" class="btn btn-info">Detail</a>
                     </td>
                                         
                     <td>
