@@ -90,7 +90,6 @@ class M_data_pinjam_barang extends CI_Model
 
 	public function pinjam($id_barang,$data)
 	{
-		$id_user = $this->input->post('id_user');
 		$tgl_pinjam = $this->input->post('tgl_pinjam');
 		$tgl_pengembalian = $this->input->post('tgl_pengembalian');
 		$qty = $this->input->post('qty');

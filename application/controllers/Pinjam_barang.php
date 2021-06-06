@@ -112,7 +112,7 @@ class Pinjam_barang extends CI_Controller
 		elseif($this->input->post('submit'))
 		{
 			$data = array(
-				'id_user' => $this->input->post('id_user'),
+				'id_user' => $this->session->userdata('id_user'),
 				'id_barang' => $this->uri->segment(3),
 				'tgl_pinjam' => $this->input->post('tgl_pinjam'),
 				'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),

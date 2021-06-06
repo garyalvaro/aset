@@ -14,6 +14,7 @@
     <div class="container-fluid">
         <div class="row">
 
+            <!-- Kolom 1 -->
             <div class="col-md-4">
                 <div class="card m-b-20">
                     <div class="card-body">
@@ -23,6 +24,10 @@
                         <span class="font-18"><?=$detail->qty." ".$detail->satuan;?></span>
                     </div>
                 </div>
+            </div>
+
+            <!-- Kolom 2 -->
+            <div class="col-md-4">
                 <div class="card m-b-20">
                     <div class="card-body">
                         <h4 class="mt-0 header-title">Peminjam</h4>
@@ -30,37 +35,28 @@
                         <b class="font-18 ml-2"><?=$detail->nama;?></b>
                     </div>
                 </div>
+                <div class="card m-b-20">
+                    <div class="card-body">
+                        <h4 class="mt-0 mb-3 header-title">Tanggal Peminjaman</h4>
+                        <p>
+                            <b class="font-20"><?=$detail->tgl_pinjam;?> </b>
+                            s.d. 
+                            <b class="font-20"><?=$detail->tgl_pengembalian;?> </b>
+                        </p>
+                    </div>
+                </div>
+                <div class="card m-b-20">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title">Alasan Meminjam</h4>
+                        <p><?=$detail->alasan_pinjam;?></p>
+                        <br>
+                        <p><i>Terekam di sistem pada: <?=$detail->action_datetime;?></i></p>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-8">
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="card m-b-20">
-                            <div class="card-body">
-                                <h4 class="mt-0 mb-3 header-title">Tanggal Peminjaman</h4>
-                                <p>
-                                    <b class="font-20"><?=$detail->tgl_pinjam;?> </b>
-                                    s.d. 
-                                    <b class="font-20"><?=$detail->tgl_pengembalian;?> </b>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card m-b-20">
-                            <div class="card-body">
-                                <h4 class="mt-0 header-title">Alasan Meminjam</h4>
-                                <p><?=$detail->alasan_pinjam;?></p>
-                                <br>
-                                <p><i>Terekam di sistem pada: <?=$detail->action_datetime;?></i></p>
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
-
+            <!-- Kolom 3 -->
+            <div class="col-md-4">
                 <?php if($detail->status_peminjaman == 0) :?>
                     <div class="card m-b-20">
                         <div class="card-body">
@@ -68,16 +64,11 @@
                             <p>Apakah peminjaman diterima atau ditolak?</p> 
                             
                             <?php echo form_open_multipart('pinjam_barang/acc/'.$detail->id_pinjamBarang); ?>
-                            <div class="row">
-                                <div class="col-sm-8 form-group">
-                                    <label for="">Catatan: (<i>Opsional</i>)</label>
-                                    <textarea name="deskripsi_acc" rows="5" class="form-control"></textarea>
-                                </div>
-                                <div class="col-sm-4 pt-4">
-                                    <input type="submit" name="terima" class="btn btn-success btn-block" value="Terima">
-                                    <input type="submit" name="tolak" class="btn btn-danger btn-block" value="Tolak">                                
-                                </div>
-                            </div>
+                                <label for="">Catatan: (<i>Opsional</i>)</label>
+                                <textarea name="deskripsi_acc" rows="5" class="form-control"></textarea>
+                                <br>
+                                <input type="submit" name="terima" class="btn btn-success btn-block" value="Terima">
+                                <input type="submit" name="tolak" class="btn btn-danger btn-block" value="Tolak"> 
                             <?php echo form_close(); ?>
                         </div>
                     </div>
@@ -86,8 +77,22 @@
                         <div class="card-body">
                             <h4 class="mt-0 header-title">Persetujuan Admin</h4>
                             <p>Apakah peminjaman sudah selesai?</p> 
-                            <button class="btn btn-success btn-block" id="ok">Selesai</button>
-                            
+
+                            <div class="custom-control custom-checkbox my-3">
+								<input type="checkbox" class="custom-control-input" value="1" id="ok" onclick="ok_changed(this)">
+								<label class="custom-control-label text-muted" for="ok">Benar, peminjaman atas nama <?=$detail->nama;?> sudah dikembalikan.</label>
+							</div>
+                            <button class="btn btn-success btn-block" id="ok_button" disabled=TRUE>Selesaikan</button>
+                            <script>
+								function ok_changed(okCheckBox){
+									if(okCheckBox.checked){
+										document.getElementById("ok_button").disabled = false;
+									} else{
+										document.getElementById("ok_button").disabled = true;
+									}
+								}
+							</script>
+
                         </div>
                     </div>
                 <?php elseif($detail->status_peminjaman == 2): ?>
@@ -116,11 +121,9 @@
                         </div>
                     </div>
                 <?php endif; ?>
-
-                
             </div>
 
-        </div>
+        </div><!-- end row gede -->
     </div>
 </div>
 
@@ -133,7 +136,7 @@
 <script src="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
 <script>
     var link = '<?=base_url('pinjam_barang/selesaikan/'.$detail->id_pinjamBarang);?>';
-	$('#ok').on('click',function(e){
+	$('#ok_button').on('click',function(e){
 		e.preventDefault();
 		
 		Swal.fire({
