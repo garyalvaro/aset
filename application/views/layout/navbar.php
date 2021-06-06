@@ -72,7 +72,8 @@
                 </div>
             </div>
 
-            <!-- MENU Start -->
+            <?php if($this->session->userdata('level')==1): ?>
+            <!-- MENU Admin -->
             <div class="navbar-custom">
                 <div class="container-fluid">
                     <div id="navigation">
@@ -80,25 +81,63 @@
                         <ul class="navigation-menu">
 
                             <li class="has-submenu">
-                                <a href="index.html">
-                                    <i class="ti-dashboard"></i>
-                                    <span>Dashboard</span>
-                                </a>
+                                <a href="<?=base_url()?>"><i class="ti-home"></i>Home</a>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="ti-email"></i>Email</a>
+                                <a href="#"><i class="ti-package"></i>Aset</a>
                                 <ul class="submenu">
-                                    <li><a href="email-inbox.html">Inbox</a></li>
-                                    <li><a href="email-read.html">Email Read</a></li>
-                                    <li><a href="email-compose.html">Email Compose</a></li>
+                                    <li><a href="<?=base_url()?>Barang/tampil_barang">Daftar Aset</a></li>
+                                    <li><a href="<?=base_url()?>Barang/tambahBrg">Tambah Aset</a></li>
                                 </ul>
                             </li>
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url()?>Pinjam_barang/tampil_peminjam"><i class="ti-receipt"></i>Transaksi</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url()?>User"><i class="ti-user"></i>Pengguna</a>
+                            </li>
+
                         </ul>
                         <!-- End navigation menu -->
                     </div> <!-- end navigation -->
                 </div> <!-- end container-fluid -->
             </div> <!-- end navbar-custom -->
+
+            <?php else: ?>
+            <!-- MENU User Biasa -->
+            <div class="navbar-custom">
+                <div class="container-fluid">
+                    <div id="navigation">
+                        <!-- Navigation Menu-->
+                        <ul class="navigation-menu">
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url()?>"><i class="ti-home"></i>Home</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url()?>Barang/tampil_barang_users"><i class="ti-package"></i>Daftar Aset</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url('Pinjam_barang/user/'.$this->session->userdata('id_user'))?>"><i class="ti-receipt"></i>Pinjaman Saya</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url('User/edit_user/'.$this->session->userdata('id_user'))?>"><i class="ti-user"></i>Ubah Profil</a>
+                            </li>
+
+                        </ul>
+                        <!-- End navigation menu -->
+                    </div> <!-- end navigation -->
+                </div> <!-- end container-fluid -->
+            </div> <!-- end navbar-custom -->
+            <?php endif; ?>
+
+
+
         </header>
         <!-- End Navigation Bar-->
-
