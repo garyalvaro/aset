@@ -1,24 +1,6 @@
 <?php $this->load->view('layout/headerA'); ?>
 <!-- CSS PLUGINS START  -->
 
-<!-- Sweet Alert -->
-<link href="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-    .btn-acc{
-        border-radius: 5px;
-        background: #17be80;
-        color: white;
-        display: inline-block;
-        padding: 1px 10px;
-    }
-    .btn-reject{
-        border-radius: 5px;
-        background: #dc5a66;
-        color: white;
-        display: inline-block;
-        padding: 1px 10px;
-    }
-</style>
 <!-- CSS PLUGINS END  -->
 <?php $this->load->view('layout/headerB'); ?>
 
@@ -154,29 +136,6 @@
 <!-- JS PLUGINS START  -->
 
 
-<!-- Sweet-Alert  -->
-<script src="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
-<script>
-    var link = '<?=base_url('pinjam_barang/selesaikan/'.$detail->id_pinjamBarang);?>';
-	$('#ok_button').on('click',function(e){
-		e.preventDefault();
-		
-		Swal.fire({
-			title: "Selesaikan?",
-			text: "Pastikan aset pinjaman sudah dikembalikan ya.",
-			type: "question",
-			showCancelButton: true,
-			confirmButtonColor: "#58db83",
-			cancelButtonColor: "#ec536c",
-			confirmButtonText: "Selesai"
-			}).then(function (result) {
-			if (result.value) {
-				Swal.fire("Berhasil!", "", "success");
-				window.location.href = link;
-			}
-		});
-	});
-</script>
 
 
 <!-- JS PLUGINS END  -->
