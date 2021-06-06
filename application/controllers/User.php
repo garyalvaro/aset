@@ -21,41 +21,55 @@ class User extends CI_Controller
         $this->load->view('user/list_user',['list_user'=>$list_user]);
     }
 
-    public function edit_user($id_user)
+    public function edit_user($id_user) 
     {
  
         $data['user'] = $this->User_model->view_by($id_user);
-        $this->load->view('user/user_edit',$data);
+        
 
          if($this->input->post('submit'))
         {
-            if($this->User_model->validation("edit"))
+            $this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]');
+            $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|min_length[6]|matches[password]');
+            
+            if($this->form_validation->run() == TRUE)
             {
-                 $data = array(
+                $id_user=$this->uri->segment(3);
+                $username=$this->input->post('username');
+                $email=$this->input->post('email');
+                $nama=$this->input->post('nama');
+                $nim=$this->input->post('nim');
+                $password1 =$this->input->post('password');
+                $password = sha1($password1);
 
-                    'username' => $this->input->post('username'),
-                    'nama' => $this->input->post('nama'),
-                    'email' => $this->input->post('email'),
-                    'nim' => $this->input->post('nim'),
-                    'password' => $this->input->post('password'),                
-                    'konfirmasi_password' => $this->input->post('konfirmasi_password')
+                $where = array(
+                    'id_user'=>$id_user
+                );
 
-
+                if($password == ""){
+                    $data = array(
+                        'username' => $username,
+                        'nama' => $nama,
+                        'email' => $email,
+                        'nim' => $nim              
                     );
-                 if($data['password'] == $data['konfirmasi_password'])
-                 {
-                     $this->User_model->edit($id_user,$data);
-                    redirect('user/index');  
-                 }
-
-                 else{
-                    echo "password salah";
-                 }
-
-                     
+                }
+                else{
+                    $data = array(
+                        'username' => $username,
+                        'nama' => $nama,
+                        'email' => $email,
+                        'nim' => $nim,
+                        'password' => $password               
+                    );
+                }
+                
+                $this->User_model->edit($where,$data,'user');
+                redirect('User/edit_user/'.$id_user);
             }
         }
-            
+        $this->load->view('user/user_edit',$data);
+          
     }
 
    //  $this->form_validation->set_rules('konfirmasi password', 'Konfirmasi Password', '|min_length[5]|matches[password]');

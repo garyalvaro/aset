@@ -10,26 +10,17 @@ public function view()
     {
         return $this->db->get('user')->result();
     }
-
+ 
     public function view_by($id_user)
     {
         $this->db->where('id_user',$id_user);
         return $this->db->get('user')->row();
     }
 
-    public function edit($id_user,$data)
+    public function edit($where,$data,$table)
     {
-        $data = array(
-            "username" => $this->input->post('username'),
-            "nama" => $this->input->post('nama'),
-            "email" => $this->input->post('email'),
-            "nim" => $this->input->post('nim'),
-            "password" => $this->input->post('password')
-
-        );
-
-        $this->db->where('id_user',$id_user);
-        $this->db->update('user',$data);
+        $this->db->where($where);
+        $this->db->update($table,$data);
     }
 
     public function validation($mode)
