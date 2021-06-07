@@ -123,7 +123,7 @@ if($this->session->userdata('level')!=1)
                     <div class="card m-b-20">
                         <div class="card-body">
                             <h4 class="mt-0 header-title">Keterangan</h4>
-                            <div class="alert alert-success">
+                            <div class="alert alert-info">
                                 Peminjaman <strong>Sudah Selesai</strong>.
                             </div>
                         </div>

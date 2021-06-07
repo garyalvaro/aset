@@ -132,15 +132,10 @@ private function _uploadImage()
 
 	public function barangRusak($id_barang)
 	{
-		$this->session->set_userdata(['id_user' => 1]);
-
-
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
-		$id_user = $this->session->userdata('id_user');
-		$id_transaksi = $this->input->post('id_transaksi');
-		$deskripsi = $this->input->post('deskripsi');
-		// $action = $this->input->post('id_action');
+		$id_user = $this->input->post('id_user');
+		$deskripsi = $this->input->post('deskripsi_rusak');
 
 		$this->db->query("BEGIN;");
 			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','4', '$tgl');");

@@ -109,7 +109,11 @@ class Barang extends CI_Controller
 			}	
 		}
 	}
-
+	public function rusak($id_barang){
+		$this->M_data->barangRusak($id_barang);
+		$id_pinjamBarang=$this->input->post($id_pinjamBarang);
+		redirect('pinjam_barang/detail/'.$id_Barang);
+	}
 	public function editStok($id_barang)
 	{
 		$data['barang'] = $this->M_data->view_by($id_barang);

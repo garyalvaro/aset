@@ -93,22 +93,16 @@ if($this->session->userdata('level')!=1)
                             <select class="form-control" id="id_action" name="id_action" required>
                                 <?php $p = set_value('nama_action'); ?>
                                 <option value="" disabled>Pilih Alasan</option>
-                                <?php foreach($action as $row):?>
+                                <option value="1" selected>Tambah</option>
+                                <option value="5">Hapus</option>
+                                <!-- <?php foreach($action as $row):?>
                                     <option value="<?= $row->id_action; ?>" <?php if($p==$row->nama_action){ echo 'selected'; } ?> >
                                         <?= ucfirst($row->nama_action); ?>
                                     </option>
-                                <?php endforeach; ?>
+                                <?php endforeach; ?> -->
                             </select>
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <label for="deskripsi" class="col-sm-12 col-form-label">Deskripsi</label>
-                        <div class="col-sm-12">
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" autocomplete="off"></textarea>
-                        </div>
-                    </div>
-
                     <div class="form-group row">
                         <label for="deskripsi" class="col-sm-12 col-form-label">Jumlah</label>
                         <div class="col-sm-12">
