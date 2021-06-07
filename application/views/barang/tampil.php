@@ -49,7 +49,7 @@ if($this->session->userdata('level')!=1)
                     <div class="col-6 col-md-6 col-lg-6 col-xl-3 divBesar">
                         <!-- Simple card -->
                         <div class="card m-b-30">
-                            <img class="card-img-top img-fluid" src="<?= base_url("assets/images/barang/".$data->foto); ?>" alt="">
+                            <img class="card-img-top img-fluid child" style="object-fit:cover;" src="<?= base_url("assets/images/barang/".$data->foto); ?>" alt="">
                             <div class="card-body">
                                 <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
                                 <p>Tersisa <b><?= $this->M_data->cek_stok($data->id_barang)?></b></p>
@@ -182,9 +182,12 @@ function ($) {
 
 </script>
 
-
-
-
+<script type="text/javascript">
+    var cw = $('.child').width();
+    $('.child').css({
+        'height': cw + 'px'
+    });
+</script>
 
 <!-- JS PLUGINS END  -->
 <?php $this->load->view('layout/footerB'); ?>
