@@ -19,42 +19,48 @@ if($this->session->userdata('level')!=1)
 
 <div class="wrapper">
     <div class="container-fluid">
-        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Foto</th>
-                    <th>Username</th> 
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
+        <!-- Div Card -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="mt-0 header-title">List User</h4>
+                <table id="datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Foto</th>
+                            <th>Username</th> 
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Aksi</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
 
-            <tbody>
-                <?php $i=1; foreach ($list_user as $user) : ?>
-                <tr>
-                    <td><?php echo $i; ?></td>
-                    <td><img src="<?=base_url("assets/images/user/".$user->foto)?>" alt="" style="width:100px; height:100px; object-fit:cover; object-position:0 0; border-radius:50%;"></td>	
-                    <td><?php echo $user->username; ?></td>
-                    <td><?php echo $user->nama; ?></td>
-                    <td><?php echo $user->email; ?></td>
-                    <td>
-                        <a href="<?=base_url("user/edit_user/".$user->id_user)?>" class="btn btn-info">Detail</a>
-                    </td>
-                                        
-                    <td>
-                        <?php if($user->active == 1): ?>
-                            <a href="<?= base_url(); ?>user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-success">Aktif</a>
-                        <?php else:  ?>
-                            <a href="<?= base_url(); ?>user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-danger">Nonaktif</a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <?php $i++; endforeach; ?>
-            </tbody>
-        </table>
+                    <tbody>
+                        <?php $i=1; foreach ($list_user as $user) : ?>
+                        <tr>
+                            <td><?php echo $i; ?></td>
+                            <td><img src="<?=base_url("assets/images/user/".$user->foto)?>" alt="" style="width:100px; height:100px; object-fit:cover; object-position:0 0; border-radius:50%;"></td>	
+                            <td><?php echo $user->username; ?></td>
+                            <td><?php echo $user->nama; ?></td>
+                            <td><?php echo $user->email; ?></td>
+                            <td>
+                                <a href="<?=base_url("user/edit_user/".$user->id_user)?>" class="btn btn-info">Detail</a>
+                            </td>
+                                                
+                            <td>
+                                <?php if($user->active == 1): ?>
+                                    <a href="<?= base_url(); ?>user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-success">Aktif</a>
+                                <?php else:  ?>
+                                    <a href="<?= base_url(); ?>user/update_status?sid=<?php echo $user->id_user;?>&sval=<?php echo $user->active; ?>" class="btn btn-danger">Nonaktif</a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php $i++; endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
