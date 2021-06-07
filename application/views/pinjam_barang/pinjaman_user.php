@@ -3,13 +3,33 @@
 
 <!-- Table css -->
 <link href="<?= base_url(); ?>assets/plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css" rel="stylesheet" type="text/css" media="screen">
+<!-- Sweet Alert -->
+<link href="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+
 
 <!-- CSS PLUGINS END  -->
 <?php $this->load->view('layout/headerB'); ?>
 
 <?php $this->load->view('layout/navbar'); ?>
 
+<?php
+// Alert Pinjam Sukses 
+if($this->session->flashdata())
+{
+    if($this->session->flashdata('pinjam_sukses'))
+        echo "<span id='pinjam_sukses'></span>";
+}
+?>
 
+
+<?php
+    $level = $this->session->userdata('level');
+    $id_user = $this->session->userdata('id_user');
+    $id_url = $this->uri->segment(3);
+?>
+
+
+<?php if($id_user == $id_url): ?>
 <div class="wrapper">
     <div class="container-fluid">
         <div class="col-lg-12">
@@ -23,25 +43,25 @@
                     <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#stat0" role="tab">
-                                <span class="d-block d-sm-none"><i class="fas fa-question"></i></span>
+                                <span class="d-block d-sm-none">Pending</span>
                                 <span class="d-none d-sm-block">Belum Disetujui</span> 
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#stat1" role="tab">
-                                <span class="d-block d-sm-none"><i class="fas fa-clipboard-check"></i></span>
+                                <span class="d-block d-sm-none">Diterima</span>
                                 <span class="d-none d-sm-block">Peminjaman Diterima</span> 
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#stat2" role="tab">
-                                <span class="d-block d-sm-none"><i class="fas fa-times"></i></span>
+                                <span class="d-block d-sm-none">Ditolak</span>
                                 <span class="d-none d-sm-block">Peminjaman Ditolak</span> 
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#stat3" role="tab">
-                                <span class="d-block d-sm-none"><i class="far fa-thumbs-up"></i></span>
+                                <span class="d-block d-sm-none">Selesai</span>
                                 <span class="d-none d-sm-block">Peminjaman Selesai</span>  
                             </a>
                         </li>
@@ -91,6 +111,11 @@
         </div>
     </div>
 </div>
+<?php 
+    else:
+        redirect('Pinjam_barang/user/'.$id_user);
+    endif;
+?>
 
 
 <?php $this->load->view('layout/footerA'); ?>
@@ -115,12 +140,29 @@
         });
     });
 </script>
+
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
             window.location = $(this).data("href");
         });
     });
+</script>
+
+
+<!-- Sweet-Alert  -->
+<script src="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+<script>
+$('#pinjam_sukses').show(function () {
+    Swal.fire(
+        {
+            title: 'Berhasil!',
+            text: 'Peminjaman Anda akan kami proses!',
+            type: 'success',
+            confirmButtonColor: "#58db83"
+        }
+    )
+});
 </script>
 
 <!-- JS PLUGINS END  -->

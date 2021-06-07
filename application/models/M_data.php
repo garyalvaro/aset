@@ -5,6 +5,7 @@ class M_data extends CI_Model
 	
 	public function view()
 	{
+		$this->db->order_by("id_barang", "desc");
 		return $this->db->get('barang')->result();
 	}
 

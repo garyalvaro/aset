@@ -9,6 +9,6 @@ class Welcome extends CI_Controller {
 		if($this->session->userdata('level')==0)
 			redirect('Barang/tampil_barang_users');
 		else
-			redirect('Barang/tampil_barang');
+			redirect('Pinjam_barang/tampil_peminjam');
 	}
 }

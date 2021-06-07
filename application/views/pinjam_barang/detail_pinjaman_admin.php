@@ -8,6 +8,10 @@
 
 <?php $this->load->view('layout/navbar'); ?>
 
+<?php
+if($this->session->userdata('level')!=1)
+    redirect('');
+?>
 
 <div class="wrapper">
     <div class="container-fluid">

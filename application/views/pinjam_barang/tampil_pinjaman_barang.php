@@ -23,62 +23,15 @@ if($this->session->flashdata())
 	if($this->session->flashdata('selesai_berhasil'))
         echo "<span id='selesai_berhasil'></span>";
 }
+
+if($this->session->userdata('level')!=1)
+	redirect('');
 ?>
 
 <div class="wrapper">
 	<div class="container-fluid">
 
-		<div class="card">
-			<div class="card-body">
-
-				<h4 class="font-20">Peminjaman Baru</h4>
-				<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-					<thead>
-						<tr>
-							<td>Barang</td>
-							<td>Jumlah</td>
-							<td>Peminjam</td>
-							<td>Tanggal Peminjaman</td>
-							<td>Tanggal Pengembalian</td>
-							<td>Waktu Peminjaman</td>
-							<td>Status Peminjaman</td>
-							<td>Aksi</td>
-						</tr>
-					</thead>
-
-					<tbody>
-						<?php for ($i=0; $i<4 ; $i++): ?> 
-						<?php foreach($pinjam_barang as $data) :?>
-						<?php if($data->status_peminjaman==$i): ?> 
-							<tr>
-								<td><?=$data->nama_barang?></td>
-								<td><?=$data->qty?></td>
-								<td><?=$data->nama?></td>
-								<td><?=$data->tgl_pinjam?></td>
-								<td><?=$data->tgl_pengembalian?></td>
-								<td><?=$data->action_datetime?></td>
-								<td>
-									<?php
-										if ($data->status_peminjaman==0) { echo "Dalam proses pemeriksaan"; }
-										elseif ($data->status_peminjaman==1) { echo "Pinjaman diterima"; }
-										elseif ($data->status_peminjaman==2) { echo "Pinjaman ditolak"; }
-										elseif ($data->status_peminjaman==3) { echo "Pinjaman telah dikembalikan"; }
-									?>
-								</td>
-								<td>
-									<a href="<?=base_url('Pinjam_barang/detail/'.$data->id_pinjamBarang)?>" class="btn btn-info">Detail</a>
-								</td>
-							</tr>
-						<?php endif; ?>
-						<?php endforeach; ?>
-						<?php endfor; ?>
-					</tbody>
-				</table>
-
-			</div>
-		</div>
-
-		<!-- Div Card Kedua -->
+		<!-- Div Card -->
 		<div class="card">
 			<div class="card-body">
 				<h4 class="mt-0 header-title">Peminjaman</h4>

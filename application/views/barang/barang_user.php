@@ -18,43 +18,55 @@ if($this->session->flashdata())
 }
 ?>
 
-<div class="wrapper">
-            <div class="container-fluid">
+<!-- Truncate String JS -->
+<script>
+    function ellipsify (str) {
+        if (str.length > 20) 
+            return document.write(str.substring(0, 100) + "...");
+        else 
+            return document.write(str);
+    }
+</script>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card m-b-30 card-body">
-                            <h4 class="card-title font-16 mt-0">Cari Barang</h4>
-                            <input type="text" placeholder="Apa yang ingin dicari?" class="form-control form-control-lg" id="myInput" onkeyup="search()">
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card m-b-30 card-body">
+                    <h4 class="card-title font-16 mt-0">Cari Barang</h4>
+                    <input type="text" placeholder="Apa yang ingin dicari?" class="form-control form-control-lg" id="myInput" onkeyup="search()">
+                </div>
+            </div>
+        </div>
+                        
+        <div class="row"> 
+            <?php if( ! empty($barang)): ?>
+                <?php foreach($barang as $data): ?>  
+
+                    <div class="col-md-6 col-lg-6 col-xl-3 divBesar">
+                        <!-- Simple card -->
+                        <div class="card m-b-30">
+                            <img class="card-img-top img-fluid" src="<?= base_url("assets/images/barang/".$data->foto); ?>" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
+                                <p class="card-text" id="target">
+                                    <script>ellipsify("<?= $data->deskripsi; ?>");</script>
+                                </p>
+                                <a href="<?=base_url('pinjam_barang/pinjam_user/'.$data->id_barang);?>" class="btn btn-info waves-effect waves-light">Pinjam</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                                
-                <div class="row"> 
-                    <?php if( ! empty($barang)): ?>
-                        <?php foreach($barang as $data): ?>  
 
-                            <div class="col-md-6 col-lg-6 col-xl-3 divBesar">
-                                <!-- Simple card -->
-                                <div class="card m-b-30">
-                                    <img class="card-img-top img-fluid" src="<?= base_url("assets/images/barang/".$data->foto); ?>" alt="">
-                                    <div class="card-body">
-                                        <h4 class="card-title font-16 mt-0 judul"><?= $data->nama_barang; ?></h4>
-                                        <p class="card-text" id="target"><?= $data->deskripsi; ?></p>
-                                        <a href="<?=base_url('pinjam_barang/pinjam_user/'.$data->id_barang);?>" class="btn btn-info waves-effect waves-light">Pinjam</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        <?php endforeach; ?>
-                    <?php endif; ?>    
-                </div>
-
-                    
-                <!-- end row -->
-            </div> <!-- end container-fluid -->
+                <?php endforeach; ?>
+            <?php endif; ?>    
         </div>
-        <!-- end wrapper -->
+
+            
+        <!-- end row -->
+    </div> <!-- end container-fluid -->
+</div>
+<!-- end wrapper -->
 
 
 <?php $this->load->view('layout/footerA'); ?>
@@ -115,18 +127,6 @@ if($this->session->flashdata())
     }(window.jQuery);
 </script>
 
-
-<!-- Truncate String JS -->
-<script>
-    function ellipsify (str) {
-        if (str.length > 10) 
-            return (str.substring(0, 100) + "...");
-        else 
-            return str;
-    }
-    var div = document.getElementById('target');
-    div.textContent = ellipsify(div.textContent);
-</script>
 
 <!-- JS PLUGINS END  -->
 <?php $this->load->view('layout/footerB'); ?>

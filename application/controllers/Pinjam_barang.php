@@ -99,6 +99,8 @@ class Pinjam_barang extends CI_Controller
 	public function pinjam_user($id_barang)
 	{
 		$data['detail'] = $this->M_data->view_by($id_barang);
+		$id_user = $this->session->userdata('id_user'); 
+
 		if ($this->input->post('cek_stok')) {
 			$id_barang = $this->uri->segment(3);
 			$tgl_pinjam = $this->input->post('tgl_pinjam');
@@ -117,7 +119,7 @@ class Pinjam_barang extends CI_Controller
 		elseif($this->input->post('submit'))
 		{
 			$data = array(
-				'id_user' => $this->session->userdata('id_user'),
+				'id_user' => $id_user,
 				'id_barang' => $this->uri->segment(3),
 				'tgl_pinjam' => $this->input->post('tgl_pinjam'),
 				'tgl_pengembalian' => $this->input->post('tgl_pengembalian'),
@@ -126,7 +128,7 @@ class Pinjam_barang extends CI_Controller
 			);
 			$this->M_data_pinjam_barang->pinjam($id_barang, $data);
 			$this->session->set_flashdata('pinjam_sukses','pinjam_sukses');
-			redirect('barang/tampil_barang_users');
+			redirect($this->user($id_user));
 		}
 		else
 			$this->load->view('pinjam_barang/pinjam_barang', $data);

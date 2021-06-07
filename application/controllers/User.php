@@ -27,7 +27,7 @@ class User extends CI_Controller
         $data['user'] = $this->User_model->view_by($id_user);
         
 
-         if($this->input->post('submit'))
+        if($this->input->post('submit'))
         {
             $this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]');
             $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|min_length[6]|matches[password]');
@@ -46,7 +46,7 @@ class User extends CI_Controller
                     'id_user'=>$id_user
                 );
 
-                if($password == ""){
+                if($password1 == ""){
                     $data = array(
                         'username' => $username,
                         'nama' => $nama,
@@ -63,6 +63,14 @@ class User extends CI_Controller
                         'password' => $password               
                     );
                 }
+
+                $data_session = array(
+					'id_user'=>$id_user,
+					'email'=>$email,
+					'nama'=>$nama,
+					'username'=>$username
+				);  
+				$this->session->set_userdata($data_session);
                 
                 $this->User_model->edit($where,$data,'user');
                 redirect('User/edit_user/'.$id_user);
@@ -143,20 +151,22 @@ class User extends CI_Controller
 
     public function hapus_user($id_user)
     {
-        if($this->User_model->hapus($id_user)){
-            $this->session->set_flashdata('deleteBarang_success', 'deleteBarang_success');
+        if($this->session->userdata('level')!=1)
+            redirect('');
+        elseif($this->User_model->hapus($id_user)){
             redirect('user/index');
         }
         else{
-            $this->session->set_flashdata('deleteBarang_failed', 'deleteBarang_failed');
-            redirect('user/index/'.$id_user);
+            echo "Something Error";
         }
             
     }
 
     public function update_status()
     {
-        if(isset($_REQUEST['sval']))
+        if($this->session->userdata('level')!=1)
+            redirect('');
+        elseif(isset($_REQUEST['sval']))
         {
             $this->load->model('User_model','view');
             $up_status = $this->view->update_status();
@@ -176,7 +186,9 @@ class User extends CI_Controller
 
     public function update_status_byid($id_user, $actived)
     {
-        if($actived == 0)
+        if($this->session->userdata('level')!=1)
+            redirect('');
+        elseif($actived == 0)
             $this->User_model->update_status_byid($id_user, 1);
         else
             $this->User_model->update_status_byid($id_user, 0);
