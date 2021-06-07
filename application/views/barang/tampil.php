@@ -57,7 +57,7 @@ if($this->session->userdata('level')!=1)
                                     <script>ellipsify("<?= $data->deskripsi; ?>");</script>
                                 </p>
                                 <a href="<?=base_url("barang/editBarang/".$data->id_barang);?>" class="btn btn-outline-secondary waves-effect waves-light m-b-10">Edit Data</a>
-                                <button type="button" class="btn btn-primary waves-effect waves-light m-b-10" data-toggle="modal" data-target=".bs-example-modal-sm<?= $data->id_barang; ?>">Update Stok</button>
+                                <button type="button" class="btn btn-primary waves-effect waves-light m-b-10" data-toggle="modal" data-target=".bs-example-modal-center<?= $data->id_barang; ?>">Update Stok</button>
                             </div>
                         </div>
                     </div>
@@ -73,8 +73,8 @@ if($this->session->userdata('level')!=1)
 
 <?php if( ! empty($barang)): ?>
 <?php foreach($barang as $data): ?> 
-<div class="modal fade bs-example-modal-sm<?= $data->id_barang; ?>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+<div class="modal fade bs-example-modal-center<?= $data->id_barang; ?>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-center">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title mt-0" id="mySmallModalLabel">Edit Stok <?= $data->nama_barang; ?></h5>
