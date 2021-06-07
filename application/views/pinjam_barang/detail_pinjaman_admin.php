@@ -125,7 +125,7 @@ if($this->session->userdata('level')!=1)
 					</div>
 					<div class="card m-b-20">
 						<div class="card-body">
-							<h4 class="mt-0 header-title">Lapor Kerusakan Barang</h4>
+							<h4 class="mt-0 header-title">Kerusakan Barang</h4>
 							<?php echo form_open_multipart('barang/rusak/'.$detail->id_barang); ?>
 								<?php if (empty($rusak)) { ?>
 									<div class="form-group row">

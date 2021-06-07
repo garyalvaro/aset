@@ -15,6 +15,10 @@ class M_data extends CI_Model
 		return $this->db->get('barang')->row();
 	}
 
+	public function tampilBarangRusak(){
+		$query = $this->db->query("SELECT id_pinjamBarang, nama_barang, nama, barangrusak.deskripsi, qty, log_transaksi.action_datetime FROM barangrusak JOIN log_transaksi ON barangrusak.id_transaksi = log_transaksi.id_transaksi JOIN user ON user.id_user=log_transaksi.id_user JOIN barang ON log_transaksi.id_barang = barang.id_barang");
+		return $query->result();
+	}
 
 	public function validation($mode)
 	{

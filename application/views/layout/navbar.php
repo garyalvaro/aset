@@ -79,11 +79,6 @@
                     <div id="navigation">
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
-
-                            <li class="has-submenu">
-                                <a href="<?=base_url()?>"><i class="ti-home"></i>Home</a>
-                            </li>
-
                             <li class="has-submenu">
                                 <a href="<?=base_url()?>Pinjam_barang/tampil_peminjam"><i class="ti-receipt"></i>Transaksi</a>
                             </li>
