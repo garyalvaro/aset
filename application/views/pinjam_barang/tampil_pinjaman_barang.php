@@ -10,6 +10,9 @@
 	<!-- Sweet Alert -->
 	<link href="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Bootstrap Datepicker CSS -->
+	<link href="<?= base_url(); ?>assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
 <!-- CSS PLUGINS END  -->
 <?php $this->load->view('layout/headerB'); ?>
 
@@ -35,6 +38,19 @@ if($this->session->userdata('level')!=1)
 		<div class="card">
 			<div class="card-body">
 				<h4 class="mt-0 header-title">Peminjaman</h4>
+				<?php echo form_open('Laporan/index'); ?>
+					<div class="row">
+						<div class="col-8 col-sm-4 mb-2">
+							<div class="input-daterange input-group" id="date-range">
+								<input type="text" autocomplete="off" class="form-control" name="tgl_mulai" placeholder="Tanggal Laporan Mulai" required>
+								<input type="text" autocomplete="off" class="form-control" name="tgl_selesai" placeholder="Tanggal Laporan Selesai" required>
+							</div>
+						</div>
+						<div class="col-4 col-sm-2 mb-2 d-flex flex-column">
+							<input type="submit" value="Cetak Laporan" class="btn btn-success mt-auto" name="submit">
+						</div>
+					</div>
+				<?php echo form_close();?>
 				<p class="text-muted m-b-30"></p>
 
 				<!-- Nav tabs -->
@@ -167,6 +183,34 @@ if($this->session->userdata('level')!=1)
 	</script>
 
 
+<!-- Bootstrap Datepicker JS -->
+<script src="<?= base_url(); ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<script>
+	!function($) {
+		"use strict";
+		var AdvancedForm = function() {};
+		AdvancedForm.prototype.init = function() {
+			// Date Picker
+			jQuery('#date-range').datepicker({
+				toggleActive: true,
+				format: 'yyyy-mm-dd'
+			});
+			jQuery('#date-range').on("change", function (){
+
+				var fromdate = $(this).val();
+			});
+		},
+		//init
+		$.AdvancedForm = new AdvancedForm, $.AdvancedForm.Constructor = AdvancedForm
+	}(window.jQuery),
+
+	//initializing
+	function ($) {
+		"use strict";
+		$.AdvancedForm.init();
+	}(window.jQuery);
+</script>
 
 <!-- JS PLUGINS END  -->
 <?php $this->load->view('layout/footerB'); ?>
