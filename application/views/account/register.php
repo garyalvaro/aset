@@ -15,6 +15,11 @@
 
 <!-- END HEADER  -->
 
+<?php
+if($this->session->userdata('LoggedIN'))
+    redirect('');
+?>
+
 
     <body>
 
