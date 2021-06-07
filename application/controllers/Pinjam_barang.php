@@ -23,6 +23,7 @@ class Pinjam_barang extends CI_Controller
 	}
 	public function detail_pinjaman($id_pinjamBarang)
 	{
+		$data['rusak'] = $this->M_data_pinjam_barang->cek_rusak($id_pinjamBarang);
 		$data['detail'] = $this->M_data_pinjam_barang->view_by($id_pinjamBarang);
 		$this->load->view('pinjam_barang/detail_pinjaman',$data);
 	}

@@ -127,7 +127,6 @@ if($this->session->userdata('level')!=1)
 						<div class="card-body">
 							<h4 class="mt-0 header-title">Lapor Kerusakan Barang</h4>
 							<?php echo form_open_multipart('barang/rusak/'.$detail->id_barang); ?>
-								
 								<?php if (empty($rusak)) { ?>
 									<div class="form-group row">
 										<label for="deskripsi" class="col-sm-12 col-form-label">Jumlah</label>
@@ -161,22 +160,6 @@ if($this->session->userdata('level')!=1)
 											</tbody>
 										</table>
 									</div>
-									<!-- <div class="row">
-										<div class="col-sm-2">
-											<b>Qty</b>
-										</div>
-										<div class="col-sm-10">
-											<b>Deskripsi kerusakan</b>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-2">
-											<p>1</p>
-										</div>
-										<div class="col-sm-10">
-											<p><?=$rusak->deskripsi;?></p>
-										</div>
-									</div> -->
 								<?php } ?>
 							<?php echo form_close(); ?>
 						</div>

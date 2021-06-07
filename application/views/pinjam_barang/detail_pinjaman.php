@@ -50,7 +50,6 @@ if($this->session->userdata('level')==1)
                     <div class="card-body">
                         <h4 class="mt-0 header-title">Alasan Meminjam</h4>
                         <p><?=$detail->alasan_pinjam;?></p>
-                        <br>
                         <p><i>Terekam di sistem pada: <?=$detail->action_datetime;?></i></p>
                     </div>
                 </div>
@@ -127,7 +126,33 @@ if($this->session->userdata('level')==1)
                                 Peminjaman <strong>Sudah Selesai</strong>.
                             </div>
                         </div>
+
                     </div>
+                    <?php if (!empty($rusak)) { ?>
+                        <div class="card m-b-20">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title">Kerusakan Barang</h4>
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Barang</th>
+                                                <th>Qty</th>
+                                                <th width="65%">Deskripsi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row"><?=$detail->nama_barang?></th>
+                                                <td><?=$rusak->qty?></td>
+                                                <td><?=$rusak->deskripsi?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
                 <?php endif; ?>
             </div>
 
