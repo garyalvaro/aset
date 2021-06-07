@@ -85,15 +85,19 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="ti-package"></i>Aset</a>
-                                <ul class="submenu">
-                                    <li><a href="<?=base_url()?>Barang/tampil_barang">Daftar Aset</a></li>
-                                    <li><a href="<?=base_url()?>Barang/tambahBrg">Tambah Aset</a></li>
-                                </ul>
+                                <a href="<?=base_url()?>Pinjam_barang/tampil_peminjam"><i class="ti-receipt"></i>Transaksi</a>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="<?=base_url()?>Pinjam_barang/tampil_peminjam"><i class="ti-receipt"></i>Transaksi</a>
+                                <a href="<?=base_url()?>Barang/tampil_barang"><i class="ti-package"></i>Daftar Aset</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url()?>Barang/tambahBrg"><i class="ti-plus"></i>Tambah Aset</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url()?>Barang/barangRusak"><i class="ti-archive"></i>Aset Rusak</a>
                             </li>
 
                             <li class="has-submenu">
