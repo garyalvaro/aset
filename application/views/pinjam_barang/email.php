@@ -392,7 +392,7 @@ ul.social li{
 						  			</tr>
 						  		</table>
 						  	<?php } ?>
-					  		<p><a href="localhost/send_email/tes" class="btn btn-primary">Lihat detail peminjaman</a></p>
+					  		<p><a href="localhost/pinjam_barang/user/<?=$detail->id_user?>" class="btn btn-primary">Lihat detail peminjaman</a></p>
 					  	</td>
 					  </tr>
 	      	</table>
