@@ -111,10 +111,7 @@ private function _uploadImage()
 
 	public function save($data)
 	{
-		$this->session->set_userdata(['id_user' => 1]);
-
 		$data = array(
-			
 			"nama_barang" => $this->input->post('input_namaBrg'),
 			"foto" => $this->_uploadImage(),
 			"deskripsi" => $this->input->post('input_deskripsiBrg'),
@@ -151,7 +148,6 @@ private function _uploadImage()
 
 	public function hapusStok($id_barang)
 	{
-		$this->session->set_userdata(['id_user' => 1]);
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');
@@ -166,7 +162,6 @@ private function _uploadImage()
 
 	public function tambahStok($id_barang)
 	{
-		$this->session->set_userdata(['id_user' => 1]);
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
 		$id_user = $this->session->userdata('id_user');

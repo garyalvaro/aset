@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 -- Database: `aset`
 --
 
+SET GLOBAL log_bin_trust_function_creators = 1;
+
 DELIMITER $$
 --
 -- Functions
