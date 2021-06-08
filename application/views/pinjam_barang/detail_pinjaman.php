@@ -154,6 +154,15 @@ if($this->session->userdata('level')==1)
                                 </div>
                             </div>
                         </div>
+                        <div class="card m-b-20">
+                        <div class="card-body">
+                            <h4 class="mt-0 header-title">Lanjutkan Peminjaman?</h4>
+                            <div class="d-grid">
+                                <a href="<?php echo base_url('pinjam_barang/pinjam_user/').$detail->id_barang;;?>" class="btn btn-info btn-lg waves-effect"  style="width: 100%">Request Pinjaman lagi</a>
+                            </div>
+                        </div>
+
+                    </div>
                     <?php } ?>
                 <?php endif; ?>
             </div>
