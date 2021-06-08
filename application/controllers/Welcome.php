@@ -11,4 +11,9 @@ class Welcome extends CI_Controller {
 		else
 			redirect('Pinjam_barang/tampil_peminjam');
 	}
+
+	public function AboutUs()
+	{
+		$this->load->view('layout/aboutus');
+	}
 }

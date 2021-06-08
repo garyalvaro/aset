@@ -98,6 +98,11 @@
                             <li class="has-submenu">
                                 <a href="<?=base_url()?>User"><i class="ti-user"></i>Pengguna</a>
                             </li>
+                            
+                            <li class="has-submenu">
+                                <a href="<?=base_url('Welcome/AboutUs')?>"><i class="ti-agenda"></i>Tentang Kami</a>
+                            </li>
+
 
                         </ul>
                         <!-- End navigation menu -->
@@ -123,6 +128,10 @@
 
                             <li class="has-submenu">
                                 <a href="<?=base_url('User/edit_user/'.$this->session->userdata('id_user'))?>"><i class="ti-user"></i>Ubah Profil</a>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="<?=base_url('Welcome/AboutUs')?>"><i class="ti-agenda"></i>Tentang Kami</a>
                             </li>
 
                         </ul>
