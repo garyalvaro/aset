@@ -5,21 +5,15 @@ version: '3'
 services:
     db:
         image: mysql:latest
-        # container_name: c_mysql
         command: --default-authentication-plugin=mysql_native_password
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: 1234
-            # MYSQL_DATABASE: aset
-            # MYSQL_USER: test
-            # MYSQL_PASSWORD: test
         ports:
             - 3306:3306
         volumes:
             - mysql-data:/var/lib/mysql 
     web:
-        # image: php:7.3.27-apache
-        # container_name: c_php
         build:
             context: .
             dockerfile: Dockerfile
@@ -38,8 +32,6 @@ services:
         ports:
             - 8000:80
         environment:
-            # MYSQL_USER: test
-            # MYSQL_PASSWORD: test
             MYSQL_ROOT_PASSWORD: 1234
 volumes:
     mysql-data:
