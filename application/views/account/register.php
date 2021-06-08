@@ -39,13 +39,13 @@ if($this->session->userdata('LoggedIN'))
                         <?php echo form_open_multipart('Account/register'); ?>
 
                             <div class="m-b-10">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email aktif" value="<?php echo set_value('email'); ?>">
+                                <label for="email">Email Aktif</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Misalnya : example@example.com" value="<?php echo set_value('email'); ?>">
                                 <label class="error text-danger"><?php echo form_error('email'); ?></label>
                             </div>
 
 							<div class="m-b-10">
-                                <label for="nama">Nama</label>
+                                <label for="nama">Nama Lengkap</label>
                                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama lengkap" value="<?php echo set_value('nama'); ?>">
                                 <label class="error text-danger"><?php echo form_error('nama'); ?></label>
                             </div>
