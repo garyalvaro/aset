@@ -95,7 +95,7 @@ class Pinjam_barang extends CI_Controller
 	{
 		$this->M_data_pinjam_barang->selesai($id_pinjamBarang);
 		$this->session->set_flashdata('selesai_berhasil', 'selesai_berhasil');
-		redirect('Pinjam_barang/tampil_peminjam');
+		redirect('Pinjam_barang/detail/'.$id_pinjamBarang);
 	}
 	
 	public function pinjam_user($id_barang)

@@ -131,7 +131,7 @@ private function _uploadImage()
 
 	}
 
-	public function barangRusak($id_barang)
+	public function barangRusak($id_barang, $id_pinjamBarang)
 	{
 		$qty = $this->input->post('qty');
 		$tgl = date('Y-m-d');
@@ -140,7 +140,7 @@ private function _uploadImage()
 
 		$this->db->query("BEGIN;");
 			$this->db->query("INSERT INTO log_transaksi(qty, id_barang, id_user, action, action_datetime) VALUES('$qty', '$id_barang','$id_user','4', '$tgl');");
-			$this->db->query("INSERT INTO barangrusak(id_transaksi,deskripsi) VALUES(LAST_INSERT_ID(), '$deskripsi');");
+			$this->db->query("INSERT INTO barangrusak(id_transaksi,deskripsi,id_pinjamBarang) VALUES(LAST_INSERT_ID(), '$deskripsi', $id_pinjamBarang);");
 		$this->db->query("COMMIT;");
 		
 	}
