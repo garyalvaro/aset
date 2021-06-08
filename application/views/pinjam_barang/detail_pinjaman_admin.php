@@ -35,8 +35,10 @@ if($this->session->userdata('level')!=1)
 				<div class="card m-b-20">
 					<div class="card-body">
 						<h4 class="mt-0 header-title">Peminjam</h4>
-						<img src="<?php echo base_url()."assets/images/user/".$detail->foto_user;?>" alt="" class="rounded-circle"  style="width:50px; height:50px; object-fit:cover; object-position:0 0;">
-						<b class="font-18 ml-2"><?=$detail->nama;?></b>
+						<a href="<?php echo base_url('Pinjam_barang/user/'.$detail->id_user)?>">
+							<img src="<?php echo base_url()."assets/images/user/".$detail->foto_user;?>" alt="" class="rounded-circle"  style="width:50px; height:50px; object-fit:cover; object-position:0 0;">
+							<b class="font-18 ml-2"><?=$detail->nama;?></b>
+						</a>
 					</div>
 				</div>
 				<div class="card m-b-20">

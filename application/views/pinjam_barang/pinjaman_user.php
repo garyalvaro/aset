@@ -29,7 +29,7 @@ if($this->session->flashdata())
 ?>
 
 
-<?php if($id_user == $id_url): ?>
+<?php if($id_user == $id_url || $level==1): ?>
 <div class="wrapper">
     <div class="container-fluid">
         <div class="col-lg-12">
