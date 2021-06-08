@@ -388,7 +388,7 @@ ul.social li{
 						  			<tr>
 						  				<td style="float: left">Lokasi </td>
 						  				<td style="vertical-align: -webkit-baseline-middle;">: </td>
-						  				<td>Gedung Fasilkom-TI USU<br>Jl. Alumni No.3, Padang Bulan, Medan Baru, Medan City, North Sumatra 20155</td>
+						  				<td>Gedung Fasilkom-TI USU<br>Jl. Alumni No.3, Padang Bulan, Medan Baru, Medan City, North Sumatra 20155<br><b>Mohon siapkan Kartu Tanda Pengenal sebagai Jaminan Peminjaman Barang</b></td>
 						  			</tr>
 						  		</table>
 						  	<?php } ?>

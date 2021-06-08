@@ -51,8 +51,8 @@ if($this->session->userdata('LoggedIN'))
                             </div>
 
 							<div class="m-b-10">
-                                <label for="nim">NIM</label>
-                                <input type="text" class="form-control" id="nim" name="nim" placeholder="Masukkan Nomor Induk Mahasiswa" value="<?php echo set_value('nim'); ?>">
+                                <label for="nim">NIM/NIP</label>
+                                <input type="text" class="form-control" id="nim" name="nim" placeholder="Masukkan NIM atau NIP" value="<?php echo set_value('nim'); ?>">
                                 <label class="error text-danger"><?php echo form_error('nim'); ?></label>
                             </div>
 

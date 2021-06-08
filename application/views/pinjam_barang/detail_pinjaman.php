@@ -100,6 +100,8 @@ if($this->session->userdata('level')==1)
                                     <td>Gedung Fasilkom-TI USU<br>Jl. Alumni No.3, Padang Bulan, Medan Baru, Medan City, North Sumatra 20155</td>
                                 </tr>
                             </table>
+                            <br>
+                            <p>Mohon siapkan <b>Kartu Tanda Pengenal</b> Anda sebagai Jaminan Peminjaman Barang di Sistem Informasi Aset Fasilkom-TI USU.</p>
 
                         </div>
                     </div>
