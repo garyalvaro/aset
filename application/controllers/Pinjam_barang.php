@@ -122,7 +122,13 @@ class Pinjam_barang extends CI_Controller
 				'tgl_kembali' => $tgl_kembali,
 				'qty' => $qty
 			);
+			$data_maks = array(
+				'id_barang' => $id_barang,
+				'tgl_pinjam' => $tgl_pinjam,
+				'tgl_kembali' => $tgl_kembali
+			);
 			$data['status']= $this->M_data_pinjam_barang->cek_stok($datas);
+			$data['stok_sisa']= $this->M_data_pinjam_barang->cek_stok_maksimal($data_maks);
 			$this->load->view('pinjam_barang/pinjam_barang1',$data);
 		}
 		elseif($this->input->post('submit'))

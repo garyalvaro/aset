@@ -58,7 +58,7 @@
 										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 											<span aria-hidden="true">×</span>
 										</button>
-										<strong>Stok Tidak Tersedia.</strong>
+										<strong>Mohon maaf, Stok <?=$detail->nama_barang?> yang tersedia untuk tanggal <?=$_POST['tgl_pinjam']?> hingga <?=$_POST['tgl_pengembalian']?> adalah <?=$stok_sisa->stok_tersedia?>. </strong>
 									</div>
 								</div>
 							<?php endif; ?>
