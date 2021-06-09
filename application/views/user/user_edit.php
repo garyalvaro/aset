@@ -1,6 +1,9 @@
 <?php $this->load->view('layout/headerA'); ?>
 <!-- CSS PLUGINS START  -->
 
+<!-- Sweet Alert -->
+<link href="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+
 <!-- CSS PLUGINS END  -->
 <?php $this->load->view('layout/headerB'); ?>
 
@@ -10,6 +13,16 @@
     $level = $this->session->userdata('level');
     $id_user = $this->session->userdata('id_user');
     $id_url = $this->uri->segment(3);
+?>
+
+<?php
+// Alert Edit Sukses 
+if($this->session->flashdata())
+{
+    if($this->session->flashdata('edit_sukses'))
+        echo "<span id='edit_sukses'></span>";
+    
+}
 ?>
 
 
@@ -233,6 +246,23 @@ function ceklis(checker){
 	else
 		sendbtn.disabled=TRUE;
 }
+</script>
+
+
+<!-- Sweet-Alert  -->
+<script src="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+<script>
+$('#edit_sukses').show(function () {
+    Swal.fire(
+        {
+            title: 'Berhasil!',
+            text: 'Data berhasil diubah!',
+            type: 'success',
+            confirmButtonColor: "#58db83"
+        }
+    )
+});
+
 </script>
 
 <!-- JS PLUGINS END  -->

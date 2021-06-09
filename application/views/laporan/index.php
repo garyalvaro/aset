@@ -86,8 +86,8 @@ if($this->session->userdata('level')!=1)
                                             </table>
                                         </div>
 
-                                        <div>
-                                            <h3 class="font-14"><strong>Total Peminjaman :</strong><?=$record;?></h3>
+                                        <div class="p-2">
+                                            <h3 class="font-14"><strong>Total Peminjaman : </strong> <?=$record;?></h3>
                                         </div>
 
                                         <div class="row my-5">

@@ -73,6 +73,8 @@ class User extends CI_Controller
 				$this->session->set_userdata($data_session);
                 
                 $this->User_model->edit($where,$data,'user');
+
+                $this->session->set_flashdata('edit_sukses', 'edit_sukses');
                 redirect('User/edit_user/'.$id_user);
             }
         }
@@ -142,7 +144,8 @@ class User extends CI_Controller
 
             if($this->session->userdata('id_user') == $id_user)
                 $this->session->set_userdata($data);
-
+            
+            $this->session->set_flashdata('edit_sukses', 'edit_sukses');
             redirect('user/edit_user/'.$id_user);
         }
 
