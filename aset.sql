@@ -1,11 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
+-- Waktu pembuatan: 30 Bulan Mei 2021 pada 15.07
+-- Versi server: 10.1.30-MariaDB
+-- Versi PHP: 7.2.2
+=======
 -- Waktu pembuatan: 30 Bulan Mei 2021 pada 15.35
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 7.1.23
+>>>>>>> ac798eda5eae66e59d1e6b79ee4b944d95a856e6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,6 +64,13 @@ CREATE TABLE `barang` (
   `id_satuan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `barang`
+--
+
+INSERT INTO `barang` (`id_barang`, `nama_barang`, `deskripsi`, `foto`, `id_satuan`) VALUES
+(6, 'pulpen', 'warna warni', '20210530_150237-.jpg', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -69,6 +82,14 @@ CREATE TABLE `barangrusak` (
   `deskripsi` text NOT NULL,
   `id_transaksi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `barangrusak`
+--
+
+INSERT INTO `barangrusak` (`id_barangRusak`, `deskripsi`, `id_transaksi`) VALUES
+(1, 'pecah', 9),
+(2, 'pecah1', 10);
 
 -- --------------------------------------------------------
 
@@ -84,6 +105,19 @@ CREATE TABLE `log_transaksi` (
   `action` int(11) NOT NULL,
   `action_datetime` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `log_transaksi`
+--
+
+INSERT INTO `log_transaksi` (`id_transaksi`, `id_barang`, `id_user`, `qty`, `action`, `action_datetime`) VALUES
+(4, 6, 1, 4, 1, '2021-05-30'),
+(5, 6, 1, 4, 4, '2021-05-30'),
+(6, 6, 1, 4, 4, '2021-05-30'),
+(7, 6, 1, 4, 4, '2021-05-30'),
+(8, 6, 1, 4, 4, '2021-05-30'),
+(9, 6, 1, 4, 4, '2021-05-30'),
+(10, 6, 1, 4, 4, '2021-05-30');
 
 -- --------------------------------------------------------
 
@@ -115,6 +149,13 @@ CREATE TABLE `satuan` (
   `satuan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `satuan`
+--
+
+INSERT INTO `satuan` (`id_satuan`, `satuan`) VALUES
+(1, 'biji');
+
 -- --------------------------------------------------------
 
 --
@@ -145,6 +186,13 @@ CREATE TABLE `user` (
   `level` int(1) NOT NULL,
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `nama`, `nim`, `active`, `level`, `foto`) VALUES
+(1, 'admin', 'aaa@gmail.com', 'admin', 'admin', '181402082', 1, 1, 'aaa.jpg');
 
 --
 -- Indexes for dumped tables
@@ -220,19 +268,19 @@ ALTER TABLE `action`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `barangrusak`
 --
 ALTER TABLE `barangrusak`
-  MODIFY `id_barangRusak` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barangRusak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `log_transaksi`
 --
 ALTER TABLE `log_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `pinjam_barang`
@@ -244,7 +292,7 @@ ALTER TABLE `pinjam_barang`
 -- AUTO_INCREMENT untuk tabel `satuan`
 --
 ALTER TABLE `satuan`
-  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `stok`
@@ -256,7 +304,7 @@ ALTER TABLE `stok`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
