@@ -93,6 +93,12 @@ class M_data_pinjam_barang extends CI_Model
 
 		return TRUE;
 	}
+	public function batalkan($id_pinjamBarang)
+	{
+		$this->db->query("DELETE FROM pinjam_barang WHERE pinjam_barang.id_pinjamBarang = $id_pinjamBarang");
+
+		return TRUE;
+	}
 
 	public function pinjam($id_barang,$data)
 	{

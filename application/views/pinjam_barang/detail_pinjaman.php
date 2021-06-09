@@ -1,6 +1,9 @@
 <?php $this->load->view('layout/headerA'); ?>
 <!-- CSS PLUGINS START  -->
 
+    <!-- Sweet Alert -->
+    <link href="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+
 <!-- CSS PLUGINS END  -->
 <?php $this->load->view('layout/headerB'); ?>
 
@@ -65,6 +68,9 @@ if($this->session->userdata('level')==1)
                                 Peminjaman sedang <strong>dalam proses Persetujuan Admin</strong>.
                             </div>
                             <p>Mohon menunggu pemberitahuan selanjutnya melalui email.</p>
+                            <div class="d-grid">
+                                <button class="btn btn-lg btn-outline-secondary waves-effect"  style="width: 100%" id="batalkan">Batalkan Request Pinjaman</button>
+                            </div>
                         </div>
                     </div>
                 <?php elseif($detail->status_peminjaman == 1): ?>
@@ -174,6 +180,32 @@ if($this->session->userdata('level')==1)
 <?php $this->load->view('layout/footerA'); ?>
 <!-- JS PLUGINS START  -->
 
+<!-- Sweet-Alert  -->
+<script src="<?=base_url()?>assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+<script>
+    var nama = "<?=$this->session->userdata('nama')?>";
+    var barang = "<?=$detail->nama_barang?>";
+    var tgl_pinjam = "<?=$detail->tgl_pinjam?>";
+    var tgl_pengembalian = "<?=$detail->tgl_pengembalian?>";
+    var link = '<?=base_url('pinjam_barang/batalkan/'.$detail->id_pinjamBarang);?>';
+    $('#batalkan').on('click',function(e){
+        e.preventDefault();
+        
+        Swal.fire({
+            title: "Apakah Anda yakin ingin membatalkan?",
+            text: "Peminjaman "+barang+" atas nama "+nama+" dari tanggal "+tgl_pinjam+" sampai "+tgl_pengembalian+"?",
+            type: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#58db83",
+            cancelButtonColor: "#ec536c",
+            confirmButtonText: "Benar, Lanjutkan!"
+            }).then(function (result) {
+            if (result.value) {
+                window.location.href = link;
+            }
+        });
+    });
+</script>
 
 
 

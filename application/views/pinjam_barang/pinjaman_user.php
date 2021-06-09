@@ -18,6 +18,9 @@ if($this->session->flashdata())
 {
     if($this->session->flashdata('pinjam_sukses'))
         echo "<span id='pinjam_sukses'></span>";
+    elseif($this->session->flashdata('batalkan_berhasil'))
+        echo "<span id='batalkan_berhasil'></span>";
+    
 }
 ?>
 
@@ -158,6 +161,16 @@ $('#pinjam_sukses').show(function () {
         {
             title: 'Berhasil!',
             text: 'Peminjaman Anda akan kami proses!',
+            type: 'success',
+            confirmButtonColor: "#58db83"
+        }
+    )
+});
+$('#batalkan_berhasil').show(function () {
+    Swal.fire(
+        {
+            title: 'Berhasil!',
+            text: 'Pinjaman Anda sudah dibatalkan!',
             type: 'success',
             confirmButtonColor: "#58db83"
         }
