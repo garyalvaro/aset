@@ -33,16 +33,17 @@ class Barang extends CI_Controller
 	{
 		$data['sat'] = $this->M_data->show_satuan();
 		$this->load->view('barang/tambah_barang', $data);
-		//File Upload Config
-		$config['upload_path']       = 'assets/images/barang';
-		$config['allowed_types']    = 'jpg|png';
-		$config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
-		$config['overwrite']			= true;
-		$config['max_size']             = 2048; // 2MB
-		$this->load->library('upload', $config);
-
+		
 		if($this->input->post('submit'))
 		{
+			//File Upload Config
+			$config['upload_path']		= 'assets/images/barang/';
+			$config['allowed_types']	= '*';
+			$config['file_name']		= date("Ymd_His")."-".$this->input->post('nama_barang');
+			$config['overwrite']		= true;
+			$config['max_size']			= 2048; // 2MB
+			$this->load->library('upload', $config);
+
 			if($this->M_data->validation("save"))
 			{
 				$namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
@@ -67,16 +68,15 @@ class Barang extends CI_Controller
 	public function editFoto($id_barang)
 	{
 		$this->load->view('barang/ubah',$data);
-		$config['upload_path']       = 'assets/images/barang';
-		$config['allowed_types']    = 'jpg|png';
-		$config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
-		$config['overwrite']			= true;
-		$config['max_size']             = 2048; // 2MB
-		$this->load->library('upload', $config);
-
 		if($this->input->post('submit'))
 		{
-				
+				$config['upload_path']       = 'assets/images/barang';
+				$config['allowed_types']    = '*';
+				$config['file_name']            = date("Ymd_His")."-".$this->input->post('nama_barang');
+				$config['overwrite']			= true;
+				$config['max_size']             = 2048; // 2MB
+				$this->load->library('upload', $config);
+	
 				$namafile = preg_replace('/\s+/', '_', $this->upload->data('file_name').".jpg");
 				$data = array('foto' =>$namafile);
 			
